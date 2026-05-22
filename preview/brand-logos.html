@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Logos</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:0; background:#fff; font-family: var(--font-sans); }
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .cell { padding: 22px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 130px; gap: 10px; }
+  .cell img { max-width: 70%; max-height: 80px; object-fit: contain; }
+  .cell.dark { background: #290033; }
+  .cell.light { background: #fff; border: 1px solid rgba(41,0,51,.06); }
+  .cell.soft { background: linear-gradient(180deg,#F7C9DC,#C8B6F0); }
+  .lbl { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .dark .lbl { color: rgba(245,166,228,.8); }
+  .light .lbl { color: #A48BAE; }
+  .soft .lbl { color: rgba(41,0,51,.55); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="cell dark"><img src="../assets/logo-wordmark.png" alt="Wordmark on dark" /><div class="lbl">Wordmark · on dark</div></div>
+    <div class="cell light"><img src="../assets/logo-mark-large.png" alt="Gold mark" /><div class="lbl">Gold mark · on light</div></div>
+  </div>
+</body></html>

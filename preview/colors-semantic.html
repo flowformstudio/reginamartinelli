@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Semantic colors</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:24px; background:#fff; font-family: var(--font-sans); }
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px 28px; font-size: 13px; color: var(--fg2); }
+  .row { display:flex; align-items:center; gap:10px; }
+  .dot { width: 22px; height:22px; border-radius:6px; border:1px solid rgba(41,0,51,.08); flex:none; }
+  .name { color: var(--fg1); font-weight: 600; }
+  .var  { color: var(--fg3); font-family: var(--font-mono); font-size: 11.5px; }
+  .spacer { flex:1; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="row"><div class="dot" style="background:#642875"></div><div class="name">fg1</div><div class="spacer"></div><div class="var">--fg1 · #642875</div></div>
+    <div class="row"><div class="dot" style="background:#FFFFFF"></div><div class="name">bg</div><div class="spacer"></div><div class="var">--bg · #FFFFFF</div></div>
+    <div class="row"><div class="dot" style="background:#7A4D88"></div><div class="name">fg2</div><div class="spacer"></div><div class="var">--fg2 · #7A4D88</div></div>
+    <div class="row"><div class="dot" style="background:#F5A6E4"></div><div class="name">bg-soft</div><div class="spacer"></div><div class="var">--bg-soft · #F5A6E4</div></div>
+    <div class="row"><div class="dot" style="background:#A48BAE"></div><div class="name">fg3</div><div class="spacer"></div><div class="var">--fg3 · #A48BAE</div></div>
+    <div class="row"><div class="dot" style="background:#FAF5F0"></div><div class="name">bg-cream</div><div class="spacer"></div><div class="var">--bg-cream · #FAF5F0</div></div>
+    <div class="row"><div class="dot" style="background:#A86DDF"></div><div class="name">link</div><div class="spacer"></div><div class="var">--link · #A86DDF</div></div>
+    <div class="row"><div class="dot" style="background:#290033"></div><div class="name">bg-dark</div><div class="spacer"></div><div class="var">--bg-dark · #290033</div></div>
+    <div class="row"><div class="dot" style="background:#C6A24B"></div><div class="name">ornament</div><div class="spacer"></div><div class="var">--ornament · #C6A24B</div></div>
+    <div class="row"><div class="dot" style="background:rgba(100,40,117,.12)"></div><div class="name">border-soft</div><div class="spacer"></div><div class="var">rgba(100,40,117,.12)</div></div>
+  </div>
+</body></html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:34px 32px; background:#FBE6EF; font-family: var(--font-sans); }
+  .stack { display:flex; flex-direction:column; gap: 18px; align-items: flex-start; }
+  .row { display:flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display:inline-flex; align-items:center; gap: 12px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    border: 0; cursor: pointer;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: opacity .2s, transform .2s;
+    letter-spacing: 0.005em;
+  }
+  .btn:hover { opacity: 0.92; transform: translateY(-1px); }
+  /* PRIMARY — deep purple pill, large */
+  .btn-primary {
+    background: #642875; color: #fff;
+    padding: 22px 56px;
+    font-size: 22px;
+    line-height: 1;
+  }
+  /* ACCENT — violet pill, slightly smaller / softer */
+  .btn-accent {
+    background: #A86DDF; color: #fff;
+    padding: 18px 36px;
+    font-size: 19px;
+    line-height: 1;
+  }
+  /* SECONDARY — outlined */
+  .btn-secondary {
+    background: transparent; color: #642875;
+    border: 1.5px solid #642875;
+    padding: 16px 30px;
+    font-size: 18px;
+    line-height: 1;
+    border-radius: 999px;
+  }
+  /* TEXT — underline CTA */
+  .btn-text {
+    background: transparent; color: #642875;
+    padding: 4px 0;
+    font-size: 16px; font-weight: 500;
+    border: 0; border-radius: 0;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 4px;
+  }
+  .btn-text:hover { color: #A86DDF; transform: none; }
+  .arrow { display: inline-block; }
+</style></head>
+<body>
+  <div class="stack">
+    <div class="row">
+      <a class="btn btn-primary" href="#">Let's Begin <span class="arrow">→</span></a>
+      <a class="btn btn-accent" href="#">Discover Your Magical Self <span class="arrow">→</span></a>
+    </div>
+    <div class="row">
+      <a class="btn btn-secondary" href="#">Meet Regina</a>
+      <a class="btn btn-text" href="#">Read the full story <span class="arrow">→</span></a>
+    </div>
+  </div>
+</body></html>

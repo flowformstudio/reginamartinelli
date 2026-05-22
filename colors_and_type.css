@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Regina Martinelli — Colors & Type Foundations
+   Extracted from the live Squarespace 7.1 site (reginamartinelli.com)
+   and the flowformstudio/reginamartinelli repository (tokens.css / tokens.json).
+   ========================================================================== */
+
+/* ---- Web fonts ---------------------------------------------------------- */
+/* Body sans — Inter Tight, served from Google Fonts.                       */
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
+/* Heading serif — Orpheus Pro is hosted on Adobe Fonts (Typekit) and is
+   already loaded site-wide on the live Squarespace site. When previewing
+   this system standalone, the closest free substitute is Cormorant Garamond
+   (similar high-contrast, narrow, elegant Didone-leaning serif).
+   FLAG: orpheus-pro is not bundled; substitute Cormorant Garamond locally. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
+:root {
+  /* =====================================================================
+     COLORS — raw palette
+     ===================================================================== */
+
+  /* Brand purples & pinks (the spine of the brand) */
+  --rm-primary:        #642875;  /* deep purple — body text, headings, dark UI */
+  --rm-accent:         #A86DDF;  /* violet — buttons, links, focused accents   */
+  --rm-light-accent:   #F5A6E4;  /* soft pink — gentle backgrounds, blocks     */
+  --rm-dark-accent:    #290033;  /* near-black purple — deepest sections       */
+
+  /* Neutrals & ornament */
+  --rm-white:          #FFFFFF;
+  --rm-cream:          #FAF5F0;  /* warm off-white that pairs with gradients   */
+  --rm-gold:           #C6A24B;  /* sacred-geometry, dividers, ornament        */
+  --rm-gold-soft:      #E5CC85;  /* lighter gold for fills / hover             */
+
+  /* Gradient stops (the watercolor washes used as full-bleed backgrounds)   */
+  --rm-grad-peach:     #FDE9DC;
+  --rm-grad-pink:      #F7C9DC;
+  --rm-grad-lavender:  #C8B6F0;
+  --rm-grad-aqua:      #BFE3E3;
+
+  /* HSL channels (Squarespace native — useful for opacity mixing)          */
+  --rm-primary-hsl:       286.75, 49.04%, 30.78%;
+  --rm-accent-hsl:        271.05, 64.04%, 65.10%;
+  --rm-light-accent-hsl:  312.91, 79.80%, 80.59%;
+  --rm-dark-accent-hsl:   288.24, 100%,   10%;
+  --rm-gold-hsl:          44,     50%,    53%;
+
+  /* =====================================================================
+     COLORS — semantic roles
+     ===================================================================== */
+  --fg1:               var(--rm-primary);          /* primary text          */
+  --fg2:               #7A4D88;                    /* secondary text        */
+  --fg3:               #A48BAE;                    /* tertiary / muted      */
+  --fg-on-dark:        var(--rm-white);
+  --fg-on-soft:        var(--rm-dark-accent);
+  --link:              var(--rm-accent);
+  --link-hover:        var(--rm-primary);
+
+  --bg:                var(--rm-white);
+  --bg-soft:           var(--rm-light-accent);     /* pink moments          */
+  --bg-cream:          var(--rm-cream);            /* warm off-white blocks */
+  --bg-dark:           var(--rm-dark-accent);      /* deep purple sections  */
+  --bg-gradient-hero:
+    linear-gradient(180deg,
+      var(--rm-grad-peach)    0%,
+      var(--rm-grad-pink)    35%,
+      var(--rm-grad-lavender) 70%,
+      var(--rm-grad-aqua)   100%);
+  --bg-gradient-soft:
+    linear-gradient(180deg,
+      var(--rm-grad-lavender) 0%,
+      var(--rm-grad-pink)    55%,
+      var(--rm-grad-peach)  100%);
+
+  --border-soft:       rgba(100, 40, 117, 0.12);   /* faint purple hairline */
+  --border-gold:       var(--rm-gold);
+
+  --ornament:          var(--rm-gold);
+  --highlight:         var(--rm-gold-soft);        /* in-line highlighter   */
+
+  /* =====================================================================
+     TYPOGRAPHY
+     ===================================================================== */
+  --font-serif:  "orpheus-pro", "Orpheus Pro",
+                 "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-script: "orpheus-pro", "Cormorant Garamond", Georgia, serif;
+  --font-mono:   ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Heading scale — fluid clamp() values from the live site */
+  --h1-size:  clamp(2.75rem, 6vw + 1rem,    6.5rem);  /* 44–104 px          */
+  --h2-size:  clamp(2.10rem, 4vw + 0.75rem, 4.2rem);  /* 34–67  px          */
+  --h3-size:  clamp(1.60rem, 2vw + 0.75rem, 2.9rem);  /* 26–46  px          */
+  --h4-size:  clamp(1.25rem, 1vw + 0.75rem, 2.0rem);  /* 20–32  px          */
+  --h5-size:  1.25rem;
+  --h6-size:  1.0rem;
+
+  --heading-weight:        400;
+  --heading-letter-spacing: 0em;
+  --heading-transform:     none;
+  /* Per-level line-heights — measured from the live site (Adobe Fonts /
+     Orpheus Pro). Heading line-heights TIGHTEN as size grows: H1 ~1.09,
+     loosening to ~1.38 by H4. Do not collapse to a single value. */
+  --h1-leading: 1.09;
+  --h2-leading: 1.24;
+  --h3-leading: 1.30;
+  --h4-leading: 1.38;
+  --heading-line-height: var(--h2-leading); /* sensible default for h5/h6 */
+
+  /* Navigation links — 16px, weight 500 (per live spec) */
+  --nav-size:   1rem;
+  --nav-weight: 500;
+
+  --body-size:        1.125rem;   /* 18px */
+  --body-size-lg:     1.25rem;
+  --body-weight:      400;
+  --body-weight-med:  500;
+  --body-weight-bold: 700;
+  --body-line-height: 1.84;       /* generous, airy */
+  --body-letter-spacing: 0em;
+
+  --eyebrow-size:        0.9rem;
+  --eyebrow-weight:      500;
+  --eyebrow-tracking:    0.12em;
+  --eyebrow-transform:   uppercase;
+
+  /* =====================================================================
+     SPACING / RADII / SHADOWS
+     ===================================================================== */
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  8rem;
+  --space-2xl: 12rem;
+
+  --section-py: 6rem;
+  --content-max: 1200px;
+  --content-narrow: 720px;
+
+  /* --- Buttons --- */
+  --radius-button: 999px;          /* pill — large rounded shape per live site */
+  --btn-primary-padding: 22px 56px;
+  --btn-accent-padding:  18px 36px;
+  --btn-primary-size:    1.375rem; /* ~22px */
+  --btn-accent-size:     1.1875rem;/* ~19px */
+  --btn-weight:          500;
+
+  --radius-card:    12px;
+  --radius-soft:    20px;
+  --radius-pill:    999px;
+
+  --shadow-soft:    0 8px 30px rgba(41, 0, 51, 0.08);
+  --shadow-card:    0 12px 40px rgba(41, 0, 51, 0.10);
+  --shadow-lifted:  0 24px 60px rgba(41, 0, 51, 0.14);
+  --shadow-gold:    0 8px 30px rgba(198, 162, 75, 0.25);
+  --shadow-inset:   inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  /* =====================================================================
+     MOTION
+     ===================================================================== */
+  --ease:           cubic-bezier(0.22, 1, 0.36, 1);     /* gentle out       */
+  --ease-soft:      cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast:  160ms;
+  --duration-base:  240ms;
+  --duration-slow:  480ms;
+  --duration-veil:  900ms;                              /* fade-in long     */
+}
+
+/* ==========================================================================
+   SEMANTIC ELEMENT STYLES — apply these CSS vars to bare HTML
+   ========================================================================== */
+html { color-scheme: light; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
+  color: var(--fg1);
+  background: var(--bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: var(--heading-weight);
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--heading-letter-spacing);
+  text-transform: var(--heading-transform);
+  color: var(--fg1);
+  margin: 0 0 var(--space-sm);
+  text-wrap: balance;
+}
+h1 { font-size: var(--h1-size); line-height: var(--h1-leading); }
+h2 { font-size: var(--h2-size); line-height: var(--h2-leading); }
+h3 { font-size: var(--h3-size); line-height: var(--h3-leading); }
+h4 { font-size: var(--h4-size); line-height: var(--h4-leading); }
+h5 { font-size: var(--h5-size); font-family: var(--font-sans); font-weight: var(--body-weight-med); letter-spacing: 0.04em; text-transform: uppercase; }
+h6 { font-size: var(--h6-size); font-family: var(--font-sans); font-weight: var(--body-weight-med); letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg2); }
+
+p { margin: 0 0 var(--space-sm); text-wrap: pretty; }
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: opacity var(--duration-base) var(--ease);
+}
+a:hover { opacity: 0.75; }
+
+em, i { font-style: italic; }
+strong, b { font-weight: var(--body-weight-bold); color: var(--fg1); }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--border-soft);
+  margin: var(--space-lg) auto;
+}
+
+/* The signature "gold sacred-geometry highlighter" — wrap text in
+   <span class="rm-highlight">…</span> for an inline gold underline wash. */
+.rm-highlight {
+  background: linear-gradient(180deg, transparent 60%, rgba(198,162,75,0.35) 60%);
+  padding: 0 0.08em;
+}
+
+/* Eyebrow / kicker label */
+.rm-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--eyebrow-size);
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: var(--eyebrow-transform);
+  color: var(--rm-accent);
+}
+
+/* Signature / pull-quote in serif italic */
+.rm-script {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-weight: 400;
+}
+
+::selection { background: var(--rm-light-accent); color: var(--rm-dark-accent); }

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Pull quote / hero band</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:0; background:#290033; }
+  .band { position: relative; padding: 38px 36px 34px; text-align: center; overflow: hidden; }
+  .band::before {
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(168,109,223,.5), transparent 65%);
+    pointer-events: none;
+  }
+  .mark { position: absolute; right: -30px; top: -30px; width: 180px; opacity: .25; }
+  .eye { position:relative; font-family: var(--font-sans); font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #F5A6E4; margin-bottom: 18px; }
+  .q { position:relative; font-family: var(--font-serif); font-style: italic; font-size: 32px; line-height: 1.3; color: #fff; max-width: 26ch; margin: 0 auto 14px; text-wrap: balance; }
+  .by { position: relative; font-family: var(--font-sans); font-size: 13px; color: rgba(245,166,228,.85); letter-spacing: .04em; }
+</style></head>
+<body>
+  <div class="band">
+    <img class="mark" src="../assets/sacred-geo-45.png" alt="" />
+    <div class="eye">A Truth to Sit With</div>
+    <div class="q">"The world is a mirror, forever reflecting what you are doing within yourself."</div>
+    <div class="by">— Neville Goddard</div>
+  </div>
+</body></html>

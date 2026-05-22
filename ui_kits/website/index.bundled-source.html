@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regina Martinelli — Website UI Kit</title>
+
+  <!-- Ext-resource-dependency manifest: every PNG referenced from JS code
+       lives here so the bundler can inline it. components.bundled-source.jsx
+       reads each one back via window.__resources[id]. -->
+  <meta name="ext-resource-dependency" content="../../assets/logo-wordmark.png"     data-resource-id="wordmark" />
+  <meta name="ext-resource-dependency" content="../../assets/logo-footer.png"       data-resource-id="wordmarkFooter" />
+  <meta name="ext-resource-dependency" content="../../assets/logo-mark-large.png"   data-resource-id="goldMarkLarge" />
+  <meta name="ext-resource-dependency" content="../../assets/mandala-gold.png"      data-resource-id="mandala" />
+  <meta name="ext-resource-dependency" content="../../assets/sacred-geo-15.png"     data-resource-id="sacredGeo15" />
+  <meta name="ext-resource-dependency" content="../../assets/sacred-geo-22.png"     data-resource-id="sacredGeo22" />
+  <meta name="ext-resource-dependency" content="../../assets/sacred-geo-23.png"     data-resource-id="sacredGeo23" />
+  <meta name="ext-resource-dependency" content="../../assets/sacred-geo-45.png"     data-resource-id="sacredGeo45" />
+  <meta name="ext-resource-dependency" content="../../assets/sacred-geo-62.png"     data-resource-id="sacredGeo62" />
+  <meta name="ext-resource-dependency" content="../../assets/gold-sparkle-sun.png"  data-resource-id="goldSparkle" />
+  <meta name="ext-resource-dependency" content="../../assets/gold-frame.png"        data-resource-id="goldFrame" />
+
+  <link rel="stylesheet" href="../../colors_and_type.css" />
+  <link rel="stylesheet" href="kit.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <template id="__bundler_thumbnail" data-bg-color="#290033">
+    <!-- Simplified gold sacred-geometry burst on the brand's dark purple.
+         Displayed full-bleed while assets unpack, and as no-JS fallback. -->
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="wash" cx="50%" cy="50%" r="60%">
+          <stop offset="0%"  stop-color="#A86DDF" stop-opacity="0.55" />
+          <stop offset="100%" stop-color="#290033" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="800" fill="#290033" />
+      <ellipse cx="600" cy="400" rx="520" ry="380" fill="url(#wash)" />
+      <!-- 8-point gold star / mandala silhouette -->
+      <g transform="translate(600 400)" fill="none" stroke="#C6A24B" stroke-width="2.5">
+        <circle r="170" />
+        <circle r="120" />
+        <circle r="60"  fill="#C6A24B" stroke="none" opacity="0.85" />
+        <line x1="-200" y1="0"  x2="200"  y2="0"  />
+        <line x1="0"    y1="-200" x2="0"  y2="200" />
+        <line x1="-141" y1="-141" x2="141" y2="141" />
+        <line x1="-141" y1="141"  x2="141" y2="-141" />
+      </g>
+      <text x="600" y="690" text-anchor="middle"
+            font-family="Georgia, serif" font-size="36" letter-spacing="6"
+            fill="#FFFFFF" opacity="0.85">REGINA MARTINELLI</text>
+    </svg>
+  </template>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="components.bundled-source.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

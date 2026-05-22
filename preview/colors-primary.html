@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Brand colors — primary</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:24px; background:#fff; }
+  .row { display:grid; grid-template-columns: repeat(4, 1fr); gap:14px; }
+  .sw { display:flex; flex-direction:column; gap:8px; }
+  .chip { aspect-ratio: 1 / 1; border-radius:14px; border:1px solid rgba(41,0,51,.06); box-shadow: var(--shadow-soft); }
+  .meta { display:flex; justify-content:space-between; align-items:baseline; font-family: var(--font-sans); font-size: 12px; color: var(--fg2); }
+  .name { font-weight: 600; color: var(--fg1); letter-spacing: .02em; }
+  .hex  { font-feature-settings: "tnum"; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#642875"></div><div class="meta"><span class="name">Primary</span><span class="hex">#642875</span></div></div>
+    <div class="sw"><div class="chip" style="background:#A86DDF"></div><div class="meta"><span class="name">Accent</span><span class="hex">#A86DDF</span></div></div>
+    <div class="sw"><div class="chip" style="background:#F5A6E4"></div><div class="meta"><span class="name">Light Accent</span><span class="hex">#F5A6E4</span></div></div>
+    <div class="sw"><div class="chip" style="background:#290033"></div><div class="meta"><span class="name">Dark Accent</span><span class="hex">#290033</span></div></div>
+  </div>
+</body></html>

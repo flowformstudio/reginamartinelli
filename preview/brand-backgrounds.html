@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Background library</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:14px; background:#fff; font-family: var(--font-sans); }
+  .grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .cell { aspect-ratio: 3 / 4; border-radius: 10px; background-size: cover; background-position: center; box-shadow: 0 8px 24px rgba(41,0,51,.08); position: relative; overflow: hidden; }
+  .lbl { position: absolute; left: 8px; bottom: 8px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #fff; padding: 4px 8px; border-radius: 99px; background: rgba(41,0,51,.55); backdrop-filter: blur(4px); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="cell" style="background-image:url(../assets/gradient-tall-portrait.png)"><span class="lbl">tall portrait</span></div>
+    <div class="cell" style="background-image:url(../assets/gradient-peach.png)"><span class="lbl">peach wash</span></div>
+    <div class="cell" style="background-image:url(../assets/gradient-purple-pink.png)"><span class="lbl">lavender wash</span></div>
+    <div class="cell" style="background-image:url(../assets/bg-cream-1.png)"><span class="lbl">cosmic cream</span></div>
+  </div>
+</body></html>

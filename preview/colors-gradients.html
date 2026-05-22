@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Gradient washes</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:24px; background:#fff; font-family: var(--font-sans); color: var(--fg2); }
+  .row { display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+  .sw { display:flex; flex-direction:column; gap:8px; }
+  .wash { aspect-ratio: 4 / 3; border-radius:14px; box-shadow: var(--shadow-soft); }
+  .lbl { font-size: 12px; }
+  .lbl strong { color: var(--fg1); font-weight:600; letter-spacing:.02em; }
+  .w1 { background: linear-gradient(180deg,#FDE9DC 0%,#F7C9DC 35%,#C8B6F0 70%,#BFE3E3 100%); }
+  .w2 { background: linear-gradient(180deg,#C8B6F0 0%,#F7C9DC 55%,#FDE9DC 100%); }
+  .w3 { background: linear-gradient(180deg,#FDE9DC 0%,#F7C9DC 60%,#F5A6E4 100%); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="wash w1"></div><div class="lbl"><strong>Hero wash</strong> · peach → pink → lavender → aqua</div></div>
+    <div class="sw"><div class="wash w2"></div><div class="lbl"><strong>Soft wash</strong> · lavender → pink → peach</div></div>
+    <div class="sw"><div class="wash w3"></div><div class="lbl"><strong>Sunrise</strong> · peach → pink → light-accent</div></div>
+  </div>
+</body></html>

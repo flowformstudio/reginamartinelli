@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<title>Radii</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { margin:0; padding:22px 28px; background:#fff; font-family: var(--font-sans); }
+  .grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .item { display:flex; flex-direction:column; align-items:center; gap: 8px; }
+  .demo { width: 88px; height: 56px; background: var(--rm-light-accent); border: 1px solid rgba(41,0,51,.08); }
+  .nm { font-size: 12px; color: var(--fg1); font-weight: 600; }
+  .vl { font-size: 11px; color: var(--fg3); font-family: var(--font-mono); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="item"><div class="demo" style="border-radius:999px; width:120px;"></div><div class="nm">Button (pill)</div><div class="vl">999 px</div></div>
+    <div class="item"><div class="demo" style="border-radius:12px"></div><div class="nm">Card</div><div class="vl">12 px</div></div>
+    <div class="item"><div class="demo" style="border-radius:20px"></div><div class="nm">Soft</div><div class="vl">20 px</div></div>
+    <div class="item"><div class="demo" style="border-radius:999px"></div><div class="nm">Pill</div><div class="vl">999 px</div></div>
+  </div>
+</body></html>
