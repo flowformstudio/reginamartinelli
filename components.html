@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regina Martinelli — Design System Reference</title>
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .swatch { display:inline-block; width:140px; margin:0 1rem 1rem 0; vertical-align:top; }
+    .swatch .chip { height:90px; border-radius:8px; border:1px solid rgba(0,0,0,.08); }
+    .swatch .label { font-size:.85rem; margin-top:.4rem; }
+    .ref-block { padding:2rem; border-bottom:1px solid rgba(41,0,51,.1); }
+    .ref-block h2 { font-size:2rem; }
+  </style>
+</head>
+<body>
+
+  <section class="rm-section rm-section--dark">
+    <div class="rm-container">
+      <p class="rm-eyebrow" style="color:var(--rm-color-light-accent)">Design System</p>
+      <h1>Regina Martinelli</h1>
+      <p>Transformational coach &amp; founder of Money Beliefs by Design. This page renders every token and component in the system.</p>
+    </div>
+  </section>
+
+  <div class="ref-block">
+    <h2>Colors</h2>
+    <div class="swatch"><div class="chip" style="background:#642875"></div><div class="label">Primary<br>#642875</div></div>
+    <div class="swatch"><div class="chip" style="background:#A86DDF"></div><div class="label">Accent<br>#A86DDF</div></div>
+    <div class="swatch"><div class="chip" style="background:#F5A6E4"></div><div class="label">Light Accent<br>#F5A6E4</div></div>
+    <div class="swatch"><div class="chip" style="background:#290033"></div><div class="label">Dark Accent<br>#290033</div></div>
+    <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="label">White<br>#FFFFFF</div></div>
+    <div class="swatch"><div class="chip" style="background:#C6A24B"></div><div class="label">Gold<br>#C6A24B</div></div>
+  </div>
+
+  <div class="ref-block">
+    <h2>Typography</h2>
+    <h1>Heading 1 — Orpheus Pro</h1>
+    <h2>Heading 2 — Orpheus Pro</h2>
+    <h3>Heading 3 — Orpheus Pro</h3>
+    <h4>Heading 4 — Orpheus Pro</h4>
+    <p>Body text is set in Inter Tight at a generous 1.84 line-height. The voice is warm,
+      second-person, and empowering — elegant serif headlines paired with airy sans-serif body copy.</p>
+    <p class="rm-eyebrow">Eyebrow / kicker label</p>
+  </div>
+
+  <div class="ref-block">
+    <h2>Buttons</h2>
+    <a class="rm-btn rm-btn--primary" href="#">Primary Button</a>
+    &nbsp;&nbsp;
+    <a class="rm-btn rm-btn--secondary" href="#">Secondary Button</a>
+  </div>
+
+  <div class="ref-block">
+    <h2>Card</h2>
+    <div class="rm-card" style="max-width:360px">
+      <h4>Card Title</h4>
+      <p>Cards use a soft 12px radius and a low, purple-tinted shadow.</p>
+      <a class="rm-btn rm-btn--primary" href="#">Learn more</a>
+    </div>
+  </div>
+
+  <section class="rm-section rm-section--soft">
+    <div class="rm-container">
+      <h2>Soft Section</h2>
+      <p>Light-pink background block — used for gentle, supportive content moments.</p>
+    </div>
+  </section>
+
+</body>
+</html>

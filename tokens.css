@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Regina Martinelli — Design Tokens
+   Extracted from the live Squarespace 7.1 site (reginamartinelli.com).
+   Colors are expressed both as HSL channels (matching Squarespace's own
+   token system) and as ready-to-use hex values.
+   ========================================================================== */
+
+:root {
+  /* --- Color: raw HSL channels (Squarespace-native format) --- */
+  --rm-black-hsl: 286.75, 49.04%, 30.78%;
+  --rm-white-hsl: 0, 0%, 100%;
+  --rm-accent-hsl: 271.05, 64.04%, 65.1%;
+  --rm-light-accent-hsl: 312.91, 79.8%, 80.59%;
+  --rm-dark-accent-hsl: 288.24, 100%, 10%;
+
+  /* --- Color: usable values --- */
+  --rm-color-primary:      #642875;  /* deep purple — primary text & dark UI   */
+  --rm-color-accent:       #A86DDF;  /* violet — buttons, links, highlights    */
+  --rm-color-light-accent: #F5A6E4;  /* soft pink — backgrounds, soft accents  */
+  --rm-color-dark-accent:  #290033;  /* near-black purple — deep contrast      */
+  --rm-color-white:        #FFFFFF;  /* backgrounds                            */
+  --rm-color-gold:         #C6A24B;  /* gold — logo / sacred-geometry motif    */
+
+  /* --- Semantic color roles --- */
+  --rm-text:               var(--rm-color-primary);
+  --rm-text-on-dark:       var(--rm-color-white);
+  --rm-bg:                 var(--rm-color-white);
+  --rm-bg-soft:            var(--rm-color-light-accent);
+  --rm-bg-dark:            var(--rm-color-dark-accent);
+  --rm-link:               var(--rm-color-accent);
+
+  /* --- Typography: families --- */
+  --rm-font-heading: "orpheus-pro", "Orpheus Pro", Georgia, "Times New Roman", serif;
+  --rm-font-body:    "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* --- Typography: heading scale (Squarespace display sizes) --- */
+  --rm-h1-size: 6.5rem;
+  --rm-h2-size: 4.2rem;
+  --rm-h3-size: 2.9rem;
+  --rm-h4-size: 2rem;
+
+  /* Responsive-safe equivalents for real landing pages */
+  --rm-h1-fluid: clamp(2.75rem, 6vw + 1rem, 6.5rem);
+  --rm-h2-fluid: clamp(2.1rem, 4vw + 0.75rem, 4.2rem);
+  --rm-h3-fluid: clamp(1.6rem, 2vw + 0.75rem, 2.9rem);
+  --rm-h4-fluid: clamp(1.25rem, 1vw + 0.75rem, 2rem);
+
+  /* --- Typography: weights & rhythm --- */
+  --rm-heading-weight: 400;
+  --rm-heading-line-height: 1.4;
+  --rm-heading-letter-spacing: 0em;
+  --rm-heading-text-transform: none;
+
+  --rm-body-size: 1.125rem;
+  --rm-body-weight: 400;
+  --rm-body-weight-medium: 500;
+  --rm-body-weight-bold: 700;
+  --rm-body-line-height: 1.84;
+  --rm-body-letter-spacing: 0em;
+
+  /* --- Spacing scale --- */
+  --rm-space-xs: 0.5rem;
+  --rm-space-sm: 1rem;
+  --rm-space-md: 2rem;
+  --rm-space-lg: 4rem;
+  --rm-space-xl: 8rem;
+  --rm-section-padding-y: 6rem;
+  --rm-content-max-width: 1200px;
+
+  /* --- Radii --- */
+  --rm-radius-button: 6.8px;
+  --rm-radius-card: 12px;
+  --rm-radius-pill: 999px;
+
+  /* --- Buttons --- */
+  --rm-btn-primary-font: var(--rm-font-body);
+  --rm-btn-primary-size: 1.23rem;
+  --rm-btn-primary-weight: 500;
+  --rm-btn-primary-line-height: 1.22;
+  --rm-btn-primary-padding: 1.5rem 2.2rem;
+
+  --rm-btn-secondary-font: var(--rm-font-body);
+  --rm-btn-secondary-size: 1.47rem;
+  --rm-btn-secondary-weight: 500;
+}
