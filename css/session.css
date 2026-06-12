@@ -160,7 +160,7 @@
   margin: 0 auto;
 }
 .sx-orn img { height: 96px; width: auto; opacity: 0.92; }
-.sx-orn--lg img { height: 150px; }
+.sx-orn--lg img { height: 210px; }
 @media (prefers-reduced-motion: no-preference) {
   .has-js .rm-reveal .sx-orn img {
     opacity: 0; transform: scale(0.85);
@@ -413,9 +413,10 @@
 .sx-cascade {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  align-items: center;
+  gap: 12px;
   text-align: center;
-  max-width: 620px;
+  max-width: 680px;
   margin: 0 auto;
 }
 .sx-cascade p {
@@ -427,13 +428,14 @@
   color: var(--rm-primary);
   margin: 0;
 }
-/* golden brushstroke swash beneath each line (per Figma ref 56:138) */
+/* golden brushstroke tucked tight under every line, hugging its width */
+.sx-cascade p { display: inline-block; }
 .sx-cascade p::after {
   content: "";
   display: block;
-  width: min(88%, 34rem);
-  height: 20px;
-  margin: 20px auto 0;
+  width: 112%;
+  height: 18px;
+  margin: -10px 0 0 -6%;
   background: url("../design-system/assets/gold-highlighter-strip.png") center / 100% 100% no-repeat;
   opacity: 0.92;
 }
@@ -442,9 +444,22 @@
    Figma 55:85 — Promise flares + gold-framed Problem card
    ========================================================================== */
 .sx-flare { position: absolute; pointer-events: none; }
-.sx-flare--tr { top: -70px; right: -150px; width: 470px; }
-.sx-flare--ml { top: 230px; left: -210px; width: 425px; }
-.sx-flare--logo { top: 60%; right: -90px; width: 340px; opacity: 0.95; }
+.sx-flare--tr { top: -60px; right: -110px; width: 460px; }
+.sx-flare--ml { top: 280px; left: -120px; width: 400px; }
+/* right: geometric flower · left: wavy gold strands (near the big beat) */
+.sx-flare--geo { top: 52%; right: -60px; width: 300px; }
+.sx-flare--waves { top: 56%; left: -50px; width: 240px; }
+/* small sparkle accents */
+.sx-ministar {
+  position: absolute;
+  color: var(--rm-gold);
+  pointer-events: none;
+  font-size: 22px;
+  opacity: 0.85;
+}
+.sx-ministar--a { top: 140px; right: 230px; }
+.sx-ministar--b { top: 420px; right: 90px; font-size: 15px; }
+.sx-ministar--c { top: 560px; left: 110px; font-size: 17px; }
 .sx-bigstar {
   position: absolute;
   top: 34px; left: 48%;
@@ -462,19 +477,22 @@
 /* The Problem — cream card with thick gold border, geometry behind */
 .sx-problem__geo {
   position: absolute;
-  width: 460px;
+  width: 340px;
   pointer-events: none;
 }
-.sx-problem__geo--tl { top: -140px; left: -110px; transform: rotate(55deg); }
-.sx-problem__geo--tr { top: -100px; right: -140px; transform: rotate(-135deg); }
+.sx-problem__geo--tl { display: none; }
+.sx-problem__geo--tr { top: 32%; right: -90px; }
 .sx-card-gold {
   position: relative;
-  background: #F8EFD6;
-  border: 15px solid var(--rm-gold);
-  border-radius: clamp(36px, 5vw, 70px);
+  /* metallic gradient border via double background */
+  border: 10px solid transparent;
+  border-radius: clamp(36px, 5vw, 62px);
+  background:
+    linear-gradient(#F8EFD6, #F8EFD6) padding-box,
+    linear-gradient(135deg, #E9CC83 0%, #C6A24B 28%, #F6E5AE 50%, #B98F35 72%, #E9CC83 100%) border-box;
   max-width: 874px;
   margin: 0 auto;
-  padding: clamp(40px, 5vw, 60px) clamp(24px, 4vw, 56px) clamp(48px, 6vw, 76px);
+  padding: clamp(40px, 5vw, 60px) clamp(24px, 4vw, 56px) 0;
   text-align: center;
 }
 .sx-card-gold .sx-prose { max-width: 640px; }
@@ -495,31 +513,25 @@
   font-size: clamp(2rem, 4.5vw, 3.625rem);
   letter-spacing: -0.01em;
 }
-/* wide gold splash painted behind the line, broader than the text */
+/* the clarity splash: a full-width gold band that BREAKS OUT of the card,
+   overlapping its bottom edge (per art-direction screenshot) */
 .sx-splash {
   position: relative;
-  display: inline-block;
-  padding: 0.06em 0.3em;
-  z-index: 0; /* own stacking context so the ::before paints above the card bg */
-}
-.sx-splash::before {
-  content: "";
-  position: absolute;
-  left: -14%; right: -14%;
-  top: 50%;
-  height: 1.6em;
-  transform: translateY(-50%);
+  display: block;
+  width: 126%;
+  margin: 44px -13% -54px;
+  padding: 0.36em 0.4em 0.42em;
   background: url("../design-system/assets/gold-highlighter-strip.png") center / 100% 100% no-repeat;
-  z-index: -1;
-  opacity: 0.95;
+  z-index: 1;
 }
 @media (max-width: 880px) {
-  .sx-flare--tr { width: 300px; right: -120px; }
-  .sx-flare--ml { width: 280px; left: -150px; }
-  .sx-flare--logo { display: none; }
-  .sx-problem__geo { width: 300px; }
+  .sx-flare--tr { width: 280px; right: -100px; }
+  .sx-flare--ml { width: 240px; left: -110px; }
+  .sx-flare--geo, .sx-flare--waves { display: none; }
+  .sx-problem__geo { width: 240px; }
+  .sx-splash { width: 116%; margin-left: -8%; margin-right: -8%; }
 }
-.sx-cascade p:last-child::after { content: none; }
+/* all four lines carry the swash (per art-direction screenshot) */
 .sx-cascade strong { font-weight: 500; color: var(--rm-dark-accent); }
 @media (prefers-reduced-motion: no-preference) {
   .has-js .rm-reveal .sx-cascade p {
