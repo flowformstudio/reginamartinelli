@@ -107,7 +107,7 @@
         <img class="sx-story__orn sx-story__orn--waves sx-bloom" data-parallax="0.07" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-contour-2.png" alt="" aria-hidden="true">
         <img class="sx-story__orn sx-story__orn--wheel sx-bloom" data-parallax="0.14" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-22.png" alt="" aria-hidden="true">
         <h2 class="sx-story__title">My Story</h2>
-        <p class="sx-slead" style="margin-top:0">For a long time, I was marketing the way I thought I was supposed to.</p>
+        <p class="sx-slead sx-dropcap-first" style="margin-top:0">For a long time, I was marketing the way I thought I was supposed to.</p>
         <p class="sx-ssmall">I was following what looked like the &ldquo;proven&rdquo; method. Trying to make my business fit the models that seemed to work for other people.</p>
         <p class="sx-ssmall">But the more I did that, the less like myself my business felt.</p>
         <p class="sx-slead">So I stepped back.</p>
@@ -653,7 +653,7 @@
 #rm-session .sx-oval .sx-clarity { gap: 26px 40px; }
 #rm-session .sx-oval .sx-clarity__item p { font-size: 1rem; line-height: 1.65; }
 #rm-session .sx-oval .sx-clarity__spark { font-size: 24px; }
-#rm-session .sx-meet { display: flex; align-items: center; gap: 30px; max-width: 780px; margin: 0 auto; text-align: left; }
+#rm-session .sx-meet { display: flex; flex-direction: column; align-items: center; gap: 28px; max-width: 720px; margin: 0 auto; text-align: center; }
 #rm-session .sx-meet__photo { width: clamp(96px, 10vw, 128px); height: clamp(96px, 10vw, 128px); flex: none; }
 #rm-session .sx-meet .sx-ch-title { margin: 0; font-size: clamp(1.8rem, 3.2vw, 2.7rem); }
 #rm-session .sx-story { position: relative; background: #F9F1EA; border-radius: clamp(32px, 4vw, 56px); max-width: 980px; margin: 0 auto; padding: clamp(48px, 6vw, 84px) clamp(28px, 7vw, 96px) 0; text-align: left; }
@@ -736,6 +736,34 @@
   #rm-session .sx-offer__sun { height: 210px; right: -100px; }
   #rm-session .sx-twocol--open { gap: 44px; }
 }
+
+#rm-session .sx-cascade p { position: relative; z-index: 0; }
+#rm-session .sx-cascade p::after { position: relative; z-index: -1; }
+#rm-session .sx-ssmall { opacity: 1; color: #6E3D7E; }
+#rm-session .sx-dark .sx-prose p { color: rgba(255, 255, 255, 0.9); }
+#rm-session .sx-dark .sx-checks li { color: rgba(255, 255, 255, 0.92); }
+#rm-session .sx-beat, #rm-session .sx-quote, #rm-session .sx-ch-title, #rm-session .sx-pclead, #rm-session .sx-innercard__beat { text-wrap: balance; }
+#rm-session .sx-prose p, #rm-session .sx-ssmall, #rm-session .sx-dlist li, #rm-session .sx-checks li, #rm-session .sx-slist li { text-wrap: pretty; }
+
+#rm-session .sx-story__title { background: linear-gradient(100deg, #B8862F 0%, #DCAF52 45%, #C6962F 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#rm-session .sx-story__title::after { content: ""; display: block; width: 150px; height: 12px; margin-top: 14px; background: url("https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-highlighter-strip.png") center / 100% 100% no-repeat; opacity: 0.9; }
+#rm-session .sx-slead { font-size: clamp(1.4rem, 2.3vw, 1.85rem); line-height: 1.32; letter-spacing: -0.004em; margin: 2em 0 0.75em; }
+#rm-session .sx-ssmall { font-size: 1.02rem; line-height: 1.8; max-width: 58ch; }
+#rm-session .sx-slist li { font-size: 1rem; line-height: 1.65; }
+#rm-session .sx-dropcap-first::first-letter { float: left; font-size: 2.5em; line-height: 0.82; padding: 0.04em 0.1em 0 0; color: #C6962F; }
+#rm-session .sx-story .sx-quote { margin: 68px auto 56px; }
+#rm-session .sx-innercard { margin: 68px auto; }
+#rm-session .sx-band { margin-top: 76px; margin-bottom: 76px; }
+#rm-session .sx-cmini { gap: 10px; }
+#rm-session .sx-cmini li::after { content: "\00b7"; display: block; color: var(--rmx-gold); font-size: 1.1rem; margin-top: 8px; }
+#rm-session .sx-cmini li:last-child::after { content: none; }
+
+#rm-session .sx-band { width: fit-content; max-width: calc(100% + 48px); margin: 76px auto; padding: 0.28em 0.9em 0.36em; }
+#rm-session .sx-dropcap-first::first-letter { float: none; font-size: 1.45em; line-height: 1; padding: 0; color: #C6962F; }
+
+#rm-session .sx-offer__burst { top: 300px; left: -150px; width: 400px; }
+#rm-session .sx-offer__geo { top: 660px; left: calc(50% - 440px); width: 190px; }
+#rm-session .sx-offer__star { top: 800px; left: calc(50% - 320px); }
 </style>
 
 <script>
