@@ -42,3 +42,31 @@
   window.addEventListener("resize", function () { measure(); update(); });
   window.addEventListener("load", function () { measure(); update(); });
 })();
+
+/* Graceful bloom — ornaments arrive one by one as they scroll into view.
+   Stagger is per-section, in document order. */
+(function () {
+  "use strict";
+  var els = [].slice.call(document.querySelectorAll(".sx-bloom"));
+  if (!els.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)) {
+    els.forEach(function (el) { el.classList.add("is-bloomed"); });
+    return;
+  }
+  var counts = [];
+  els.forEach(function (el) {
+    var sec = el.closest("section") || document.body;
+    var entry = null;
+    for (var i = 0; i < counts.length; i++) if (counts[i].sec === sec) entry = counts[i];
+    if (!entry) { entry = { sec: sec, n: 0 }; counts.push(entry); }
+    el.style.setProperty("--bloom-delay", (entry.n * 0.18).toFixed(2) + "s");
+    entry.n++;
+  });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-bloomed"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
+  els.forEach(function (el) { io.observe(el); });
+})();

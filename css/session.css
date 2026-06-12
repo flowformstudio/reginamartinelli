@@ -449,6 +449,28 @@
 /* right: geometric flower · left: wavy gold strands (near the big beat) */
 .sx-flare--geo { top: 52%; right: -60px; width: 300px; }
 .sx-flare--waves { top: 56%; left: -50px; width: 240px; }
+/* graceful bloom — ornaments arrive one by one on scroll. Uses the
+   independent scale/rotate properties so parallax (transform) is untouched */
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .sx-bloom {
+    --blo: 1;
+    opacity: 0;
+    scale: 0.55;
+    rotate: -6deg;
+    transition:
+      opacity 1.15s var(--ease) var(--bloom-delay, 0s),
+      scale 1.15s var(--ease) var(--bloom-delay, 0s),
+      rotate 1.15s var(--ease) var(--bloom-delay, 0s);
+  }
+  .has-js .sx-bloom.is-bloomed {
+    opacity: var(--blo);
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+.sx-ministar.sx-bloom { --blo: 0.85; }
+.sx-dark__geo.sx-bloom { --blo: 0.16; }
+
 /* small sparkle accents */
 .sx-ministar {
   position: absolute;
