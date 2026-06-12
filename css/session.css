@@ -1297,3 +1297,126 @@
   .sx-dark__orn--sunbl { height: 200px; left: -90px; }
 }
 .sx-dark .sx-beat--goldserif { color: #D9B25C; }
+
+/* ==========================================================================
+   Chapter VI — pricing design + designer-pass refinements
+   ========================================================================== */
+.sx-offer-zone {
+  background: linear-gradient(180deg, #FAE7D8 0%, #F8CBDD 52%, #F4B9D6 100%);
+}
+.sx-price-card {
+  position: relative;
+  max-width: 580px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1.5px solid rgba(198, 162, 75, 0.8);
+  border-radius: 26px;
+  box-shadow: 0 18px 50px rgba(41, 0, 51, 0.10);
+  padding: clamp(40px, 5vw, 56px) clamp(28px, 4vw, 48px);
+  text-align: center;
+  overflow: visible;
+}
+.sx-price-card::before { content: none; }
+.sx-price-card__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.7vw, 2.15rem);
+  line-height: 1.2;
+  color: var(--rm-dark-accent);
+  margin: 0 0 10px;
+}
+.sx-price-card__amount { font-size: clamp(2.4rem, 4vw, 3.1rem); margin: 4px 0 18px; }
+.sx-pclead {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.45;
+  color: var(--rm-primary);
+  margin: 0 0 18px;
+}
+.sx-price-card .sx-ssmall { margin-left: auto; margin-right: auto; }
+.sx-price-card .rm-btn { margin-top: 22px; font-size: 1.05rem; padding: 16px 34px; }
+.sx-twocol--open { margin-top: 92px; gap: 64px; }
+.sx-twocol--open h3 { text-align: left; font-size: clamp(1.3rem, 2vw, 1.6rem); margin-bottom: 22px; }
+.sx-dlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  text-align: left;
+}
+.sx-dlist li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 0.95rem;
+  line-height: 1.62;
+  color: var(--rm-primary);
+}
+.sx-dlist li::before {
+  content: "✦";
+  position: absolute;
+  left: 0; top: 1px;
+  color: var(--rm-primary);
+  font-size: 15px;
+}
+.sx-included-title { text-align: center; margin: 0; }
+.sx-splash-head {
+  display: inline-block;
+  padding: 0.18em 0.85em 0.3em;
+  background: url("../design-system/assets/gold-highlighter-strip.png") center / 100% 100% no-repeat;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--rm-dark-accent);
+}
+.sx-incl-card {
+  background: #FFFDFB;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba(41, 0, 51, 0.08);
+  padding: clamp(30px, 4vw, 44px);
+}
+.sx-incl-card h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); }
+.sx-incl-card h3::after { content: none; }
+.sx-incl-card .sx-dlist li { font-size: 0.92rem; }
+.sx-incl-card .sx-kicker { color: var(--rm-light-accent); }
+.sx-offer__burst { left: -150px; top: 24%; width: 430px; }
+.sx-offer__sun { right: -150px; top: 5%; height: 330px; }
+.sx-offer__geo { left: calc(50% - 480px); top: 620px; width: 200px; opacity: 0.85; }
+.sx-offer__star { left: calc(50% - 350px); top: 740px; font-size: 20px; position: absolute; color: var(--rm-gold); }
+
+/* — designer pass: narrative bookend + rhythm — */
+html { scroll-padding-top: 90px; }
+/* Chapter VII closes the circle with the hero's golden radial */
+.sx-final {
+  background: radial-gradient(ellipse 120% 95% at 50% 50%,
+    #FFF3D6 0%, #FBE2C2 30%, #F6CFC4 58%, #E5C3E4 82%, #C9B7EF 100%);
+}
+/* tame the default beat one notch for a cleaner scale ladder:
+   body 1rem → lead 1.5 → beat 2.8 → gold 3.1 → beat-xl 4.2 → hero 7.6 */
+.sx-beat { font-size: clamp(1.9rem, 3.4vw, 2.8rem); }
+@media (max-width: 880px) {
+  .sx-offer__geo, .sx-offer__star { display: none; }
+  .sx-offer__burst { width: 280px; left: -120px; }
+  .sx-offer__sun { height: 210px; right: -100px; }
+  .sx-twocol--open { gap: 44px; }
+}
+
+/* — designer pass, final polish — */
+/* soft seam: hero's golden radial dissolves into the white first chapter */
+.sx-hero[data-magnetize]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 140px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 100%);
+  pointer-events: none;
+}
+/* threshold opens with just the gold thread — tighter */
+.sx-final .sx-ch-head { margin-bottom: 28px; }
+/* heading brush sits centered behind the words */
+.sx-splash-head { padding: 0.26em 0.85em 0.3em; }
+/* included kicker reads better in accent */
+.sx-incl-card .sx-kicker { color: var(--rm-accent); letter-spacing: 0.22em; }
