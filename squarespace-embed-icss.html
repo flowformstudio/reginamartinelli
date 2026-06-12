@@ -15,14 +15,14 @@
   </section>
 
   <section class="sx-chapter">
-    <img class="sx-flare sx-flare--tr" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-visual-12.png" alt="" aria-hidden="true">
-    <img class="sx-flare sx-flare--ml" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-visual-12.png" alt="" aria-hidden="true">
-    <img class="sx-flare sx-flare--geo" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-22.png" alt="" aria-hidden="true">
-    <img class="sx-flare sx-flare--waves" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-45.png" alt="" aria-hidden="true">
-    <span class="sx-bigstar" aria-hidden="true">✦</span>
-    <span class="sx-ministar sx-ministar--a" aria-hidden="true">✦</span>
-    <span class="sx-ministar sx-ministar--b" aria-hidden="true">✦</span>
-    <span class="sx-ministar sx-ministar--c" aria-hidden="true">✦</span>
+    <img class="sx-flare sx-flare--tr" data-parallax="0.16" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-visual-12.png" alt="" aria-hidden="true">
+    <img class="sx-flare sx-flare--ml" data-parallax="0.09" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-visual-12.png" alt="" aria-hidden="true">
+    <img class="sx-flare sx-flare--geo" data-parallax="0.22" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-22.png" alt="" aria-hidden="true">
+    <img class="sx-flare sx-flare--waves" data-parallax="0.07" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-45.png" alt="" aria-hidden="true">
+    <span class="sx-bigstar" data-parallax="0.3" aria-hidden="true">✦</span>
+    <span class="sx-ministar sx-ministar--a" data-parallax="0.26" aria-hidden="true">✦</span>
+    <span class="sx-ministar sx-ministar--b" data-parallax="0.18" aria-hidden="true">✦</span>
+    <span class="sx-ministar sx-ministar--c" data-parallax="0.24" aria-hidden="true">✦</span>
     <div class="rm-container rm-reveal">
       <div class="sx-prose sx-stagger sx-center">
         <p class="sx-leadline">By building a business around how you actually love to work (your natural strengths &amp; talents), understanding who you love to work with, and knowing how to market to attract your favorite clients who align with You.</p>
@@ -49,7 +49,7 @@
 
   <!-- CHAPTER II — THE PROBLEM (gold-framed card) -->
   <section class="sx-chapter">
-    <img class="sx-problem__geo sx-problem__geo--tr" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-45.png" alt="" aria-hidden="true">
+    <img class="sx-problem__geo sx-problem__geo--tr" data-parallax="0.13" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-45.png" alt="" aria-hidden="true">
     <div class="rm-container rm-reveal">
       <div class="sx-card-gold">
         <div class="sx-prose sx-stagger sx-center">
@@ -181,7 +181,7 @@
 
   <!-- CHAPTER V — THE PATTERN -->
   <section class="sx-chapter sx-dark">
-    <img class="sx-dark__geo" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-23.png" alt="" aria-hidden="true">
+    <img class="sx-dark__geo" data-parallax="0.1" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-23.png" alt="" aria-hidden="true">
     <div class="rm-container rm-reveal">
       <div class="sx-ch-head">
         <span class="sx-ch-num" aria-hidden="true">V</span>
@@ -679,6 +679,38 @@
   } else {
     reveals.forEach(function (el) { el.classList.add("is-in"); });
   }
+
+
+  /* ornament parallax — shapes drift at different depths while scrolling */
+  (function () {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var els = [].slice.call(root.querySelectorAll("[data-parallax]"));
+    if (!els.length) return;
+    var items = els.map(function (el) {
+      return { el: el, depth: parseFloat(el.getAttribute("data-parallax")) || 0.15, base: 0 };
+    });
+    function measure() {
+      items.forEach(function (it) {
+        it.el.style.transform = "";
+        var r = it.el.getBoundingClientRect();
+        it.base = r.top + r.height / 2 + window.scrollY;
+      });
+    }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var center = window.scrollY + window.innerHeight / 2;
+      items.forEach(function (it) {
+        var d = (center - it.base) * it.depth;
+        it.el.style.transform = "translate3d(0," + d.toFixed(1) + "px,0)";
+      });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    measure(); update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", function () { measure(); update(); });
+    window.addEventListener("load", function () { measure(); update(); });
+  })();
 
   /* magnetize hero: rays of light converge on a growing nucleus */
   var hero = root.querySelector("[data-magnetize]");
