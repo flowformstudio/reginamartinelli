@@ -909,7 +909,7 @@
    Chapter V — The Pattern (the single dark movement)
    ========================================================================== */
 .sx-dark {
-  background: var(--rm-dark-accent);
+  background: linear-gradient(180deg, #3B1F2E 0%, #422247 42%, #5C3A7E 100%);
   color: #fff;
   position: relative;
 }
@@ -1256,3 +1256,44 @@
   .sx-case { padding: 44px 26px 38px; }
   .sx-price-card { padding: 48px 28px 44px; }
 }
+
+/* Pattern chapter redesign (deep gradient design) */
+.sx-dlead {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+  line-height: 1.45;
+  color: #DBB668;
+  text-align: center;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+.sx-dark .sx-ch-title { color: #F4E8D2; }
+.sx-dark .sx-ch-title em { color: #DBB668; }
+.sx-dark .sx-ch-head::before { background: linear-gradient(180deg, transparent, #DBB668); }
+.sx-dark .sx-checks li::before {
+  content: "✦";
+  background: none;
+  color: #EFC34F;
+  font-size: 19px;
+  width: auto; height: auto;
+  display: block;
+  top: 0;
+}
+.sx-beat--goldserif {
+  font-weight: 400;
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  line-height: 1.3;
+  color: #D9B25C;
+  max-width: 50rem;
+}
+.sx-dark__orn { position: absolute; pointer-events: none; }
+.sx-dark__orn--lines { left: -40px; top: 60px; height: 320px; opacity: 0.75; }
+.sx-dark__orn--sunr { right: -140px; top: 34%; height: 360px; }
+.sx-dark__orn--sunbl { left: -130px; bottom: -90px; height: 330px; }
+@media (max-width: 880px) {
+  .sx-dark__orn--lines { height: 200px; }
+  .sx-dark__orn--sunr { height: 220px; right: -100px; }
+  .sx-dark__orn--sunbl { height: 200px; left: -90px; }
+}
+.sx-dark .sx-beat--goldserif { color: #D9B25C; }

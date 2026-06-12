@@ -49,7 +49,7 @@
 
   <!-- CHAPTER II — THE PROBLEM (gold-framed card) -->
   <section class="sx-chapter">
-    <img class="sx-problem__geo sx-problem__geo--tr sx-bloom" data-parallax="0.13" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-45.png" alt="" aria-hidden="true">
+    <img class="sx-problem__geo sx-problem__geo--tr sx-bloom" data-parallax="0.13" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-contour-1.png" alt="" aria-hidden="true">
     <div class="rm-container rm-reveal">
       <div class="sx-card-gold">
         <div class="sx-prose sx-stagger sx-center">
@@ -104,7 +104,7 @@
       <div class="sx-story">
         <img class="sx-story__orn sx-story__orn--phases sx-bloom" data-parallax="0.1" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-25.png" alt="" aria-hidden="true">
         <img class="sx-story__orn sx-story__orn--sun sx-bloom" data-parallax="0.16" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-sun-disc.png" alt="" aria-hidden="true">
-        <img class="sx-story__orn sx-story__orn--waves sx-bloom" data-parallax="0.07" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-45.png" alt="" aria-hidden="true">
+        <img class="sx-story__orn sx-story__orn--waves sx-bloom" data-parallax="0.07" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-contour-2.png" alt="" aria-hidden="true">
         <img class="sx-story__orn sx-story__orn--wheel sx-bloom" data-parallax="0.14" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-22.png" alt="" aria-hidden="true">
         <h2 class="sx-story__title">My Story</h2>
         <p class="sx-slead" style="margin-top:0">For a long time, I was marketing the way I thought I was supposed to.</p>
@@ -164,20 +164,21 @@
         </div>
         <p class="sx-beat sx-beat--bold" style="margin-top:64px"><span class="sx-splash">That is the shift this work creates.</span></p>
       </div>
+      <div style="height:96px"></div>
+      <div class="sx-orn sx-bloom"><img src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-76.png" alt="" aria-hidden="true"></div>
     </div>
   </section>
 
-  <!-- CHAPTER V — THE PATTERN -->
+  <!-- CHAPTER V — THE PATTERN (deep gradient) -->
   <section class="sx-chapter sx-dark">
-    <img class="sx-dark__geo sx-bloom" data-parallax="0.1" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-23.png" alt="" aria-hidden="true">
+    <img class="sx-dark__orn sx-dark__orn--lines sx-bloom" data-parallax="0.1" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-15.png" alt="" aria-hidden="true">
+    <img class="sx-dark__orn sx-dark__orn--sunr sx-bloom" data-parallax="0.15" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-sun-disc.png" alt="" aria-hidden="true">
+    <img class="sx-dark__orn sx-dark__orn--sunbl sx-bloom" data-parallax="0.08" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-sun-disc.png" alt="" aria-hidden="true">
     <div class="rm-container rm-reveal">
       <div class="sx-ch-head">
-        <span class="sx-ch-num" aria-hidden="true">V</span>
         <h2 class="sx-ch-title">What I&rsquo;ve seen <em>again and again</em>&hellip;</h2>
       </div>
-      <div class="sx-prose sx-center">
-        <p>When entrepreneurs build their business around their natural gifts, strengths, and the kind of work that actually lights them up, a predictable pattern comes into focus:</p>
-      </div>
+      <p class="sx-dlead">When entrepreneurs build their business around their natural gifts, strengths, and the kind of work that actually lights them up, a predictable pattern comes into focus:</p>
       <div style="height:44px"></div>
       <ul class="sx-checks">
         <li>They stop trying to force strategies that don&rsquo;t fit.</li>
@@ -197,8 +198,8 @@
         <p>Because when you are working in alignment, you are no longer settling, stifling or shrinking yourself behind the scenes.</p>
         <p>You stop frantically racing across the internet hoping for a good fit. You gain clarity in your offer, certainty in how you invite them in, and a deep anchor in your own value.</p>
       </div>
-      <div style="height:48px"></div>
-      <p class="sx-beat">You become more magnetic because you are no longer trying to be everything. You are simply being more fully yourself in the work you love to do. And that attracts your favorite people to work with.</p>
+      <div style="height:64px"></div>
+      <p class="sx-beat sx-beat--goldserif">You become more magnetic because you are no longer trying to be everything. You are simply being more fully yourself in the work you love to do. And that attracts your favorite people to work with.</p>
     </div>
   </section>
 
@@ -576,7 +577,7 @@
 #rm-session .sx-case .sx-mini li:last-child::after { content: none; }
 
 /* CHAPTER V — dark movement */
-#rm-session .sx-dark { background: var(--rmx-dark); color: #fff; position: relative; }
+#rm-session .sx-dark { background: linear-gradient(180deg, #3B1F2E 0%, #422247 42%, #5C3A7E 100%); color: #fff; position: relative; }
 #rm-session .sx-dark::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 50% 38%, rgba(168, 109, 223, 0.4), transparent 65%); pointer-events: none; }
 @media (prefers-reduced-motion: no-preference) { #rm-session .sx-dark::before { animation: rmx-breathe 9s ease-in-out infinite alternate; } }
 @keyframes rmx-breathe { from { opacity: 0.55; } to { opacity: 1; } }
@@ -683,6 +684,23 @@
   #rm-session .sx-meet { flex-direction: column; text-align: center; }
   #rm-session .sx-story__orn { display: none; }
   #rm-session .sx-band { width: calc(100% + 48px); margin-left: -24px; }
+}
+
+#rm-session .sx-dlead { font-family: var(--rmx-serif); font-weight: 400; font-size: clamp(1.3rem, 2.3vw, 1.8rem); line-height: 1.45; color: #DBB668; text-align: center; max-width: 50rem; margin: 0 auto; }
+#rm-session .sx-dark .sx-ch-title { color: #F4E8D2; }
+#rm-session .sx-dark .sx-ch-title em { color: #DBB668; }
+#rm-session .sx-dark .sx-ch-head::before { background: linear-gradient(180deg, transparent, #DBB668); }
+#rm-session .sx-dark .sx-checks li::before { content: "\2726"; background: none; color: #EFC34F; font-size: 19px; width: auto; height: auto; display: block; top: 0; }
+#rm-session .sx-beat--goldserif { font-weight: 400; font-size: clamp(2rem, 3.8vw, 3.1rem); line-height: 1.3; max-width: 50rem; }
+#rm-session .sx-dark .sx-beat--goldserif { color: #D9B25C; }
+#rm-session .sx-dark__orn { position: absolute; pointer-events: none; }
+#rm-session .sx-dark__orn--lines { left: -40px; top: 60px; height: 320px; opacity: 0.75; }
+#rm-session .sx-dark__orn--sunr { right: -140px; top: 34%; height: 360px; }
+#rm-session .sx-dark__orn--sunbl { left: -130px; bottom: -90px; height: 330px; }
+@media (max-width: 880px) {
+  #rm-session .sx-dark__orn--lines { height: 200px; }
+  #rm-session .sx-dark__orn--sunr { height: 220px; right: -100px; }
+  #rm-session .sx-dark__orn--sunbl { height: 200px; left: -90px; }
 }
 </style>
 
