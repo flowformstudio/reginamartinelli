@@ -1,0 +1,846 @@
+/* ==========================================================================
+   Regina Martinelli — "Gilded Narrative" session-page layer
+   A seven-chapter editorial scroll for the 1:1 session pages.
+   Layers on top of colors_and_type.css + site.css (header/footer/buttons).
+   Classes are prefixed sx- (session experience) and do not collide with rm-*.
+
+   Motion philosophy: graceful, narrative-based. Each chapter introduces
+   itself — numeral first, then headline, then body — using the existing
+   .rm-reveal → .is-in observer with CSS stagger delays. All hidden states
+   are gated behind .has-js and prefers-reduced-motion, so the page is
+   fully readable with JS or motion off.
+   ========================================================================== */
+
+/* ==========================================================================
+   Chapter furniture — Roman numeral spine
+   ========================================================================== */
+.sx-chapter {
+  position: relative;
+  padding: calc(var(--section-py) * 1.15) var(--space-md);
+  overflow: hidden;
+}
+.sx-chapter--flush { padding-top: var(--section-py); }
+
+/* The gold thread: a hairline that drops into each chapter head */
+.sx-ch-head {
+  position: relative;
+  text-align: center;
+  margin: 0 auto 56px;
+  max-width: 52rem;
+}
+.sx-ch-head::before {
+  content: "";
+  display: block;
+  width: 1px; height: 56px;
+  margin: 0 auto 26px;
+  background: linear-gradient(180deg, transparent, var(--rm-gold));
+}
+.sx-ch-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(3.4rem, 6vw, 5.4rem);
+  line-height: 1;
+  color: var(--rm-gold);
+  opacity: 0.34;
+  margin-bottom: 10px;
+}
+.sx-ch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--rm-accent);
+}
+.sx-ch-label::before,
+.sx-ch-label::after {
+  content: "";
+  width: 44px; height: 1px;
+  background: rgba(198, 162, 75, 0.55);
+}
+.sx-ch-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.3rem, 4.4vw, 4rem);
+  line-height: 1.12;
+  color: var(--rm-dark-accent);
+  margin: 22px 0 0;
+  text-wrap: balance;
+}
+.sx-ch-title em { font-style: italic; color: var(--rm-primary); }
+
+/* Chapter-head choreography: thread draws, numeral floats in, label, title */
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-ch-head::before { transform: scaleY(0); transform-origin: top; transition: transform 0.9s var(--ease) 0.05s; }
+  .has-js .rm-reveal.is-in .sx-ch-head::before { transform: scaleY(1); }
+  .has-js .rm-reveal .sx-ch-num,
+  .has-js .rm-reveal .sx-ch-label,
+  .has-js .rm-reveal .sx-ch-title {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .has-js .rm-reveal .sx-ch-num   { transition-delay: 0.25s; }
+  .has-js .rm-reveal .sx-ch-label { transition-delay: 0.45s; }
+  .has-js .rm-reveal .sx-ch-title { transition-delay: 0.6s; }
+  .has-js .rm-reveal.is-in .sx-ch-num { opacity: 0.34; transform: none; }
+  .has-js .rm-reveal.is-in .sx-ch-label,
+  .has-js .rm-reveal.is-in .sx-ch-title { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   Shared narrative blocks
+   ========================================================================== */
+.sx-prose { max-width: 640px; margin: 0 auto; }
+.sx-prose p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--rm-primary);
+  margin: 0 0 1.35em;
+}
+.sx-prose p:last-child { margin-bottom: 0; }
+.sx-prose strong { color: var(--rm-dark-accent); }
+.sx-prose em { font-style: italic; }
+.sx-center { text-align: center; }
+
+/* Staggered paragraph entrances inside any revealed block */
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-stagger > * {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(1) { transition-delay: 0.1s; }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(2) { transition-delay: 0.22s; }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(3) { transition-delay: 0.34s; }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(4) { transition-delay: 0.46s; }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(5) { transition-delay: 0.58s; }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(6) { transition-delay: 0.7s; }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(7) { transition-delay: 0.82s; }
+  .has-js .rm-reveal .sx-stagger > *:nth-child(8) { transition-delay: 0.94s; }
+  .has-js .rm-reveal.is-in .sx-stagger > * { opacity: 1; transform: none; }
+}
+
+/* Big serif beat line — sized for hard contrast against 1.05rem body */
+.sx-beat {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 3.9vw, 3.3rem);
+  line-height: 1.2;
+  color: var(--rm-dark-accent);
+  text-align: center;
+  text-wrap: balance;
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+/* Punch line — the homepage's bold declarative voice, applied to existing
+   short sentences. Same words, heavier weight, more presence. */
+.sx-prose p.sx-punch {
+  font-weight: 700;
+  color: var(--rm-dark-accent);
+  font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+  line-height: 1.5;
+}
+
+/* Serif lead-in line — elevates an opening paragraph to an emotional read */
+.sx-prose p.sx-leadline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.55rem, 2.8vw, 2.3rem);
+  line-height: 1.45;
+  color: var(--rm-primary);
+}
+
+/* Gold geometry ornament between movements (homepage rhythm) */
+.sx-orn {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+.sx-orn img { height: 96px; width: auto; opacity: 0.92; }
+.sx-orn--lg img { height: 150px; }
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-orn img {
+    opacity: 0; transform: scale(0.85);
+    transition: opacity 1.1s var(--ease) 0.2s, transform 1.1s var(--ease) 0.2s;
+  }
+  .has-js .rm-reveal.is-in .sx-orn img { opacity: 0.92; transform: none; }
+}
+
+/* Gold-framed statement (homepage "gold frame" moment) */
+.sx-framed {
+  background-image: url("../design-system/assets/gold-frame.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(44px, 6vw, 84px) clamp(34px, 6vw, 96px);
+}
+.sx-framed .sx-quote {
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  padding-top: 44px;
+}
+
+/* Oversized grid-breaking pullquote with hanging gold quote mark */
+.sx-quote {
+  position: relative;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--rm-dark-accent);
+  text-align: center;
+  text-wrap: balance;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 54px;
+}
+.sx-quote::before {
+  content: "“";
+  position: absolute;
+  top: -8px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.9em;
+  line-height: 1;
+  color: var(--rm-gold);
+  opacity: 0.8;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-quote {
+    opacity: 0; transform: translateY(18px) scale(0.985);
+    transition: opacity 1.1s var(--ease) 0.15s, transform 1.1s var(--ease) 0.15s;
+  }
+  .has-js .rm-reveal.is-in .sx-quote { opacity: 1; transform: none; }
+}
+
+/* The signature gold-glitter brushstroke — paints in left to right */
+.sx-gild {
+  display: inline;
+  /* gold-highlighter-strip.png is the brushstroke cropped to its bounds, so
+     each wrapped line (box-decoration-break: clone) stretches a clean full
+     brush behind itself — same construction as the live Squarespace site. */
+  background-image: url("../design-system/assets/gold-highlighter-strip.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.1em 0.42em 0.14em;
+  color: var(--rm-dark-accent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Paint-in sweep lives on the BLOCK parent (.sx-beat) — clip-path on a
+     wrapped inline clips line 2+ in WebKit/Blink. */
+  .has-js .rm-reveal .sx-beat:has(.sx-gild) {
+    clip-path: inset(-8% 100% -8% 0);
+    transition: clip-path 1.4s var(--ease) 0.45s;
+  }
+  .has-js .rm-reveal.is-in .sx-beat:has(.sx-gild) { clip-path: inset(-8% -2% -8% 0); }
+}
+
+/* Gold sparkle separator */
+.sx-spark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 auto;
+  color: var(--rm-gold);
+  font-size: 15px;
+}
+.sx-spark::before,
+.sx-spark::after {
+  content: "";
+  width: 72px; height: 1px;
+  background: rgba(198, 162, 75, 0.45);
+}
+
+/* ==========================================================================
+   Chapter I — The Promise (hero + shifts cascade)
+   ========================================================================== */
+.sx-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 14vh var(--space-md) 12vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #FDE9DC 0%, #F7C9DC 35%, #C8B6F0 70%, #BFE3E3 100%);
+}
+.sx-hero__geo {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(72vw, 760px);
+  transform: translate(-50%, -50%);
+  opacity: 0.16;
+  pointer-events: none;
+}
+/* Magnetize particle canvas — sits above the wash + geometry, below the text */
+.sx-hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.sx-hero > .sx-hero__eyebrow,
+.sx-hero > .sx-hero__title,
+.sx-hero > .sx-hero__sub { position: relative; z-index: 1; }
+.sx-hero > .sx-hero__cue { z-index: 1; } /* already absolute — keep it so */
+@media (prefers-reduced-motion: no-preference) {
+  .sx-hero__geo { animation: sx-spin 140s linear infinite; }
+}
+@keyframes sx-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.sx-hero__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--rm-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+.sx-hero__eyebrow::before,
+.sx-hero__eyebrow::after {
+  content: "✦";
+  font-size: 0.8em;
+  color: var(--rm-gold);
+  letter-spacing: 0;
+}
+.sx-hero__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 8vw, 7.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--rm-dark-accent);
+  margin: 0 0 30px;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.sx-hero__title em {
+  font-style: italic;
+  color: var(--rm-primary);
+}
+.sx-hero__sub {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.8;
+  color: var(--rm-primary);
+  max-width: 56ch;
+  margin: 0;
+}
+.sx-hero__cue {
+  position: absolute;
+  bottom: 34px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--rm-gold);
+  font-size: 13px;
+}
+.sx-hero__cue::after {
+  content: "";
+  width: 1px; height: 44px;
+  background: linear-gradient(180deg, var(--rm-gold), transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero load choreography — runs once on page load */
+  .has-js .sx-hero__eyebrow,
+  .has-js .sx-hero__title,
+  .has-js .sx-hero__sub,
+  .has-js .sx-hero__cue {
+    opacity: 0;
+    animation: sx-rise 1.1s var(--ease) forwards;
+  }
+  .has-js .sx-hero__eyebrow { animation-delay: 0.15s; }
+  .has-js .sx-hero__title   { animation-delay: 0.35s; }
+  .has-js .sx-hero__sub     { animation-delay: 0.65s; }
+  .has-js .sx-hero__cue     { animation-delay: 1.2s; }
+  .sx-hero__cue { animation-name: sx-rise; }
+}
+@keyframes sx-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* the cue keeps its centering transform */
+@keyframes sx-rise-cue {
+  from { opacity: 0; transform: translateX(-50%) translateY(14px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.has-js .sx-hero__cue { animation-name: sx-rise-cue; }
+
+/* The shifts cascade — four italic lines, each arriving in turn */
+.sx-cascade {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.sx-cascade p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  line-height: 1.35;
+  color: var(--rm-primary);
+  margin: 0;
+}
+.sx-cascade p::after {
+  content: "✦";
+  display: block;
+  font-style: normal;
+  font-size: 0.55em;
+  color: var(--rm-gold);
+  opacity: 0.7;
+  margin-top: 18px;
+}
+.sx-cascade p:last-child::after { content: none; }
+.sx-cascade strong { font-weight: 700; color: var(--rm-dark-accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-cascade p {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .has-js .rm-reveal .sx-cascade p:nth-child(1) { transition-delay: 0.1s; }
+  .has-js .rm-reveal .sx-cascade p:nth-child(2) { transition-delay: 0.35s; }
+  .has-js .rm-reveal .sx-cascade p:nth-child(3) { transition-delay: 0.6s; }
+  .has-js .rm-reveal .sx-cascade p:nth-child(4) { transition-delay: 0.85s; }
+  .has-js .rm-reveal.is-in .sx-cascade p { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   Chapter III — The Clarity Map (gilded numbered grid)
+   ========================================================================== */
+.sx-clarity {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 44px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.sx-clarity__item {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.sx-clarity__num {
+  width: 54px; height: 54px;
+  border: 1px solid rgba(198, 162, 75, 0.65);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--rm-gold);
+  background: rgba(255, 255, 255, 0.4);
+}
+.sx-clarity__item p {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--rm-primary);
+  margin: 4px 0 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-clarity__item {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  }
+  .has-js .rm-reveal .sx-clarity__item:nth-child(1) { transition-delay: 0.1s; }
+  .has-js .rm-reveal .sx-clarity__item:nth-child(2) { transition-delay: 0.2s; }
+  .has-js .rm-reveal .sx-clarity__item:nth-child(3) { transition-delay: 0.3s; }
+  .has-js .rm-reveal .sx-clarity__item:nth-child(4) { transition-delay: 0.4s; }
+  .has-js .rm-reveal .sx-clarity__item:nth-child(5) { transition-delay: 0.5s; }
+  .has-js .rm-reveal .sx-clarity__item:nth-child(6) { transition-delay: 0.6s; }
+  .has-js .rm-reveal.is-in .sx-clarity__item { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   Chapter IV — The Story (editorial paper)
+   ========================================================================== */
+.sx-paper {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255, 255, 255, 0.75), transparent 70%),
+    var(--bg-cream);
+}
+.sx-dropcap > p:first-child::first-letter {
+  font-family: var(--font-serif);
+  float: left;
+  font-size: 4.4em;
+  line-height: 0.82;
+  padding: 0.08em 0.12em 0 0;
+  color: var(--rm-gold);
+}
+/* manuscript list — gold em-dash markers */
+.sx-manu {
+  list-style: none;
+  padding: 0;
+  margin: 34px auto;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sx-manu li {
+  position: relative;
+  padding-left: 44px;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--rm-primary);
+}
+.sx-manu li::before {
+  content: "—";
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--rm-gold);
+}
+.sx-manu strong { color: var(--rm-dark-accent); }
+.sx-manu em { font-style: italic; }
+
+/* Case-study panel — gold-framed inset */
+.sx-case {
+  position: relative;
+  max-width: 760px;
+  margin: 64px auto 0;
+  padding: 56px 54px 48px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(198, 162, 75, 0.5);
+  border-radius: 4px;
+}
+.sx-case::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(198, 162, 75, 0.28);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.sx-case__tag {
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-cream);
+  padding: 2px 22px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rm-gold);
+  white-space: nowrap;
+}
+.sx-case .sx-prose p { font-size: 1.08rem; }
+.sx-case .sx-mini {
+  list-style: none;
+  margin: 26px auto;
+  padding: 0;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+.sx-case .sx-mini li {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--rm-dark-accent);
+}
+.sx-case .sx-mini li::after {
+  content: "·";
+  display: block;
+  color: var(--rm-gold);
+  font-style: normal;
+  margin-top: 6px;
+}
+.sx-case .sx-mini li:last-child::after { content: none; }
+
+/* ==========================================================================
+   Chapter V — The Pattern (the single dark movement)
+   ========================================================================== */
+.sx-dark {
+  background: var(--rm-dark-accent);
+  color: #fff;
+  position: relative;
+}
+.sx-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 38%, rgba(168, 109, 223, 0.4), transparent 65%);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sx-dark::before { animation: sx-breathe 9s ease-in-out infinite alternate; }
+}
+@keyframes sx-breathe {
+  from { opacity: 0.55; }
+  to   { opacity: 1; }
+}
+.sx-dark > * { position: relative; }
+.sx-dark .sx-ch-num { opacity: 0.5; }
+.sx-dark .sx-ch-label { color: var(--rm-light-accent); }
+.sx-dark .sx-ch-title { color: #fff; }
+.sx-dark .sx-prose p { color: rgba(255, 255, 255, 0.85); }
+.sx-dark .sx-beat { color: #fff; }
+.sx-dark__geo {
+  position: absolute;
+  bottom: -140px; left: -140px;
+  width: 480px;
+  opacity: 0.16;
+  pointer-events: none;
+}
+/* gold check list, dark + light variants */
+.sx-checks {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.sx-checks li {
+  position: relative;
+  padding-left: 40px;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--rm-primary);
+}
+.sx-dark .sx-checks li { color: rgba(255, 255, 255, 0.88); }
+.sx-checks li::before {
+  content: "✓";
+  position: absolute;
+  left: 0; top: 0.18em;
+  width: 20px; height: 20px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--rm-gold-soft), var(--rm-gold));
+  color: var(--rm-dark-accent);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-checks li {
+    opacity: 0; transform: translateX(-14px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  .has-js .rm-reveal .sx-checks li:nth-child(1) { transition-delay: 0.08s; }
+  .has-js .rm-reveal .sx-checks li:nth-child(2) { transition-delay: 0.16s; }
+  .has-js .rm-reveal .sx-checks li:nth-child(3) { transition-delay: 0.24s; }
+  .has-js .rm-reveal .sx-checks li:nth-child(4) { transition-delay: 0.32s; }
+  .has-js .rm-reveal .sx-checks li:nth-child(5) { transition-delay: 0.4s; }
+  .has-js .rm-reveal .sx-checks li:nth-child(6) { transition-delay: 0.48s; }
+  .has-js .rm-reveal .sx-checks li:nth-child(7) { transition-delay: 0.56s; }
+  .has-js .rm-reveal .sx-checks li:nth-child(8) { transition-delay: 0.64s; }
+  .has-js .rm-reveal.is-in .sx-checks li { opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   Chapter VI — The Session (consolidated gilded offer)
+   ========================================================================== */
+.sx-offer-zone {
+  background: linear-gradient(180deg, #FBE9DC 0%, #F7CADE 60%, #EFC3E8 100%);
+}
+.sx-price-card {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: var(--radius-soft);
+  box-shadow: var(--shadow-lifted);
+  padding: 64px 56px 56px;
+  text-align: center;
+  overflow: hidden;
+}
+.sx-price-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--rm-gold), transparent);
+}
+.sx-price-card__amount {
+  font-family: var(--font-serif);
+  font-size: clamp(3.8rem, 6.6vw, 5.6rem);
+  line-height: 1;
+  color: var(--rm-primary);
+  margin: 10px 0 6px;
+}
+.sx-price-card__amount sup {
+  font-size: 0.42em;
+  vertical-align: super;
+  color: var(--rm-gold);
+}
+.sx-price-card__when {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rm-accent);
+}
+.sx-price-card .sx-prose { margin-top: 26px; }
+.sx-price-card .sx-prose p { font-size: 1.06rem; line-height: 1.8; }
+.sx-price-card .rm-btn { margin-top: 30px; }
+
+.sx-twocol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  max-width: 1080px;
+  margin: 72px auto 0;
+  align-items: start;
+}
+.sx-twocol h3 {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--rm-dark-accent);
+  text-align: center;
+  margin: 0 0 26px;
+}
+/* soft dot list (for-you-if) */
+.sx-dots {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.sx-dots li {
+  position: relative;
+  padding-left: 38px;
+  font-size: 1.06rem;
+  line-height: 1.65;
+  color: var(--rm-primary);
+}
+.sx-dots li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.32em;
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  background: var(--rm-light-accent);
+  box-shadow: inset 0 0 0 1.5px var(--rm-accent);
+}
+
+.sx-included {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1080px;
+  margin: 72px auto 0;
+  align-items: start;
+}
+.sx-incl-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(198, 162, 75, 0.35);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 46px 42px;
+}
+.sx-incl-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  color: var(--rm-dark-accent);
+  margin: 0 0 18px;
+}
+.sx-incl-card h3::after {
+  content: "";
+  display: block;
+  width: 44px; height: 1px;
+  background: var(--rm-gold);
+  margin-top: 16px;
+}
+.sx-incl-card p {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--rm-primary);
+  margin: 0 0 14px;
+}
+.sx-incl-card .sx-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rm-accent);
+  margin: 22px 0 14px;
+}
+.sx-incl-card .sx-checks { max-width: none; gap: 12px; }
+.sx-incl-card .sx-checks li { font-size: 1rem; }
+
+/* ==========================================================================
+   Chapter VII — The Threshold (full circle)
+   ========================================================================== */
+.sx-final {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(180deg, #FDE9DC 0%, #F7C9DC 35%, #C8B6F0 70%, #BFE3E3 100%);
+  overflow: hidden;
+}
+.sx-final__mandala {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(80vw, 820px);
+  transform: translate(-50%, -50%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sx-final__mandala { animation: sx-spin 200s linear infinite; }
+}
+.sx-final > .rm-container { position: relative; }
+
+/* CTA hover sheen — gold ring blooms out */
+.sx-cta-wrap { display: flex; justify-content: center; margin-top: 38px; }
+.sx-cta-wrap .rm-btn { position: relative; }
+.sx-cta-wrap .rm-btn::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(198, 162, 75, 0.0);
+  border-radius: inherit;
+  transition: inset var(--duration-base) var(--ease), border-color var(--duration-base) var(--ease);
+}
+.sx-cta-wrap .rm-btn:hover::after {
+  inset: -5px;
+  border-color: rgba(198, 162, 75, 0.7);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 880px) {
+  .sx-clarity { grid-template-columns: 1fr; max-width: 640px; }
+  .sx-twocol { grid-template-columns: 1fr; gap: 48px; }
+  .sx-included { grid-template-columns: 1fr; }
+  .sx-quote { padding-top: 46px; }
+}
+@media (max-width: 560px) {
+  .sx-chapter { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+  .sx-hero { min-height: 86vh; }
+  .sx-case { padding: 44px 26px 38px; }
+  .sx-price-card { padding: 48px 28px 44px; }
+}
