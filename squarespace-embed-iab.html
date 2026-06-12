@@ -462,7 +462,7 @@
       sx: Math.random() * 1.4 - 0.2, sy: Math.random() * 1.4 - 0.2,
       wob: Math.random() * Math.PI * 2, wobSpeed: 0.004 + Math.random() * 0.008, wobAmp: 30 + Math.random() * 70,
       ring: i % RINGS.length, slot: Math.random() * Math.PI * 2,
-      delay: 800 + Math.random() * 7000, ease: 2600 + Math.random() * 2600,
+      delay: 150 + Math.random() * 2200, ease: 1500 + Math.random() * 1700,
       size: 1 + Math.random() * 2.2,
       c: COLORS[(Math.random() * COLORS.length) | 0],
       tw: Math.random() * Math.PI * 2, twSpeed: 0.015 + Math.random() * 0.04
@@ -516,7 +516,7 @@
       ctx.beginPath(); ctx.arc(x, y, rad * 3, 0, Math.PI * 2); ctx.fill();
     }
 
-    var ringAlpha = Math.min(1, (totalAlign / motes.length) * 1.1);
+    var ringAlpha = Math.min(1, 0.18 + (totalAlign / motes.length) * 0.95);
     if (ringAlpha > 0.01) {
       for (var k = 0; k < RINGS.length; k++) {
         var rx2 = RINGS[k] * SCALE, ry2 = rx2 * 0.82;

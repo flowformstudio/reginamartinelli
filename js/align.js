@@ -64,9 +64,10 @@
       /* destined orbit */
       ring: ring,
       slot: Math.random() * Math.PI * 2,
-      /* when and how gracefully it aligns */
-      delay: 800 + Math.random() * 7000,         /* ms before it begins  */
-      ease: 2600 + Math.random() * 2600,         /* ms to settle         */
+      /* when and how gracefully it aligns — early and quick, the hero
+         must be alive before the visitor thinks of scrolling */
+      delay: 150 + Math.random() * 2200,         /* ms before it begins  */
+      ease: 1500 + Math.random() * 1700,         /* ms to settle         */
       size: 1 + Math.random() * 2.2,
       c: COLORS[(Math.random() * COLORS.length) | 0],
       tw: Math.random() * Math.PI * 2,
@@ -137,7 +138,8 @@
 
     /* precise golden orbits — clean concentric rings whose color shimmers
        through gold tones, each carrying a travelling glint of light */
-    var ringAlpha = Math.min(1, (totalAlign / motes.length) * 1.1);
+    /* small floor so the blueprint is faintly present from frame one */
+    var ringAlpha = Math.min(1, 0.18 + (totalAlign / motes.length) * 0.95);
     if (ringAlpha > 0.01) {
       for (var k = 0; k < RINGS.length; k++) {
         var rx = RINGS[k] * SCALE;
