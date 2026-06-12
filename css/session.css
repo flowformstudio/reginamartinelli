@@ -557,23 +557,39 @@
 }
 .sx-clarity__item {
   display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 20px;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
   align-items: start;
+  text-align: left;
 }
-.sx-clarity__num {
-  width: 54px; height: 54px;
-  border: 1px solid rgba(198, 162, 75, 0.65);
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.2rem;
-  color: var(--rm-gold);
-  background: rgba(255, 255, 255, 0.4);
+.sx-clarity__spark {
+  font-size: 30px;
+  line-height: 1.1;
+  color: #EFC34F;
+  text-align: center;
 }
+
+/* The great oval — cream ellipse with a fine gold rim; glitter suns
+   straddle its top and bottom edges (per Section2 design) */
+.sx-oval {
+  position: relative;
+  background: #F9F1EA;
+  border: 3px solid var(--rm-gold);
+  border-radius: 50%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(90px, 10vw, 150px) clamp(36px, 11vw, 170px) clamp(110px, 12vw, 170px);
+  text-align: center;
+}
+.sx-oval__sun {
+  position: absolute;
+  left: 50%;
+  height: clamp(140px, 16vw, 215px);
+  width: auto;
+  pointer-events: none;
+}
+.sx-oval__sun--top { top: 0; transform: translate(-50%, -50%); }
+.sx-oval__sun--bottom { bottom: 0; transform: translate(-50%, 50%); }
 .sx-clarity__item p {
   font-size: 1.08rem;
   line-height: 1.7;
