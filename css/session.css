@@ -830,6 +830,84 @@
 }
 
 /* ==========================================================================
+   IAB additions — fog movement, gold burst, orbit hero
+   ========================================================================== */
+
+/* The Fog — dark chapter with drifting violet mist (Inner Alignment Ch II) */
+.sx-fog {
+  background: var(--rm-dark-accent);
+  color: #fff;
+  position: relative;
+}
+.sx-fog::before,
+.sx-fog::after {
+  content: "";
+  position: absolute;
+  width: 60vw; height: 60vw;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+.sx-fog::before {
+  background: radial-gradient(circle, rgba(168, 109, 223, 0.38), transparent 62%);
+  top: -22%; left: -12%;
+}
+.sx-fog::after {
+  background: radial-gradient(circle, rgba(245, 166, 228, 0.2), transparent 62%);
+  bottom: -26%; right: -14%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sx-fog::before { animation: sx-drift-a 26s ease-in-out infinite alternate; }
+  .sx-fog::after  { animation: sx-drift-b 32s ease-in-out infinite alternate; }
+}
+@keyframes sx-drift-a { from { transform: translate(0, 0); } to { transform: translate(7vw, 6vh); } }
+@keyframes sx-drift-b { from { transform: translate(0, 0); } to { transform: translate(-7vw, -5vh); } }
+.sx-fog > .rm-container { position: relative; }
+.sx-fog .sx-ch-num { opacity: 0.5; }
+.sx-fog .sx-prose p { color: rgba(255, 255, 255, 0.86); }
+.sx-fog .sx-prose p.sx-punch { color: #fff; }
+.sx-fog .sx-quote { color: #fff; }
+
+/* Gold burst — radiant accent behind a focal moment */
+.sx-burst {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(76vw, 760px);
+  opacity: 0.38;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  /* feather the rectangular bounds away */
+  -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent 95%);
+  mask-image: radial-gradient(closest-side, #000 45%, transparent 95%);
+}
+
+/* Hero sub-line (serif italic) + intro line for IAB hero */
+.sx-hero__tag {
+  position: relative; z-index: 1;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  color: var(--rm-primary);
+  margin: 18px 0 0;
+}
+.sx-hero__intro {
+  position: relative; z-index: 1;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--rm-primary);
+  max-width: 52ch;
+  margin: 22px 0 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .sx-hero__tag,
+  .has-js .sx-hero__intro { opacity: 0; animation: sx-rise 1.1s var(--ease) forwards; }
+  .has-js .sx-hero__tag   { animation-delay: 0.6s; }
+  .has-js .sx-hero__intro { animation-delay: 0.85s; }
+}
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 880px) {
