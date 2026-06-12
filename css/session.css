@@ -272,6 +272,33 @@
   overflow: hidden;
   background: linear-gradient(180deg, #FDE9DC 0%, #F7C9DC 35%, #C8B6F0 70%, #BFE3E3 100%);
 }
+/* Ideal Client Session — golden radial: warm light emanating from the orb */
+.sx-hero[data-magnetize] {
+  background: radial-gradient(ellipse 120% 95% at 50% 55%,
+    #FFF3D6 0%, #FBE2C2 24%, #F6CFC4 50%, #E5C3E4 76%, #C9B7EF 100%);
+}
+/* Inner Alignment Blueprint — cool waters: turquoise, periwinkle, violet */
+.sx-hero[data-align] {
+  background: linear-gradient(180deg,
+    #DCF1EA 0%, #BFE3E3 28%, #B5CDEB 55%, #BFB1EE 78%, #A89BDF 100%);
+}
+/* a soft halo of light directly behind the headline block — above the
+   canvas, below the text — so the type always sits on calm brightness */
+.sx-hero[data-align]::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -52%);
+  width: min(88vw, 1120px);
+  height: min(66vh, 580px);
+  background: radial-gradient(ellipse closest-side,
+    rgba(255, 255, 253, 0.95) 0%,
+    rgba(255, 252, 240, 0.7) 40%,
+    rgba(255, 250, 235, 0.3) 70%,
+    rgba(255, 250, 235, 0) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
 .sx-hero__geo {
   position: absolute;
   top: 50%; left: 50%;

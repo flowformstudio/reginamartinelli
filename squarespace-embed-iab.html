@@ -302,9 +302,26 @@
   text-align: center;
   padding: 14vh 2rem 12vh;
   overflow: hidden;
-  background: linear-gradient(180deg, #FDE9DC 0%, #F7C9DC 35%, #C8B6F0 70%, #BFE3E3 100%);
+  /* cool waters — turquoise, periwinkle, violet */
+  background: linear-gradient(180deg,
+    #DCF1EA 0%, #BFE3E3 28%, #B5CDEB 55%, #BFB1EE 78%, #A89BDF 100%);
 }
 #rm-blueprint .bx-hero__canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+#rm-blueprint .bx-hero::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -52%);
+  width: min(88vw, 1120px);
+  height: min(66vh, 580px);
+  background: radial-gradient(ellipse closest-side,
+    rgba(255, 255, 253, 0.95) 0%,
+    rgba(255, 252, 240, 0.7) 40%,
+    rgba(255, 250, 235, 0.3) 70%,
+    rgba(255, 250, 235, 0) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
 #rm-blueprint .bx-hero > .bx-hero__eyebrow, #rm-blueprint .bx-hero > .bx-hero__title,
 #rm-blueprint .bx-hero > .bx-hero__tag, #rm-blueprint .bx-hero > .bx-hero__intro { position: relative; z-index: 1; }
 #rm-blueprint .bx-hero > .bx-hero__cue { z-index: 1; }
@@ -435,10 +452,10 @@
   size();
   window.addEventListener("resize", size);
 
-  var COLORS = [[229,204,133],[198,162,75],[255,244,214],[245,166,228],[168,109,223]];
-  var RINGS = [120, 200, 290, 390];
-  var RING_SPEED = [0.00022, -0.00016, 0.00011, -0.00008];
-  var COUNT = Math.min(96, Math.floor(W / 15));
+  var COLORS = [[232,198,110],[255,226,150],[229,204,133],[255,244,214],[232,198,110],[171,222,218],[168,109,223]];
+  var RINGS = [120, 210, 310, 420, 545];
+  var RING_SPEED = [0.00022, -0.00016, 0.00011, -0.00008, 0.00006];
+  var COUNT = Math.min(130, Math.floor(W / 11));
   var motes = [];
   for (var i = 0; i < COUNT; i++) {
     motes.push({
@@ -488,10 +505,10 @@
       totalAlign += a;
       var x = chx + (ox - chx) * a;
       var y = chy + (oy - chy) * a;
-      var twinkle = 0.55 + 0.45 * Math.sin(m.tw);
-      var alpha = (0.22 + 0.4 * a) * twinkle;
+      var twinkle = 0.6 + 0.4 * Math.sin(m.tw);
+      var alpha = (0.45 + 0.45 * a) * twinkle;
       var c = m.c;
-      var rad = m.size * (0.7 + 0.5 * a);
+      var rad = m.size * (0.9 + 0.6 * a);
       var glow = ctx.createRadialGradient(x, y, 0, x, y, rad * 3);
       glow.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + alpha + ")");
       glow.addColorStop(1, "rgba(" + c[0] + "," + c[1] + "," + c[2] + ",0)");
@@ -499,25 +516,35 @@
       ctx.beginPath(); ctx.arc(x, y, rad * 3, 0, Math.PI * 2); ctx.fill();
     }
 
-    var ringAlpha = (totalAlign / motes.length) * 0.16;
-    if (ringAlpha > 0.005) {
-      ctx.strokeStyle = "rgba(198, 162, 75, " + ringAlpha + ")";
-      ctx.lineWidth = 1;
+    var ringAlpha = Math.min(1, (totalAlign / motes.length) * 1.1);
+    if (ringAlpha > 0.01) {
       for (var k = 0; k < RINGS.length; k++) {
-        ctx.beginPath();
-        ctx.ellipse(CX, CY, RINGS[k] * SCALE, RINGS[k] * SCALE * 0.82, 0, 0, Math.PI * 2);
-        ctx.stroke();
+        var rx2 = RINGS[k] * SCALE, ry2 = rx2 * 0.82;
+        var kAlpha = ringAlpha * (k <= 1 ? 0.4 : 1);
+        var ph = (Math.sin(now * 0.0012 + k * 1.4) + 1) / 2;
+        var cr = (198 + 57 * ph) | 0, cg = (162 + 68 * ph) | 0, cb = (75 + 90 * ph) | 0;
+        ctx.strokeStyle = "rgba(" + cr + "," + cg + "," + cb + "," + kAlpha + ")";
+        ctx.lineWidth = 2.1;
+        ctx.beginPath(); ctx.ellipse(CX, CY, rx2, ry2, 0, 0, Math.PI * 2); ctx.stroke();
+        var shineAng = now * RING_SPEED[k] * 4 + k * 1.7;
+        ctx.strokeStyle = "rgba(255, 252, 238, " + Math.min(0.95, kAlpha * 1.4) + ")";
+        ctx.lineWidth = 2.6;
+        ctx.lineCap = "round";
+        ctx.beginPath(); ctx.ellipse(CX, CY, rx2, ry2, 0, shineAng, shineAng + 0.5); ctx.stroke();
       }
     }
 
     var bt = now / 1900;
-    var R = (26 + 10 * (totalAlign / motes.length)) * (1 + 0.05 * Math.sin(bt));
-    var core = ctx.createRadialGradient(CX, CY, 0, CX, CY, R * 3);
-    core.addColorStop(0, "rgba(255, 250, 232, " + (0.4 + 0.08 * Math.sin(bt)) + ")");
-    core.addColorStop(0.4, "rgba(229, 204, 133, 0.16)");
-    core.addColorStop(1, "rgba(229, 204, 133, 0)");
+    var spread = RINGS[RINGS.length - 1] * SCALE * 2.6 * (1 + 0.03 * Math.sin(bt));
+    var core = ctx.createRadialGradient(CX, CY, 0, CX, CY, spread);
+    core.addColorStop(0, "rgba(255, 255, 253, 1)");
+    core.addColorStop(0.1, "rgba(255, 249, 228, 0.8)");
+    core.addColorStop(0.24, "rgba(252, 245, 222, 0.55)");
+    core.addColorStop(0.45, "rgba(235, 240, 226, 0.3)");
+    core.addColorStop(0.7, "rgba(205, 226, 224, 0.13)");
+    core.addColorStop(1, "rgba(150, 168, 235, 0)");
     ctx.fillStyle = core;
-    ctx.beginPath(); ctx.arc(CX, CY, R * 3, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(CX, CY, spread, 0, Math.PI * 2); ctx.fill();
     requestAnimationFrame(tick);
   }
   tick();

@@ -35,18 +35,22 @@
   size();
   window.addEventListener("resize", size);
 
+  /* golden braid: motes are gold-dominant, cool tones as rare accents */
   var COLORS = [
-    [229, 204, 133],  /* gold soft  */
-    [198, 162, 75],   /* gold       */
-    [255, 244, 214],  /* warm white */
-    [245, 166, 228],  /* pink light */
-    [168, 109, 223]   /* violet     */
+    [232, 198, 110],  /* yellow gold      */
+    [255, 226, 150],  /* bright gold      */
+    [229, 204, 133],  /* gold soft        */
+    [255, 244, 214],  /* warm white       */
+    [232, 198, 110],  /* yellow gold      */
+    [171, 222, 218],  /* turquoise (rare) */
+    [168, 109, 223]   /* violet (rare)    */
   ];
-  /* concentric orbit radii (base units, scaled to hero) */
-  var RINGS = [120, 200, 290, 390];
-  var RING_SPEED = [0.00022, -0.00016, 0.00011, -0.00008];
+  /* concentric orbit radii (base units, scaled to hero) — outer ring
+     carries the braid out to the hero's edges */
+  var RINGS = [120, 210, 310, 420, 545];
+  var RING_SPEED = [0.00022, -0.00016, 0.00011, -0.00008, 0.00006];
 
-  var COUNT = Math.min(96, Math.floor(W / 15));
+  var COUNT = Math.min(130, Math.floor(W / 11));
   var motes = [];
   for (var i = 0; i < COUNT; i++) {
     var ring = i % RINGS.length;
@@ -117,10 +121,10 @@
       var x = chx + (ox - chx) * a;
       var y = chy + (oy - chy) * a;
 
-      var twinkle = 0.55 + 0.45 * Math.sin(m.tw);
-      var alpha = (0.22 + 0.4 * a) * twinkle;   /* brighter once home */
+      var twinkle = 0.6 + 0.4 * Math.sin(m.tw);
+      var alpha = (0.45 + 0.45 * a) * twinkle;  /* prominent, brighter once home */
       var c = m.c;
-      var rad = m.size * (0.7 + 0.5 * a);
+      var rad = m.size * (0.9 + 0.6 * a);
 
       var glow = ctx.createRadialGradient(x, y, 0, x, y, rad * 3);
       glow.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + alpha + ")");
@@ -131,28 +135,52 @@
       ctx.fill();
     }
 
-    /* orbit rings fade in as the field aligns */
-    var ringAlpha = (totalAlign / motes.length) * 0.16;
-    if (ringAlpha > 0.005) {
-      ctx.strokeStyle = "rgba(198, 162, 75, " + ringAlpha + ")";
-      ctx.lineWidth = 1;
+    /* precise golden orbits — clean concentric rings whose color shimmers
+       through gold tones, each carrying a travelling glint of light */
+    var ringAlpha = Math.min(1, (totalAlign / motes.length) * 1.1);
+    if (ringAlpha > 0.01) {
       for (var k = 0; k < RINGS.length; k++) {
+        var rx = RINGS[k] * SCALE;
+        var ry = rx * 0.82;
+
+        /* shimmering stroke — hue breathes between deep and bright gold;
+           the two innermost orbits stay quieter so the headline reads */
+        var kAlpha = ringAlpha * (k <= 1 ? 0.4 : 1);
+        var ph = (Math.sin(now * 0.0012 + k * 1.4) + 1) / 2;
+        var cr = (198 + 57 * ph) | 0;
+        var cg = (162 + 68 * ph) | 0;
+        var cb = (75 + 90 * ph) | 0;
+        ctx.strokeStyle = "rgba(" + cr + "," + cg + "," + cb + "," + kAlpha + ")";
+        ctx.lineWidth = 2.1;
         ctx.beginPath();
-        ctx.ellipse(CX, CY, RINGS[k] * SCALE, RINGS[k] * SCALE * 0.82, 0, 0, Math.PI * 2);
+        ctx.ellipse(CX, CY, rx, ry, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        /* the shine — a bright glint travelling along the orbit */
+        var shineAng = now * RING_SPEED[k] * 4 + k * 1.7;
+        ctx.strokeStyle = "rgba(255, 252, 238, " + Math.min(0.95, kAlpha * 1.4) + ")";
+        ctx.lineWidth = 2.6;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.ellipse(CX, CY, rx, ry, 0, shineAng, shineAng + 0.5);
         ctx.stroke();
       }
     }
 
-    /* the calm center — still point of the turning world */
+    /* the bright center — a radiant veil drawn OVER the orbits, washing
+       them out across the headline zone so the text always reads clean */
     var bt = now / 1900;
-    var R = (26 + 10 * (totalAlign / motes.length)) * (1 + 0.05 * Math.sin(bt));
-    var core = ctx.createRadialGradient(CX, CY, 0, CX, CY, R * 3);
-    core.addColorStop(0, "rgba(255, 250, 232, " + (0.4 + 0.08 * Math.sin(bt)) + ")");
-    core.addColorStop(0.4, "rgba(229, 204, 133, 0.16)");
-    core.addColorStop(1, "rgba(229, 204, 133, 0)");
+    var spread = RINGS[RINGS.length - 1] * SCALE * 2.6 * (1 + 0.03 * Math.sin(bt));
+    var core = ctx.createRadialGradient(CX, CY, 0, CX, CY, spread);
+    core.addColorStop(0, "rgba(255, 255, 253, 1)");
+    core.addColorStop(0.1, "rgba(255, 249, 228, 0.8)");
+    core.addColorStop(0.24, "rgba(252, 245, 222, 0.55)");
+    core.addColorStop(0.45, "rgba(235, 240, 226, 0.3)");
+    core.addColorStop(0.7, "rgba(205, 226, 224, 0.13)");
+    core.addColorStop(1, "rgba(150, 168, 235, 0)");
     ctx.fillStyle = core;
     ctx.beginPath();
-    ctx.arc(CX, CY, R * 3, 0, Math.PI * 2);
+    ctx.arc(CX, CY, spread, 0, Math.PI * 2);
     ctx.fill();
 
     requestAnimationFrame(tick);
