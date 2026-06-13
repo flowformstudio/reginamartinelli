@@ -1551,3 +1551,25 @@ html { scroll-padding-top: 90px; }
 @media (max-width: 1180px) {
   .sx-storywrap .sx-story__orn { display: none; }
 }
+
+/* clarity splash: taller brush, text centered on it, lifted up */
+.sx-card-gold .sx-splash {
+  padding: 0.52em 0.4em 0.6em;
+  margin-top: 30px;
+  margin-bottom: -46px;
+}
+
+/* shift the dense part of the brush up behind the words */
+.sx-card-gold .sx-splash {
+  background-size: 100% 150%;
+  background-position: 50% 26%;
+  padding: 0.42em 0.4em 0.5em;
+}
+.sx-card-gold .sx-splash { background-size: 100% 185%; background-position: 50% 42%; }
+.sx-card-gold .sx-splash {
+  padding: 0.62em 0.4em 0.3em;
+  background-size: 100% 118%;
+  background-position: 50% 62%;
+  margin-top: 16px;
+  margin-bottom: -40px;
+}
