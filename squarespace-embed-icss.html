@@ -19,14 +19,13 @@
     <img class="sx-flare sx-flare--ml sx-bloom" data-parallax="0.09" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-visual-12.png" alt="" aria-hidden="true">
     <img class="sx-flare sx-flare--geo sx-bloom" data-parallax="0.22" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-22.png" alt="" aria-hidden="true">
     <img class="sx-flare sx-flare--waves sx-bloom" data-parallax="0.07" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/sacred-geo-45.png" alt="" aria-hidden="true">
-    <span class="sx-bigstar sx-bloom" data-parallax="0.3" aria-hidden="true">✦</span>
     <span class="sx-ministar sx-ministar--a sx-bloom" data-parallax="0.26" aria-hidden="true">✦</span>
     <span class="sx-ministar sx-ministar--b sx-bloom" data-parallax="0.18" aria-hidden="true">✦</span>
     <span class="sx-ministar sx-ministar--c sx-bloom" data-parallax="0.24" aria-hidden="true">✦</span>
     <div class="rm-container rm-reveal">
       <div class="sx-prose sx-stagger sx-center">
         <p class="sx-leadline">By building a business around how you actually love to work (your natural strengths &amp; talents), understanding who you love to work with, and knowing how to market to attract your favorite clients who align with You.</p>
-        <p>When your business is built around the whole of who you are &mdash; your strengths, your gifts, and the way you genuinely love to work &mdash; <strong>things begin to make sense.</strong></p>
+        <p class="sx-bodyleft">When your business is built around the whole of who you are &mdash; your strengths, your gifts, and the way you genuinely love to work &mdash; <strong>things begin to make sense.</strong></p>
       </div>
       <div style="height:56px"></div>
       <div class="sx-cascade">
@@ -37,8 +36,8 @@
       </div>
       <div style="height:56px"></div>
       <div class="sx-prose sx-stagger sx-center">
-        <p>And the endless pursuit of &ldquo;the right answer&rdquo; stops, because you finally understand your own operating system.</p>
-        <p>And the clients coming in feel like people you&rsquo;re actually excited to work with.</p>
+        <p class="sx-leadline">And the endless pursuit of &ldquo;the right answer&rdquo; stops, because you finally understand your own operating system.</p>
+        <p class="sx-leadline">And the clients coming in feel like people you&rsquo;re actually excited to work with.</p>
       </div>
       <div style="height:48px"></div>
       <p class="sx-beat sx-beat--xl">That is what this experience is for &mdash; Magnetizing More of Your Ideal Clients.</p>
@@ -48,7 +47,7 @@
   </section>
 
   <!-- CHAPTER II — THE PROBLEM (gold-framed card) -->
-  <section class="sx-chapter">
+  <section class="sx-chapter sx-chapter--tight-top">
     <img class="sx-problem__geo sx-problem__geo--tr sx-bloom" data-parallax="0.13" src="https://regina-martinelli-design-system.vercel.app/design-system/assets/gold-contour-1.png" alt="" aria-hidden="true">
     <div class="rm-container rm-reveal">
       <div class="sx-card-gold">
@@ -477,12 +476,12 @@
 }
 #rm-session .sx-hero__eyebrow::before, #rm-session .sx-hero__eyebrow::after { content: "✦"; font-size: 0.8em; color: var(--rmx-gold); letter-spacing: 0; }
 #rm-session .sx-hero__title {
-  font-family: var(--rmx-serif); font-weight: 400;
+  font-family: var(--rmx-serif); font-weight: 500;
   font-size: clamp(3.2rem, 8vw, 7.6rem);
   line-height: 1.06; letter-spacing: -0.015em; color: var(--rmx-dark);
   margin: 0; max-width: 14ch; text-wrap: balance;
 }
-#rm-session .sx-hero__title em { font-style: italic; color: var(--rmx-primary); }
+#rm-session .sx-hero__title em { font-style: normal; color: var(--rmx-primary); }
 #rm-session .sx-hero__cue { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--rmx-gold); font-size: 13px; }
 #rm-session .sx-hero__cue::after { content: ""; width: 1px; height: 44px; background: linear-gradient(180deg, var(--rmx-gold), transparent); }
 @media (prefers-reduced-motion: no-preference) {
@@ -784,6 +783,35 @@
 #rm-session .sx-card-gold .sx-splash { background-size: 100% 185%; background-position: 50% 42%; }
 
 #rm-session .sx-card-gold .sx-splash { padding: 0.62em 0.4em 0.3em; background-size: 100% 118%; background-position: 50% 62%; margin-top: 16px; margin-bottom: -40px; }
+
+#rm-session .sx-flare--tr { right: -230px; }
+#rm-session .sx-flare--ml { left: -200px; }
+#rm-session .sx-flare--geo { right: -150px; }
+#rm-session .sx-flare--waves { left: -120px; }
+
+#rm-session .sx-cascade p { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+@media (prefers-reduced-motion: no-preference) {
+  #rm-session.has-js .rm-reveal .sx-cascade p { opacity: 0; transform: translateY(22px); transition: opacity 0.8s var(--rmx-ease), transform 0.8s var(--rmx-ease); }
+  #rm-session.has-js .rm-reveal .sx-cascade p:nth-child(1) { transition-delay: 0.15s; }
+  #rm-session.has-js .rm-reveal .sx-cascade p:nth-child(2) { transition-delay: 0.55s; }
+  #rm-session.has-js .rm-reveal .sx-cascade p:nth-child(3) { transition-delay: 0.95s; }
+  #rm-session.has-js .rm-reveal .sx-cascade p:nth-child(4) { transition-delay: 1.35s; }
+  #rm-session.has-js .rm-reveal.is-in .sx-cascade p { opacity: 1; transform: none; }
+}
+
+#rm-session .sx-beat--xl { font-size: clamp(2.9rem, 5.4vw, 4.8rem); font-weight: 500; }
+
+#rm-session .sx-chapter--tight-top { padding-top: 12px; }
+
+#rm-session .sx-prose p.sx-leadline { font-style: normal; font-weight: 500; }
+#rm-session .sx-cascade p { font-size: clamp(1.76rem, 3.52vw, 2.72rem); }
+
+#rm-session .sx-prose p.sx-bodyleft { font-family: var(--rmx-sans); font-style: normal; font-weight: 400; font-size: 1.05rem; line-height: 1.9; text-align: left; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+#rm-session .sx-card-gold { padding-bottom: clamp(36px, 5vw, 56px); }
+#rm-session .sx-card-gold .sx-splash { margin-top: 20px; margin-bottom: 0; }
+
+#rm-session .sx-card-gold .sx-splash { display: inline-block; width: auto; margin: 22px auto 0; padding: 0.5em 0.7em 0.56em; background-size: 100% 165%; background-position: 50% 50%; }
 </style>
 
 <script>

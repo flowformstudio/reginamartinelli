@@ -346,7 +346,7 @@
 }
 .sx-hero__title {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(3.2rem, 8vw, 7.6rem);
   line-height: 1.06;
   letter-spacing: -0.015em;
@@ -356,7 +356,7 @@
   text-wrap: balance;
 }
 .sx-hero__title em {
-  font-style: italic;
+  font-style: normal;
   color: var(--rm-primary);
 }
 .sx-hero__sub {
@@ -1572,4 +1572,59 @@ html { scroll-padding-top: 90px; }
   background-position: 50% 62%;
   margin-top: 16px;
   margin-bottom: -40px;
+}
+
+/* side illustrations sit half off-screen (per art direction) */
+.sx-flare--tr { right: -230px; }
+.sx-flare--ml { left: -200px; }
+.sx-flare--geo { right: -150px; }
+.sx-flare--waves { left: -120px; }
+
+/* cascade: larger lines, slower one-by-one reveal */
+.sx-cascade p { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-cascade p { opacity: 0; transform: translateY(22px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+  .has-js .rm-reveal .sx-cascade p:nth-child(1) { transition-delay: 0.15s; }
+  .has-js .rm-reveal .sx-cascade p:nth-child(2) { transition-delay: 0.55s; }
+  .has-js .rm-reveal .sx-cascade p:nth-child(3) { transition-delay: 0.95s; }
+  .has-js .rm-reveal .sx-cascade p:nth-child(4) { transition-delay: 1.35s; }
+  .has-js .rm-reveal.is-in .sx-cascade p { opacity: 1; transform: none; }
+}
+
+/* closing promise beat: a touch bigger and bolder */
+.sx-beat--xl { font-size: clamp(2.9rem, 5.4vw, 4.8rem); font-weight: 500; }
+
+/* pull the Problem card up close to the divider illustration above it */
+.sx-chapter--tight-top { padding-top: 12px; }
+
+/* leadline intro paragraphs use the cascade's upright serif (not italic) */
+.sx-prose p.sx-leadline { font-style: normal; font-weight: 500; }
+/* cascade lines −20% */
+.sx-cascade p { font-size: clamp(1.76rem, 3.52vw, 2.72rem); }
+
+/* left-aligned Inter Tight body paragraph */
+.sx-prose p.sx-bodyleft {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  text-align: left;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* clarity splash sits inside the card (no bottom overhang) */
+.sx-card-gold { padding-bottom: clamp(36px, 5vw, 56px); }
+.sx-card-gold .sx-splash { margin-top: 20px; margin-bottom: 0; }
+
+/* clarity splash: hug the words, taller band */
+.sx-card-gold .sx-splash {
+  display: inline-block;
+  width: auto;
+  margin: 22px auto 0;
+  padding: 0.5em 0.7em 0.56em;
+  background-size: 100% 165%;
+  background-position: 50% 50%;
 }
