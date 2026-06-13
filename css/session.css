@@ -1628,3 +1628,6 @@ html { scroll-padding-top: 90px; }
   background-size: 100% 165%;
   background-position: 50% 50%;
 }
+
+/* clarity beat matches the 'Why does this still feel so hard?' pullquote size */
+.sx-card-gold .sx-beat--bold { font-size: clamp(2rem, 4.5vw, 3.625rem); }
