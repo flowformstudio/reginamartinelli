@@ -1724,3 +1724,7 @@ html { scroll-padding-top: 90px; }
   max-width: 30ch;
   margin: 0 auto;
 }
+
+/* tighter, smaller statement list */
+.sx-sparklist { gap: 16px; }
+.sx-sparklist li { font-size: clamp(1.2rem, 2vw, 1.6rem); padding-left: 42px; }
