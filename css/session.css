@@ -1673,3 +1673,54 @@ html { scroll-padding-top: 90px; }
 @media (prefers-reduced-motion: no-preference) {
   .has-js .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ease) 0.85s forwards; }
 }
+
+/* ==========================================================================
+   Promise list — muted intro, gold-sparkle statements, plum closing
+   (designed from reference; content unchanged)
+   ========================================================================== */
+.sx-pintro {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.7;
+  color: #7A4D88;
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+.sx-sparklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.sx-sparklist li {
+  position: relative;
+  padding-left: 50px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+  line-height: 1.32;
+  color: var(--rm-dark-accent);
+}
+.sx-sparklist li::before {
+  content: "✦";
+  position: absolute;
+  left: 0; top: 0.12em;
+  color: var(--rm-gold);
+  font-size: 0.78em;
+}
+.sx-closing {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.65rem, 3.1vw, 2.5rem);
+  line-height: 1.32;
+  color: var(--rm-primary);
+  text-align: center;
+  text-wrap: balance;
+  max-width: 30ch;
+  margin: 0 auto;
+}
