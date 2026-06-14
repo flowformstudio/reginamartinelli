@@ -1631,3 +1631,17 @@ html { scroll-padding-top: 90px; }
 
 /* clarity beat matches the 'Why does this still feel so hard?' pullquote size */
 .sx-card-gold .sx-beat--bold { font-size: clamp(2rem, 4.5vw, 3.625rem); }
+
+/* smaller intro line directly under the hero */
+.sx-prose p.sx-introsub {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--rm-primary);
+  text-align: center;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
