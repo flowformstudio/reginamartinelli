@@ -10,8 +10,9 @@
   <!-- CHAPTER I — THE PROMISE -->
   <section class="sx-hero" data-magnetize>
     <span class="sx-hero__eyebrow">Ideal Client Strategy Session</span>
-    <h1 class="sx-hero__title">Magnetize More of Your <em>Ideal</em> Clients</h1>
+    <h1 class="sx-hero__title">Magnetize More of Your <em>Ideal</em> <em>Clients</em></h1>
     <p class="sx-hero__lead">By building a business around how you actually love to work (your natural strengths &amp; talents), understanding who you love to work with, and knowing how to market to attract your favorite clients who align with You.</p>
+    <div class="sx-hero__cta"><a class="rm-btn rm-btn--primary" href="#book">Get Your Strategy Session &mdash; $147</a><p class="sx-hero__note">45-Minute Personalized Session · $147</p></div>
     <div class="sx-hero__cue" aria-hidden="true">✦</div>
   </section>
 
@@ -821,6 +822,12 @@
 @media (prefers-reduced-motion: no-preference) {
   #rm-session.has-js .sx-hero__lead { opacity: 0; animation: rmx-rise 1.1s var(--rmx-ease) 0.6s forwards; }
 }
+
+#rm-session .sx-hero__title { margin-bottom: 10px; }
+#rm-session .sx-hero__lead { margin-top: 10px; }
+#rm-session .sx-hero__cta { position: relative; z-index: 1; margin-top: 34px; }
+#rm-session .sx-hero__note { margin: 15px 0 0; font-family: var(--rmx-sans); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rmx-accent); }
+@media (prefers-reduced-motion: no-preference) { #rm-session.has-js .sx-hero__cta { opacity: 0; animation: rmx-rise 1.1s var(--rmx-ease) 0.85s forwards; } }
 </style>
 
 <script>
