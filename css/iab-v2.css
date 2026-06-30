@@ -307,13 +307,14 @@ body.iab-page {
   content: "";
   position: absolute;
   inset: 0;
-  /* luminous core lifts the dark hero text clear of the orbit lines */
-  background: radial-gradient(ellipse 66% 56% at 50% 44%,
-    rgba(245, 247, 255, 0.94) 0%,
-    rgba(220, 226, 250, 0.78) 24%,
-    rgba(205, 213, 244, 0.46) 44%,
-    rgba(214, 210, 240, 0.16) 60%,
-    transparent 74%);
+  /* semi-opaque veil that calms (blocks) the orbit animation behind the text
+     across a broad central plateau, then fades softly to the live edges */
+  background: radial-gradient(ellipse 74% 66% at 50% 46%,
+    rgba(247, 246, 252, 0.90) 0%,
+    rgba(246, 245, 251, 0.86) 44%,
+    rgba(240, 238, 249, 0.58) 64%,
+    rgba(240, 238, 249, 0.18) 80%,
+    transparent 92%);
   z-index: 1;
   pointer-events: none;
 }
