@@ -1,0 +1,1150 @@
+/* ==========================================================================
+   Inner Alignment Blueprint — v2 "strategic landing" layer
+   Conversion-oriented components layered on top of session.css.
+   Reuses the Gilded Narrative vocabulary (sx-*) and adds a small set of
+   landing-page patterns prefixed iab-: hero CTA cluster, trust bar,
+   "what it is" feature trio, outcome cards, FAQ, sticky CTA, CTA groups.
+   ========================================================================== */
+
+/* ==========================================================================
+   .iab-page — premium / cosmic refinement layer (scoped to v2 page ONLY)
+   Honors Regina's brand brief: feminine, elegant, calm, expansive, cosmic,
+   premium. Unifies the palette toward purple + gold, adds a quiet living
+   atmosphere, low-opacity sacred-geometry texture, and more breathing room.
+   None of this touches other pages — everything is gated behind .iab-page.
+   ========================================================================== */
+
+/* unified airy base — mostly white-lavender, warming to gold at the close */
+html:has(body.iab-page) { overflow-x: clip; }
+body.iab-page {
+  /* clip decorative shapes that overflow section edges so they never create
+     a horizontal scrollbar (esp. on mobile) */
+  overflow-x: clip;
+  background:
+    linear-gradient(180deg,
+      #FCFBFE 0%,
+      #F5F0FB 26%,
+      #EFE7F8 50%,
+      #F1E9F8 72%,
+      #F7F0EC 88%,
+      #FBF4E8 100%);
+}
+/* the fixed starfield sits behind everything; content rides above it */
+.iab-cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.iab-page > header,
+.iab-page > main,
+.iab-page > footer { position: relative; z-index: 2; }
+.iab-page > header { z-index: 50; }
+/* the sticky CTA stays fixed to the viewport (keeps its own z-index:60) */
+.iab-page > .iab-sticky { position: fixed; }
+
+/* let the atmosphere read through the lighter sections (cosmos + base glow) */
+.iab-page .sx-chapter { background: transparent; }
+
+/* more breathing room throughout */
+.iab-page .sx-chapter {
+  padding-top: calc(var(--section-py) * 1.5);
+  padding-bottom: calc(var(--section-py) * 1.5);
+}
+.iab-page .sx-ch-head { margin-bottom: 64px; }
+
+/* --- section tints: translucent, purple-leaning, blending softly --------- */
+/* "What the Blueprint is" — soft lavender wash */
+.iab-page .wash-lav {
+  background: linear-gradient(180deg,
+    rgba(201, 183, 239, 0.00) 0%,
+    rgba(201, 183, 239, 0.20) 40%,
+    rgba(168, 109, 223, 0.12) 100%);
+}
+/* "Who it's for" — was pink; retuned to violet with the faintest blush */
+.iab-page .wash-soft {
+  background: linear-gradient(180deg,
+    rgba(201, 183, 239, 0.16) 0%,
+    rgba(168, 109, 223, 0.10) 55%,
+    rgba(245, 166, 228, 0.08) 100%);
+}
+/* warm "paper" sections — toned toward lavender-white so cream never fights
+   the purple story; still warm enough to feel like light, not grey */
+.iab-page .sx-paper {
+  background: linear-gradient(180deg,
+    rgba(250, 246, 252, 0.66),
+    rgba(247, 242, 251, 0.42));
+}
+
+/* --- the Offer: a premium violet field with a gold heart -------------- */
+.iab-page .sx-offer-zone {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 26%, rgba(168, 109, 223, 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 90%, rgba(198, 162, 75, 0.14), transparent 72%),
+    linear-gradient(180deg, rgba(239, 231, 248, 0.7) 0%, rgba(244, 238, 250, 0.55) 100%);
+}
+.iab-page .sx-price-card {
+  box-shadow: 0 24px 70px rgba(41, 0, 51, 0.16), 0 0 0 1px rgba(198, 162, 75, 0.0);
+}
+
+/* --- the Fog: deepen + let inner light glow (kept dark, on-brand) ------- */
+.iab-page .sx-fog {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 30%, rgba(168, 109, 223, 0.28), transparent 70%),
+    linear-gradient(180deg, #2A0233 0%, #3A1247 55%, #2A0233 100%);
+}
+
+/* --- reusable dark plum band: rhythm anchors across the page ------------ */
+.iab-page .iab-night {
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 26%, rgba(168, 109, 223, 0.28), transparent 70%),
+    linear-gradient(180deg, #2A0233 0%, #3A1247 52%, #2A0233 100%);
+}
+/* ── Global float model ──────────────────────────────────────────────────
+   Sections must NOT create stacking contexts (no z-index of their own), so
+   every decorative shape escapes its section and floats in <main>'s context:
+     section backgrounds → 0 (paint in DOM order; sections never overlap)
+     decorative shapes    → 1 (float ABOVE every section background)
+     content              → 2 (always on top of the shapes)
+   This guarantees no shape is ever clipped/hidden under a later section. */
+.iab-page .sx-chapter { position: relative; z-index: auto; overflow: visible; }
+/* the Offer night adds a warm gold heart behind the price card */
+.iab-page .iab-night--offer {
+  background:
+    radial-gradient(ellipse 60% 42% at 50% 28%, rgba(198, 162, 75, 0.20), transparent 70%),
+    radial-gradient(ellipse 85% 60% at 50% 22%, rgba(168, 109, 223, 0.32), transparent 72%),
+    linear-gradient(180deg, #2A0233 0%, #3A1247 55%, #2A0233 100%);
+}
+
+/* The Shift on dark: muted "before", luminous "after" */
+.iab-night .iab-shift__col--from {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.iab-night .iab-shift__col--from li { color: rgba(255, 255, 255, 0.66); }
+.iab-night .iab-shift__col--from .iab-shift__label { color: var(--rm-light-accent); opacity: 0.85; }
+.iab-night .iab-shift__col--to {
+  background: #fff;
+  border-color: rgba(198, 162, 75, 0.6);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.32);
+}
+.iab-night .iab-shift__arrow { color: var(--rm-gold-soft); }
+
+/* The Offer on dark: white card pops, lists turn light */
+.iab-night--offer .sx-price-card {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(198, 162, 75, 0.28);
+}
+/* condense the two-column block so it doesn't spread edge to edge */
+.iab-night--offer .sx-twocol { max-width: 880px; gap: 56px; }
+/* bolder, larger pricing-tile title + lead; price drops below the lead */
+.iab-night--offer .sx-price-card__title {
+  font-weight: 600;
+  font-size: clamp(1.95rem, 3.4vw, 2.5rem);
+  line-height: 1.12;
+}
+.iab-night--offer .sx-pclead {
+  font-size: 1.16rem;
+  line-height: 1.6;
+  max-width: 34ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.iab-night--offer .sx-price-card .sx-price-card__amount { margin: 26px 0 22px; }
+.iab-night--offer .sx-twocol h3 { color: #F4E8D2; }
+.iab-night--offer .sx-dlist li { color: rgba(255, 255, 255, 0.84); }
+.iab-night--offer .sx-dlist li::before { color: var(--rm-gold-soft); }
+/* the white price card keeps dark, readable text (override the dark-section
+   light-text rules that would otherwise wash it out) */
+.iab-night--offer .sx-price-card .sx-ssmall,
+.iab-night--offer .sx-price-card .sx-prose p { color: #6E3D7E; }
+.iab-night--offer .sx-price-card .iab-cta__note { color: var(--rm-primary); }
+.iab-night--offer .sx-price-card .iab-cta__note strong { color: var(--rm-dark-accent); }
+/* clean white serif beat on dark (no brushstroke) */
+.iab-beat-white { color: #fff; }
+
+/* ---- "What the Blueprint is" — dark section: portrait + stacked cards --- */
+.iab-page .iab-blueprint { overflow: visible; }
+.iab-bp-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: 48px;
+  max-width: 960px;
+  margin: 56px auto 0;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+}
+.iab-bp-image { position: relative; }
+.iab-bp-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  display: block;
+}
+.iab-bp-cards { display: flex; flex-direction: column; gap: 18px; }
+.iab-bp-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-card);
+  padding: 24px 28px;
+}
+.iab-bp-card h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  line-height: 1.15;
+  color: #F4E8D2;
+  margin: 0 0 8px;
+}
+.iab-bp-card p {
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+.iab-bp-sun {
+  position: absolute;
+  top: 80px; right: -70px;
+  width: 280px;
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+.iab-bp-flower {
+  position: absolute;
+  bottom: 0; left: -120px;
+  width: 330px;
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+}
+@media (max-width: 820px) {
+  .iab-bp-grid { grid-template-columns: 1fr; max-width: 440px; gap: 22px; }
+  .iab-bp-image img { max-height: 440px; }
+}
+
+/* --- the Final: rise above the clouds (soft pastel sky photo) ----------- */
+.iab-page .sx-final {
+  background:
+    linear-gradient(to bottom, #F8F1EC 0%, rgba(248, 241, 236, 0) 13%),
+    #F4EAF3 url("../design-system/assets/final-clouds.jpg") center bottom / cover no-repeat;
+  margin-top: -1px;
+}
+
+/* --- atmosphere primitives: auras (glowing gradients) + geometry -------- */
+.iab-aura {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+.iab-aura--gold   { background: radial-gradient(circle, rgba(229, 204, 133, 0.5), transparent 65%); }
+.iab-aura--violet { background: radial-gradient(circle, rgba(168, 109, 223, 0.42), transparent 65%); }
+.iab-aura--blush  { background: radial-gradient(circle, rgba(245, 166, 228, 0.34), transparent 65%); }
+@media (prefers-reduced-motion: no-preference) {
+  .iab-aura { animation: iab-breathe 12s ease-in-out infinite alternate; }
+}
+@keyframes iab-breathe {
+  from { opacity: 0.45; scale: 0.96; }
+  to   { opacity: 0.8;  scale: 1.06; }
+}
+
+/* sacred geometry as texture only: low opacity, slow spin, behind content */
+.iab-geo {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.07;
+  will-change: transform;
+}
+.iab-geo--glow { animation: iab-geo-glow 16s ease-in-out infinite alternate; }
+@keyframes iab-geo-glow {
+  from { opacity: 0.045; }
+  to   { opacity: 0.11; }
+}
+/* spin uses the independent `rotate` property so it never fights the
+   positioning `transform` (e.g. translate centering) on the same element */
+@keyframes iab-rotate { from { rotate: 0deg; } to { rotate: 360deg; } }
+@media (prefers-reduced-motion: no-preference) {
+  .iab-geo--spin { animation: iab-rotate 240s linear infinite, iab-geo-glow 16s ease-in-out infinite alternate; }
+}
+/* content always sits on top of the floating shapes */
+.iab-page .sx-chapter > .rm-container,
+.iab-page .sx-chapter > .sx-ch-head { position: relative; z-index: 2; }
+
+/* every decorative shape floats at one layer above all section backgrounds */
+.iab-page .iab-px,
+.iab-page .iab-aura,
+.iab-page .iab-geo,
+.iab-page .iab-orn,
+.iab-page .iab-burst,
+.iab-page .iab-fog-sun,
+.iab-page .iab-fog-flower,
+.iab-page .iab-bp-sun,
+.iab-page .iab-bp-flower,
+.iab-page .sx-burst { z-index: 1; }
+
+/* --- parallax decorative layer: drifts on scroll ------------------------- */
+.iab-page .iab-px {
+  pointer-events: none;
+  will-change: translate;
+}
+/* geometry: forward + clearly visible (was background texture) */
+.iab-page .iab-geo.iab-px {
+  opacity: 0.26;
+  animation: iab-rotate 200s linear infinite;
+}
+.iab-page .iab-orn.iab-px   { opacity: 0.9; }
+.iab-page .iab-burst.iab-px { opacity: 0.95; }
+
+/* hero: soft blue radial glow behind the text lifts legibility over the
+   animated orbit lines (sits above the canvas, below the text) */
+.iab-page .sx-hero[data-align]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* luminous core lifts the dark hero text clear of the orbit lines */
+  background: radial-gradient(ellipse 66% 56% at 50% 44%,
+    rgba(245, 247, 255, 0.94) 0%,
+    rgba(220, 226, 250, 0.78) 24%,
+    rgba(205, 213, 244, 0.46) 44%,
+    rgba(214, 210, 240, 0.16) 60%,
+    transparent 74%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* hero load: tighten the choreography so elements appear quickly and in
+   top-to-bottom order (no long gap where the title lags behind the eyebrow) */
+@media (prefers-reduced-motion: no-preference) {
+  .iab-page .sx-hero__eyebrow { animation-duration: 0.7s; animation-delay: 0.04s; }
+  .iab-page .sx-hero__title   { animation-duration: 0.7s; animation-delay: 0.12s; }
+  .iab-page .sx-hero__intro   { animation-duration: 0.7s; animation-delay: 0.22s; }
+  .iab-page .sx-hero__cta     { animation-duration: 0.7s; animation-delay: 0.32s; }
+  .iab-page .sx-hero__cue     { animation-delay: 0.5s; }
+}
+
+/* keep every hero foreground element above the orbit canvas */
+.iab-page .sx-hero__eyebrow,
+.iab-page .sx-hero__title,
+.iab-page .sx-hero__tag,
+.iab-page .sx-hero__intro,
+.iab-page .sx-hero__cta,
+.iab-page .sx-hero__meta,
+.iab-page .sx-hero__cue { position: relative; z-index: 2; }
+/* the lower text now reads on deep violet — lift it to light for contrast,
+   and drop it further below the CTA for breathing room */
+.iab-page .sx-hero__meta { color: rgba(255, 255, 255, 0.95); margin-top: 30px; }
+.iab-page .sx-hero__meta span + span::before { color: var(--rm-gold-soft); }
+.iab-page .sx-hero__cue { color: var(--rm-gold-soft); }
+
+/* --- hero tagline: Orpheus Pro italic, the brand serif Regina loves ----- */
+.iab-page .sx-hero__tag {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  color: var(--rm-primary);
+  margin-top: 20px;
+}
+
+/* --- unified primary CTA: gentle glow + smooth bloom on hover ----------- */
+.iab-page .rm-btn--primary {
+  box-shadow: 0 10px 30px rgba(100, 40, 117, 0.22);
+  transition: box-shadow 0.55s var(--ease), transform 0.3s var(--ease), background 0.4s var(--ease);
+}
+.iab-page .rm-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 42px rgba(100, 40, 117, 0.32), 0 0 28px rgba(229, 204, 133, 0.5);
+}
+
+/* the trust strip: clean cream field (matches Figma) */
+.iab-page .iab-strip {
+  background: #FBF6EF;
+  border-top: none;
+  border-bottom: none;
+  position: relative;
+  z-index: 2;
+}
+
+/* feature + offer cards: lift onto soft light, warmer borders */
+.iab-page .iab-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 0 18px 44px rgba(100, 40, 117, 0.10);
+}
+
+/* dark "fog" section: chapter head needs light-on-dark treatment */
+.sx-fog .sx-ch-title { color: #fff; }
+.sx-fog .sx-ch-label { color: var(--rm-light-accent); }
+.sx-fog .sx-ch-head::before { background: linear-gradient(180deg, transparent, var(--rm-gold)); }
+
+/* Fog ornaments: line-art sun hanging from the top, flower-of-life lower-left */
+.iab-page .sx-fog { overflow: visible; }
+.iab-fog-sun {
+  position: absolute;
+  top: 6px; left: 50%;
+  transform: translateX(-50%);
+  width: 188px;
+  z-index: 1;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.iab-fog-flower {
+  position: absolute;
+  bottom: 24px; left: -120px;
+  width: 330px;
+  z-index: 0;
+  opacity: 0.16;
+  pointer-events: none;
+}
+/* body reads as a contained, left-aligned column */
+.sx-fog .sx-fog-body {
+  text-align: left;
+  max-width: 620px;
+  margin: 0 auto;
+}
+/* larger, more dramatic closing quote */
+.sx-fog .sx-quote--xl {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  line-height: 1.26;
+}
+@media (max-width: 640px) {
+  .iab-fog-sun { width: 130px; }
+  .iab-fog-flower { width: 220px; bottom: 12px; left: -90px; }
+}
+
+/* ---- shared CTA group: centered button + reassuring subnote ------------- */
+.iab-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin: 0 auto;
+}
+.iab-cta__note {
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  color: var(--rm-primary);
+  opacity: 0.78;
+}
+.iab-cta__note strong { color: var(--rm-dark-accent); font-weight: 600; }
+.rm-btn--xl { font-size: 1.06rem; padding: 17px 38px; }
+
+/* ---- hero CTA + value line ---------------------------------------------- */
+.sx-hero__cta {
+  position: relative;
+  z-index: 1;
+  margin-top: 38px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+/* keep the title to two lines: "Your Inner" / "Alignment Blueprint" */
+.iab-page .sx-hero__title { max-width: none; }
+.iab-page .sx-hero__title em { white-space: nowrap; }
+/* on small screens let the long word-pair wrap so it never overflows */
+@media (max-width: 640px) {
+  .iab-page .sx-hero__title { font-size: clamp(2.4rem, 10.5vw, 3.6rem); }
+  .iab-page .sx-hero__title em { white-space: normal; }
+}
+
+/* both hero buttons share one height (Figma = 60px each) */
+.iab-page .sx-hero__cta .rm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  line-height: 1;
+  box-sizing: border-box;
+}
+/* hero ghost button — tuned for the cosmic hero field */
+.iab-page .sx-hero__cta .rm-btn--secondary {
+  border-color: rgba(100, 40, 117, 0.5);
+  color: var(--rm-primary);
+  box-shadow: none;
+}
+.iab-page .sx-hero__cta .rm-btn--secondary:hover {
+  background: rgba(100, 40, 117, 0.08);
+  border-color: var(--rm-primary);
+  color: var(--rm-dark-accent);
+  transform: translateY(-2px);
+}
+@media (max-width: 480px) {
+  .sx-hero__cta { flex-direction: column; }
+  .sx-hero__cta .rm-btn { width: 100%; max-width: 340px; }
+}
+.sx-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rm-primary);
+}
+.sx-hero__meta span { display: inline-flex; align-items: center; gap: 22px; }
+.sx-hero__meta span + span::before {
+  content: "✦";
+  color: var(--rm-gold);
+  margin-right: 22px;
+  font-size: 0.7em;
+  text-transform: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .sx-hero__cta,
+  .has-js .sx-hero__meta { opacity: 0; animation: sx-rise 1.1s var(--ease) forwards; }
+  .has-js .sx-hero__cta  { animation-delay: 1.0s; }
+  .has-js .sx-hero__meta { animation-delay: 1.15s; }
+}
+
+/* ---- trust / context strip below the fold ------------------------------- */
+.iab-strip {
+  background: #FBF6EF;
+  border-top: none;
+  border-bottom: none;
+  padding: 70px var(--space-md);
+}
+.iab-strip__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+.iab-strip__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.iab-strip__icon {
+  width: auto;
+  height: 104px;
+  margin-bottom: 16px;
+}
+.iab-strip__k {
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.05rem;
+  line-height: 1.1;
+  color: var(--rm-dark-accent);
+}
+.iab-strip__v {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rm-accent);
+}
+/* third stat sub is a sentence, not a label */
+.iab-strip__v--plain {
+  letter-spacing: 0.01em;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 1.02rem;
+}
+
+/* ---- Reframe: warm "above the clouds" field + portrait card ------------- */
+.iab-page .iab-reframe {
+  position: relative;
+  overflow: visible;
+  background:
+    radial-gradient(ellipse 90% 70% at 60% 80%, rgba(250, 224, 211, 0.55), transparent 70%),
+    linear-gradient(165deg, #FBF7F2 0%, #FAF0EA 52%, #F6EEF4 100%);
+}
+.iab-reframe-flower {
+  position: absolute;
+  top: -50px; left: -90px;
+  width: 290px;
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+.iab-reframe-intro p {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.7vw, 2.1rem);
+  line-height: 1.42;
+  color: var(--rm-primary);
+  max-width: 30ch;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+/* role block becomes a white card on the warm field */
+.iab-role--card {
+  background: #fff;
+  border: 1px solid rgba(198, 162, 75, 0.5);
+  border-radius: var(--radius-card);
+  box-shadow: 0 26px 64px rgba(100, 40, 117, 0.12);
+  padding: 54px 48px 50px;
+  max-width: 620px;
+}
+@media (max-width: 560px) {
+  .iab-role--card { padding: 40px 28px; }
+}
+
+/* ---- Reframe: "My role is simple" with Regina's portrait --------------- */
+.iab-role {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.iab-role__photo {
+  display: block;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 28px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1.5px rgba(198, 162, 75, 0.9), 0 10px 26px rgba(100, 40, 117, 0.16);
+}
+.iab-role__lead {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  line-height: 1.2;
+  color: var(--rm-primary);
+  margin: 0 0 14px;
+}
+.iab-role__line {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+  line-height: 1.3;
+  color: var(--rm-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ---- Reassurance — luminous serif statement ----------------------------- */
+.iab-page .iab-reassure {
+  position: relative;
+  background: transparent;
+}
+.iab-reassure__divider {
+  display: block;
+  width: clamp(280px, 42vw, 420px);
+  height: auto;
+  margin: 0 auto 26px;
+  opacity: 0.9;
+}
+.iab-reassure__lead {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--rm-dark-accent);
+  max-width: 26ch;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.iab-reassure__lead em {
+  font-style: italic;
+  color: var(--rm-accent);
+}
+.iab-reassure__rule {
+  display: block;
+  width: 64px; height: 1px;
+  margin: 36px auto;
+  background: linear-gradient(90deg, transparent, var(--rm-gold), transparent);
+}
+.iab-reassure__sub {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--rm-primary);
+  max-width: 56ch;
+  margin: 0 auto;
+}
+
+/* ---- "What we'll do together" — cream field with corner sunbursts ------- */
+.iab-page .iab-cream {
+  background: #FBF6EF;
+  position: relative;
+}
+.iab-burst {
+  position: absolute;
+  z-index: 0;
+  width: 300px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.iab-burst--tr { top: -70px; right: -70px; }
+.iab-burst--bl { bottom: -70px; left: -70px; }
+@media (max-width: 760px) {
+  .iab-burst { width: 200px; opacity: 0.6; }
+}
+
+.iab-steps {
+  list-style: none;
+  padding: 0;
+  margin: 56px auto 0;
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+.iab-step {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 26px;
+  align-items: start;
+}
+.iab-step__icon {
+  width: 58px;
+  height: 58px;
+  flex: none;
+}
+.iab-step__body h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.2vw, 1.72rem);
+  line-height: 1.2;
+  color: var(--rm-dark-accent);
+  margin: 4px 0 8px;
+}
+.iab-step__body p {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--rm-primary);
+  margin: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .iab-step {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  }
+  .has-js .rm-reveal .iab-step:nth-child(2) { transition-delay: 0.1s; }
+  .has-js .rm-reveal .iab-step:nth-child(3) { transition-delay: 0.2s; }
+  .has-js .rm-reveal .iab-step:nth-child(4) { transition-delay: 0.3s; }
+  .has-js .rm-reveal .iab-step:nth-child(5) { transition-delay: 0.4s; }
+  .has-js .rm-reveal.is-in .iab-step { opacity: 1; transform: none; }
+}
+@media (max-width: 560px) {
+  .iab-step { grid-template-columns: 48px 1fr; gap: 18px; }
+  .iab-step__icon { width: 48px; height: 48px; }
+}
+
+/* ---- "Who it's for" — irregular bento card grid ------------------------- */
+.iab-bento {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+}
+.iab-bento__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  min-height: 178px;
+  padding: 36px 36px;
+  border-radius: var(--radius-card);
+  background: #ffffff;
+  box-shadow: 0 16px 44px rgba(100, 40, 117, 0.10);
+}
+.iab-bento__icon {
+  display: block;
+  width: 44px; height: 44px;
+  flex: none;
+  margin-bottom: 22px;
+}
+.iab-bento__icon svg { width: 100%; height: 100%; }
+.iab-bento__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.15;
+  color: var(--rm-dark-accent);
+  margin: 0 0 8px;
+}
+.iab-bento__text {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--rm-primary);
+  margin: 0;
+}
+.iab-bento__card--a { grid-column: span 6; }
+.iab-bento__card--b { grid-column: span 6; }
+.iab-bento__card--c { grid-column: span 5; }
+.iab-bento__card--d { grid-column: span 7; }
+/* full-width card: horizontal layout for variety */
+.iab-bento__card--e {
+  grid-column: span 12;
+  min-height: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 26px;
+}
+.iab-bento__card--e .iab-bento__icon { margin-bottom: 0; }
+.iab-bento__card--e .iab-bento__title { margin-bottom: 4px; }
+
+/* ---- golden border beam (à la Magic UI) for white tiles ----------------- */
+@property --iab-beam { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.iab-shine-tile,
+.iab-page .sx-price-card,
+.iab-page .iab-role--card,
+.iab-page .iab-night .iab-shift__col--to { position: relative; }
+.iab-shine-tile::after,
+.iab-page .sx-price-card::after,
+.iab-page .iab-role--card::after,
+.iab-page .iab-night .iab-shift__col--to::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.6px;
+  /* faint gold rim everywhere + a bright beam that travels the perimeter */
+  background: conic-gradient(from var(--iab-beam),
+    rgba(198, 162, 75, 0.30) 0deg,
+    rgba(198, 162, 75, 0.30) 296deg,
+    rgba(233, 208, 140, 0.95) 330deg,
+    #fff5d8 344deg,
+    rgba(233, 208, 140, 0.95) 358deg,
+    rgba(198, 162, 75, 0.30) 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+  animation: iab-beam 6s linear infinite;
+}
+@keyframes iab-beam { to { --iab-beam: 360deg; } }
+@media (prefers-reduced-motion: reduce) {
+  .iab-shine-tile::after,
+  .iab-page .sx-price-card::after,
+  .iab-page .iab-role--card::after,
+  .iab-page .iab-night .iab-shift__col--to::after { animation: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .iab-bento__card {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  }
+  .has-js .rm-reveal .iab-bento__card--b { transition-delay: 0.08s; }
+  .has-js .rm-reveal .iab-bento__card--c { transition-delay: 0.16s; }
+  .has-js .rm-reveal .iab-bento__card--d { transition-delay: 0.24s; }
+  .has-js .rm-reveal .iab-bento__card--e { transition-delay: 0.32s; }
+  .has-js .rm-reveal.is-in .iab-bento__card { opacity: 1; transform: none; }
+}
+@media (max-width: 720px) {
+  .iab-bento { grid-template-columns: 1fr; max-width: 460px; }
+  .iab-bento__card,
+  .iab-bento__card--a, .iab-bento__card--b, .iab-bento__card--c,
+  .iab-bento__card--d, .iab-bento__card--e { grid-column: span 1; min-height: 0; }
+}
+/* who-it's-for ornaments */
+.iab-orn {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+.iab-orn--sun  { width: 230px; top: 30px; right: -30px; opacity: 0.7; }
+.iab-orn--moon { width: 150px; bottom: 20px; left: -20px; opacity: 0.7; }
+@media (max-width: 980px) {
+  .iab-orn--sun, .iab-orn--moon { display: none; }
+}
+
+/* ---- "what it is" feature trio ------------------------------------------ */
+.iab-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1040px;
+  margin: 56px auto 0;
+}
+.iab-card {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(198, 162, 75, 0.32);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 40px 34px;
+  text-align: center;
+}
+.iab-card__icon {
+  display: block;
+  width: auto;
+  height: 58px;
+  margin: 0 auto 22px;
+}
+.iab-card h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: var(--rm-dark-accent);
+  margin: 0 0 12px;
+}
+.iab-card p {
+  font-size: 0.99rem;
+  line-height: 1.7;
+  color: var(--rm-primary);
+  margin: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .iab-card {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  }
+  .has-js .rm-reveal .iab-card:nth-child(2) { transition-delay: 0.14s; }
+  .has-js .rm-reveal .iab-card:nth-child(3) { transition-delay: 0.28s; }
+  .has-js .rm-reveal.is-in .iab-card { opacity: 1; transform: none; }
+}
+
+/* ---- before / after transformation pair --------------------------------- */
+.iab-shift {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 18px;
+  max-width: 900px;
+  margin: 52px auto 0;
+}
+.iab-shift__col {
+  border-radius: var(--radius-card);
+  padding: 36px 34px;
+}
+.iab-shift__col--from {
+  background: rgba(59, 31, 46, 0.05);
+  border: 1px solid rgba(59, 31, 46, 0.12);
+}
+.iab-shift__col--to {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(198, 162, 75, 0.45);
+  box-shadow: var(--shadow-card);
+}
+.iab-shift__label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+.iab-shift__col--from .iab-shift__label { color: var(--rm-accent); opacity: 0.7; }
+.iab-shift__col--to .iab-shift__label { color: var(--rm-gold); }
+.iab-shift ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px; }
+.iab-shift li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--rm-primary);
+}
+.iab-shift li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: 0.55em;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--rm-gold);
+}
+.iab-shift__col--to li { color: var(--rm-dark-accent); }
+.iab-shift__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: var(--rm-gold);
+}
+@media (max-width: 760px) {
+  .iab-shift { grid-template-columns: 1fr; }
+  .iab-shift__arrow { transform: rotate(90deg); padding: 4px 0; }
+}
+
+/* ---- FAQ ----------------------------------------------------------------- */
+/* FAQ as two columns: portrait left, questions right */
+.iab-faq-grid {
+  display: grid;
+  grid-template-columns: 0.62fr 1fr;
+  gap: 56px;
+  max-width: 1040px;
+  margin: 0 auto;
+  /* top-aligned so the image never re-centres (jumps) when a question opens */
+  align-items: start;
+}
+.iab-faq-portrait img {
+  width: 100%;
+  max-height: 580px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: var(--radius-card);
+  display: block;
+  box-shadow: 0 24px 60px rgba(100, 40, 117, 0.14);
+}
+.iab-faq-content .sx-ch-head { margin-bottom: 28px; }
+.iab-faq-content .iab-faq { max-width: none; margin: 0; }
+@media (max-width: 860px) {
+  .iab-faq-grid { grid-template-columns: 1fr; gap: 28px; max-width: 540px; }
+  .iab-faq-portrait { max-width: 320px; margin: 0 auto; }
+  .iab-faq-portrait img { max-height: 380px; }
+}
+
+.iab-faq {
+  max-width: 760px;
+  margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.iab-faq details {
+  border-bottom: 1px solid rgba(100, 40, 117, 0.16);
+  padding: 6px 10px;
+  border-radius: 14px;
+  transition: background var(--duration-base) var(--ease);
+}
+/* open row gets a whisper of warm light so question + answer read as one unit */
+.iab-faq details[open] {
+  background: linear-gradient(180deg, rgba(168, 109, 223, 0.06), rgba(168, 109, 223, 0.02));
+}
+.iab-faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 6px;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.1vw, 1.72rem);
+  line-height: 1.25;
+  color: var(--rm-primary);
+  transition: color var(--duration-base) var(--ease);
+}
+.iab-faq summary:hover { color: var(--rm-dark-accent); }
+.iab-faq details[open] summary { color: var(--rm-dark-accent); }
+.iab-faq summary::-webkit-details-marker { display: none; }
+.iab-faq summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--rm-accent);
+  opacity: 0.7;
+  transition: transform var(--duration-base) var(--ease), color var(--duration-base) var(--ease);
+}
+.iab-faq details[open] summary::after { transform: rotate(45deg); color: var(--rm-gold); opacity: 1; }
+.iab-faq__a {
+  padding: 0 6px 26px;
+  font-size: 1.04rem;
+  line-height: 1.85;
+  /* same aubergine family as the question, softened so the title still leads */
+  color: rgba(41, 0, 51, 0.72);
+}
+/* smooth, non-glitchy reveal when a question opens */
+@media (prefers-reduced-motion: no-preference) {
+  .iab-faq details[open] .iab-faq__a { animation: iab-faq-open 0.4s var(--ease); }
+}
+@keyframes iab-faq-open {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.iab-faq__a p { margin: 0 0 1em; }
+.iab-faq__a p:last-child { margin: 0; }
+
+/* ---- sticky CTA bar ------------------------------------------------------ */
+.iab-sticky {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px 28px;
+  flex-wrap: wrap;
+  padding: 14px var(--space-md);
+  background: rgba(41, 0, 51, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 -8px 30px rgba(41, 0, 51, 0.22);
+  transform: translateY(110%);
+  transition: transform 0.5s var(--ease);
+}
+.iab-sticky.is-shown { transform: translateY(0); }
+.iab-sticky__label {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: #fff;
+}
+.iab-sticky__label strong { color: var(--rm-gold-soft); font-weight: 500; }
+.iab-sticky .rm-btn { padding: 12px 28px; }
+@media (max-width: 560px) {
+  .iab-sticky { gap: 10px; padding: 12px var(--space-sm); }
+  .iab-sticky__label { font-size: 0.95rem; }
+  .iab-sticky .rm-btn { padding: 11px 22px; font-size: 0.95rem; }
+}
+
+/* ---- responsive ---------------------------------------------------------- */
+@media (max-width: 880px) {
+  .iab-trio { grid-template-columns: 1fr; max-width: 460px; }
+  .iab-strip__inner { gap: 22px; }
+}
+@media (max-width: 560px) {
+  .iab-strip__inner { grid-template-columns: 1fr; gap: 20px; }
+  .sx-hero__meta { font-size: 0.74rem; }
+}
+
+/* ---- gentle catch-all scroll-in: every remaining content block eases up
+   into place as it enters the viewport (quotes, prose, cards, offer, faq) -- */
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .rm-reveal .sx-prose:not(.sx-stagger),
+  .has-js .rm-reveal .sx-quote,
+  .has-js .rm-reveal .iab-reframe-intro,
+  .has-js .rm-reveal .iab-role,
+  .has-js .rm-reveal .sx-price-card,
+  .has-js .rm-reveal .sx-twocol,
+  .has-js .rm-reveal .sx-shift,
+  .has-js .rm-reveal .iab-faq-grid,
+  .has-js .rm-reveal .iab-cta,
+  .has-js .rm-reveal .iab-reassure__lead,
+  .has-js .rm-reveal .iab-reassure__divider,
+  .has-js .rm-reveal .iab-bp-grid {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.95s var(--ease) 0.12s, transform 0.95s var(--ease) 0.12s;
+  }
+  .has-js .rm-reveal.is-in .sx-prose:not(.sx-stagger),
+  .has-js .rm-reveal.is-in .sx-quote,
+  .has-js .rm-reveal.is-in .iab-reframe-intro,
+  .has-js .rm-reveal.is-in .iab-role,
+  .has-js .rm-reveal.is-in .sx-price-card,
+  .has-js .rm-reveal.is-in .sx-twocol,
+  .has-js .rm-reveal.is-in .sx-shift,
+  .has-js .rm-reveal.is-in .iab-faq-grid,
+  .has-js .rm-reveal.is-in .iab-cta,
+  .has-js .rm-reveal.is-in .iab-reassure__lead,
+  .has-js .rm-reveal.is-in .iab-reassure__divider,
+  .has-js .rm-reveal.is-in .iab-bp-grid {
+    opacity: 1;
+    transform: none;
+  }
+}
