@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/design-system/colors_and_type.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/session.css">
-  <link rel="stylesheet" href="/css/iab-v2.css?v=29">
+  <link rel="stylesheet" href="/css/iab-v2.css?v=30">
 </head>
 <body class="iab-page">
 
@@ -127,7 +127,7 @@
         <p>You&rsquo;re trying to move through your career, your relationships, and your own inner world &mdash; but it feels like wading through mental fog, spiralling on decisions, stuck in overwhelm.</p>
         <p>You catch yourself in the same loops. Your mind feels overstuffed, and suddenly you drop into a version of yourself that&rsquo;s reactive, uncertain, and small. You recognize the pattern. You just don&rsquo;t know how to interrupt it.</p>
       </div>
-      <div style="height:64px"></div>
+      <div class="iab-gap iab-gap--lg" aria-hidden="true"></div>
       <p class="sx-quote sx-quote--xl">&ldquo;Why do I always overthink? Why can&rsquo;t I just calm down? Where&rsquo;s my own sense of certainty?&rdquo;</p>
     </div>
   </section>
@@ -139,9 +139,9 @@
       <div class="sx-prose sx-center iab-reframe-intro">
         <p>We treat overthinking like a flaw to be disciplined or meditated away. But your mind isn&rsquo;t broken. It&rsquo;s a high-powered processor looking for a framework it was never given.</p>
       </div>
-      <div style="height:48px"></div>
+      <div class="iab-gap iab-gap--sm" aria-hidden="true"></div>
       <p class="sx-beat"><span class="sx-gild">You&rsquo;re drowning in self-help concepts, but starving for synthesis.</span></p>
-      <div style="height:56px"></div>
+      <div class="iab-gap" aria-hidden="true"></div>
       <div class="iab-role iab-role--card">
         <img class="iab-role__photo" src="/design-system/assets/regina-headshot.png" alt="Regina Martinelli">
         <p class="iab-role__lead">My role is simple:</p>
@@ -230,7 +230,7 @@
           </div>
         </li>
       </ul>
-      <div style="height:56px"></div>
+      <div class="iab-gap" aria-hidden="true"></div>
       <p class="sx-beat">The goal isn&rsquo;t just to know your patterns. It&rsquo;s to feel safe enough to actually change them.</p>
     </div>
   </section>
@@ -249,7 +249,7 @@
       <ul class="iab-bento">
         <li class="iab-bento__card iab-bento__card--a iab-shine-tile">
           <img class="iab-bento__icon" src="/design-system/assets/bento-icon-fog.svg" alt="" aria-hidden="true">
-          <h3 class="iab-bento__title">Experience Mental fog</h3>
+          <h3 class="iab-bento__title">Experience mental fog</h3>
           <p class="iab-bento__text">You&rsquo;re exhausted by your own brain fog and mental anxiety.</p>
         </li>
         <li class="iab-bento__card iab-bento__card--b iab-shine-tile">
@@ -264,18 +264,18 @@
         </li>
         <li class="iab-bento__card iab-bento__card--d iab-shine-tile">
           <img class="iab-bento__icon" src="/design-system/assets/bento-icon-alignment.svg" alt="" aria-hidden="true">
-          <h3 class="iab-bento__title">Crave Inner alignment</h3>
+          <h3 class="iab-bento__title">Crave inner alignment</h3>
           <p class="iab-bento__text">You crave the kind of inner alignment that has you feel calm, resourced, and able to see the path forward again.</p>
         </li>
         <li class="iab-bento__card iab-bento__card--e iab-shine-tile">
           <img class="iab-bento__icon" src="/design-system/assets/bento-icon-patterns.svg" alt="" aria-hidden="true">
           <div class="iab-bento__body">
-            <h3 class="iab-bento__title">Stuck in Repeating patterns</h3>
+            <h3 class="iab-bento__title">Stuck in repeating patterns</h3>
             <p class="iab-bento__text">You see your stuck patterns repeating in relationships or career, but can&rsquo;t see the way out.</p>
           </div>
         </li>
       </ul>
-      <div style="height:48px"></div>
+      <div class="iab-gap iab-gap--sm" aria-hidden="true"></div>
       <div class="iab-cta">
         <a class="rm-btn rm-btn--primary rm-btn--xl" href="#offer">This Sounds Like Me &mdash; Book My Session</a>
         <span class="iab-cta__note">Private 1:1 with Regina &middot; <strong>$147</strong></span>
@@ -312,7 +312,7 @@
           </ul>
         </div>
       </div>
-      <div style="height:52px"></div>
+      <div class="iab-gap" aria-hidden="true"></div>
       <p class="sx-beat iab-beat-white">You will learn to trust your own knowing again.</p>
     </div>
   </section>
@@ -331,7 +331,7 @@
         <p>Using your Human Design as a personalized blueprint, I help you make sense of how you&rsquo;re wired to process, respond, and move through life &mdash; especially in the moments when stress, old conditioning, or overwhelm pull you out of alignment with yourself.</p>
         <p>I hold space for you to explore your own truth, while offering the conceptual precision you need to make sense of the chaos. I ask the questions that spark your own &ldquo;aha&rdquo; moments &mdash; until the fog clears and you can actually gain clarity.</p>
       </div>
-      <div style="height:56px"></div>
+      <div class="iab-gap" aria-hidden="true"></div>
       <div class="sx-framed">
         <p class="sx-quote">Understanding yourself is the highest form of self-respect. You are entirely worthy of this certainty.</p>
       </div>
@@ -458,7 +458,7 @@
 
 <!-- sticky CTA bar (appears after hero) -->
 <div class="iab-sticky" data-sticky-cta aria-hidden="true">
-  <span class="iab-sticky__label">Inner Alignment Blueprint &middot; <strong>$147</strong></span>
+  <span class="iab-sticky__label"><span class="iab-sticky__name">Inner Alignment Blueprint &middot; </span><strong>$147</strong></span>
   <a class="rm-btn rm-btn--primary" href="#offer">Book Your Session</a>
 </div>
 
@@ -547,6 +547,21 @@
     window.addEventListener('resize', cache);
     window.addEventListener('load', cache);
     cache();
+  })();
+
+  /* golden border-beam — run the travelling glint only on tiles that are
+     actually on screen; off-screen tiles keep the static rim for free */
+  (function () {
+    var tiles = document.querySelectorAll('.iab-shine-tile, .sx-price-card, .iab-role--card, .iab-shift__col--to');
+    if (!tiles.length) return;
+    if (!('IntersectionObserver' in window)) {
+      tiles.forEach(function (t) { t.classList.add('beam-live'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.classList.toggle('beam-live', e.isIntersecting); });
+    }, { rootMargin: '80px' });
+    tiles.forEach(function (t) { io.observe(t); });
   })();
 </script>
 </body>

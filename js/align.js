@@ -17,7 +17,8 @@
   hero.insertBefore(canvas, hero.firstChild);
   var ctx = canvas.getContext("2d");
 
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  /* phones: 1.5x is visually identical for soft glows at half the pixel cost */
+  var DPR = Math.min(window.devicePixelRatio || 1, window.innerWidth < 760 ? 1.5 : 2);
   var W = 0, H = 0, CX = 0, CY = 0, SCALE = 1;
 
   function size() {
@@ -45,6 +46,22 @@
     [171, 222, 218],  /* turquoise (rare) */
     [168, 109, 223]   /* violet (rare)    */
   ];
+  /* pre-rendered glow sprites — one per color, drawn once. Per frame we
+     drawImage instead of building a radial gradient per mote (the old way
+     allocated ~130 gradients every frame; phones felt it) */
+  var SPRITE_R = 32;
+  var SPRITES = COLORS.map(function (c) {
+    var s = document.createElement("canvas");
+    s.width = s.height = SPRITE_R * 2;
+    var sctx = s.getContext("2d");
+    var g = sctx.createRadialGradient(SPRITE_R, SPRITE_R, 0, SPRITE_R, SPRITE_R, SPRITE_R);
+    g.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + ",1)");
+    g.addColorStop(1, "rgba(" + c[0] + "," + c[1] + "," + c[2] + ",0)");
+    sctx.fillStyle = g;
+    sctx.fillRect(0, 0, SPRITE_R * 2, SPRITE_R * 2);
+    return s;
+  });
+
   /* concentric orbit radii (base units, scaled to hero) — outer ring
      carries the braid out to the hero's edges */
   var RINGS = [120, 210, 310, 420, 545];
@@ -69,7 +86,7 @@
       delay: 150 + Math.random() * 2200,         /* ms before it begins  */
       ease: 1500 + Math.random() * 1700,         /* ms to settle         */
       size: 1 + Math.random() * 2.2,
-      c: COLORS[(Math.random() * COLORS.length) | 0],
+      ci: (Math.random() * COLORS.length) | 0,
       tw: Math.random() * Math.PI * 2,
       twSpeed: 0.015 + Math.random() * 0.04
     });
@@ -124,17 +141,13 @@
 
       var twinkle = 0.6 + 0.4 * Math.sin(m.tw);
       var alpha = (0.45 + 0.45 * a) * twinkle;  /* prominent, brighter once home */
-      var c = m.c;
       var rad = m.size * (0.9 + 0.6 * a);
 
-      var glow = ctx.createRadialGradient(x, y, 0, x, y, rad * 3);
-      glow.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + alpha + ")");
-      glow.addColorStop(1, "rgba(" + c[0] + "," + c[1] + "," + c[2] + ",0)");
-      ctx.fillStyle = glow;
-      ctx.beginPath();
-      ctx.arc(x, y, rad * 3, 0, Math.PI * 2);
-      ctx.fill();
+      var d = rad * 6;
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(SPRITES[m.ci], x - d / 2, y - d / 2, d, d);
     }
+    ctx.globalAlpha = 1;
 
     /* precise golden orbits — clean concentric rings whose color shimmers
        through gold tones, each carrying a travelling glint of light */

@@ -52,6 +52,9 @@ body.iab-page {
   padding-bottom: calc(var(--section-py) * 1.5);
 }
 .iab-page .sx-ch-head { margin-bottom: 64px; }
+/* the caps eyebrow was 12.5px with 0.34em tracking — one notch up for
+   legibility, slightly less tracking so it doesn't shimmer at small sizes */
+.iab-page .sx-ch-label { font-size: 0.8rem; letter-spacing: 0.3em; }
 
 /* --- section tints: translucent, purple-leaning, blending softly --------- */
 /* "What the Blueprint is" — soft lavender wash */
@@ -91,14 +94,14 @@ body.iab-page {
 .iab-page .sx-fog {
   background:
     radial-gradient(ellipse 70% 55% at 50% 30%, rgba(168, 109, 223, 0.28), transparent 70%),
-    linear-gradient(180deg, #2A0233 0%, #3A1247 55%, #2A0233 100%);
+    linear-gradient(180deg, #47105F 0%, #5E1F7D 55%, #47105F 100%);
 }
 
 /* --- reusable dark plum band: rhythm anchors across the page ------------ */
 .iab-page .iab-night {
   background:
     radial-gradient(ellipse 75% 55% at 50% 26%, rgba(168, 109, 223, 0.28), transparent 70%),
-    linear-gradient(180deg, #2A0233 0%, #3A1247 52%, #2A0233 100%);
+    linear-gradient(180deg, #47105F 0%, #5E1F7D 52%, #47105F 100%);
 }
 /* ── Global float model ──────────────────────────────────────────────────
    Sections must NOT create stacking contexts (no z-index of their own), so
@@ -113,7 +116,7 @@ body.iab-page {
   background:
     radial-gradient(ellipse 60% 42% at 50% 28%, rgba(198, 162, 75, 0.20), transparent 70%),
     radial-gradient(ellipse 85% 60% at 50% 22%, rgba(168, 109, 223, 0.32), transparent 72%),
-    linear-gradient(180deg, #2A0233 0%, #3A1247 55%, #2A0233 100%);
+    linear-gradient(180deg, #47105F 0%, #5E1F7D 55%, #47105F 100%);
 }
 
 /* The Shift on dark: muted "before", luminous "after" */
@@ -300,6 +303,38 @@ body.iab-page {
 }
 .iab-page .iab-orn.iab-px   { opacity: 0.9; }
 .iab-page .iab-burst.iab-px { opacity: 0.95; }
+
+/* hero: frosted lens behind the text — blurs the orbit animation into a
+   soft glow across the headline zone. The radial mask feathers it out, so
+   the animation stays crisp at the hero's edges and melts to calm light
+   behind the words. Painted below ::after (the veil) and the text. */
+.iab-page .sx-hero[data-align]::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 46%;
+  width: min(96vw, 1080px);
+  height: min(76vh, 640px);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: radial-gradient(ellipse closest-side,
+    #000 0%, #000 44%, rgba(0, 0, 0, 0.5) 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side,
+    #000 0%, #000 44%, rgba(0, 0, 0, 0.5) 70%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  /* phones: the text stack fills most of the hero, so the lens grows with
+     it — wider than the viewport so the calm plateau spans edge to edge */
+  .iab-page .sx-hero[data-align]::before {
+    width: 140vw;
+    height: min(92vh, 760px);
+    top: 48%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
 
 /* hero: soft blue radial glow behind the text lifts legibility over the
    animated orbit lines (sits above the canvas, below the text) */
@@ -735,13 +770,13 @@ body.iab-page {
 }
 @media (prefers-reduced-motion: no-preference) {
   .has-js .rm-reveal .iab-step {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
   }
-  .has-js .rm-reveal .iab-step:nth-child(2) { transition-delay: 0.1s; }
-  .has-js .rm-reveal .iab-step:nth-child(3) { transition-delay: 0.2s; }
-  .has-js .rm-reveal .iab-step:nth-child(4) { transition-delay: 0.3s; }
-  .has-js .rm-reveal .iab-step:nth-child(5) { transition-delay: 0.4s; }
+  .has-js .rm-reveal .iab-step:nth-child(2) { transition-delay: 0.07s; }
+  .has-js .rm-reveal .iab-step:nth-child(3) { transition-delay: 0.14s; }
+  .has-js .rm-reveal .iab-step:nth-child(4) { transition-delay: 0.21s; }
+  .has-js .rm-reveal .iab-step:nth-child(5) { transition-delay: 0.28s; }
   .has-js .rm-reveal.is-in .iab-step { opacity: 1; transform: none; }
 }
 @media (max-width: 560px) {
@@ -836,8 +871,23 @@ body.iab-page {
   pointer-events: none;
   z-index: 3;
   animation: iab-beam 6s linear infinite;
+  /* the beam only runs while the card is on screen (JS toggles .beam-live);
+     paused off-screen it still paints the faint gold rim */
+  animation-play-state: paused;
 }
+.has-js .beam-live::after { animation-play-state: running; }
 @keyframes iab-beam { to { --iab-beam: 360deg; } }
+/* touch devices: skip the travelling glint entirely — a clean static gold
+   rim reads just as premium and costs nothing while scrolling */
+@media (pointer: coarse), (max-width: 720px) {
+  .iab-shine-tile::after,
+  .iab-page .sx-price-card::after,
+  .iab-page .iab-role--card::after,
+  .iab-page .iab-night .iab-shift__col--to::after {
+    animation: none;
+    background: rgba(198, 162, 75, 0.42);
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .iab-shine-tile::after,
   .iab-page .sx-price-card::after,
@@ -846,13 +896,13 @@ body.iab-page {
 }
 @media (prefers-reduced-motion: no-preference) {
   .has-js .rm-reveal .iab-bento__card {
-    opacity: 0; transform: translateY(22px);
-    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
   }
-  .has-js .rm-reveal .iab-bento__card--b { transition-delay: 0.08s; }
-  .has-js .rm-reveal .iab-bento__card--c { transition-delay: 0.16s; }
-  .has-js .rm-reveal .iab-bento__card--d { transition-delay: 0.24s; }
-  .has-js .rm-reveal .iab-bento__card--e { transition-delay: 0.32s; }
+  .has-js .rm-reveal .iab-bento__card--b { transition-delay: 0.06s; }
+  .has-js .rm-reveal .iab-bento__card--c { transition-delay: 0.12s; }
+  .has-js .rm-reveal .iab-bento__card--d { transition-delay: 0.18s; }
+  .has-js .rm-reveal .iab-bento__card--e { transition-delay: 0.24s; }
   .has-js .rm-reveal.is-in .iab-bento__card { opacity: 1; transform: none; }
 }
 @media (max-width: 720px) {
@@ -911,11 +961,11 @@ body.iab-page {
 }
 @media (prefers-reduced-motion: no-preference) {
   .has-js .rm-reveal .iab-card {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
   }
-  .has-js .rm-reveal .iab-card:nth-child(2) { transition-delay: 0.14s; }
-  .has-js .rm-reveal .iab-card:nth-child(3) { transition-delay: 0.28s; }
+  .has-js .rm-reveal .iab-card:nth-child(2) { transition-delay: 0.09s; }
+  .has-js .rm-reveal .iab-card:nth-child(3) { transition-delay: 0.18s; }
   .has-js .rm-reveal.is-in .iab-card { opacity: 1; transform: none; }
 }
 
@@ -1082,8 +1132,8 @@ body.iab-page {
   justify-content: center;
   gap: 18px 28px;
   flex-wrap: wrap;
-  padding: 14px var(--space-md);
-  background: rgba(41, 0, 51, 0.94);
+  padding: 14px var(--space-md) calc(14px + env(safe-area-inset-bottom, 0px));
+  background: rgba(71, 16, 95, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 -8px 30px rgba(41, 0, 51, 0.22);
@@ -1095,14 +1145,29 @@ body.iab-page {
   font-family: var(--font-serif);
   font-size: 1.1rem;
   color: #fff;
+  white-space: nowrap;
 }
 .iab-sticky__label strong { color: var(--rm-gold-soft); font-weight: 500; }
 .iab-sticky .rm-btn { padding: 12px 28px; }
+/* one compact row on phones: price + button, no wrapping */
 @media (max-width: 560px) {
-  .iab-sticky { gap: 10px; padding: 12px var(--space-sm); }
-  .iab-sticky__label { font-size: 0.95rem; }
+  .iab-sticky {
+    flex-wrap: nowrap;
+    gap: 14px;
+    padding: 10px var(--space-sm) calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+  .iab-sticky__label { font-size: 1rem; }
   .iab-sticky .rm-btn { padding: 11px 22px; font-size: 0.95rem; }
 }
+@media (max-width: 480px) {
+  .iab-sticky__name { display: none; }
+  .iab-sticky__label { font-size: 1.15rem; }
+}
+
+/* ---- vertical rhythm: shared gap primitive (replaces inline spacers) ---- */
+.iab-gap      { height: 56px; }
+.iab-gap--sm  { height: 48px; }
+.iab-gap--lg  { height: 64px; }
 
 /* ---- responsive ---------------------------------------------------------- */
 @media (max-width: 880px) {
@@ -1110,8 +1175,50 @@ body.iab-page {
   .iab-strip__inner { gap: 22px; }
 }
 @media (max-width: 560px) {
-  .iab-strip__inner { grid-template-columns: 1fr; gap: 20px; }
+  .iab-strip__inner { grid-template-columns: 1fr; gap: 26px; }
   .sx-hero__meta { font-size: 0.74rem; }
+  /* compact trust strip: this is a reassurance beat, not three hero moments */
+  .iab-strip { padding: 44px var(--space-md); }
+  .iab-strip__icon { height: 66px; margin-bottom: 4px; }
+  .iab-strip__k { font-size: 1.5rem; }
+  .iab-strip__v { font-size: 0.72rem; letter-spacing: 0.14em; }
+}
+
+/* ---- mobile rhythm: tighten the page's vertical breathing ---------------- */
+@media (max-width: 640px) {
+  .iab-page .sx-chapter {
+    padding-top: calc(var(--section-py) * 0.95);
+    padding-bottom: calc(var(--section-py) * 0.95);
+  }
+  .iab-page .sx-ch-head { margin-bottom: 40px; }
+  .iab-page .sx-ch-head::before { height: 38px; margin-bottom: 16px; }
+  .iab-gap      { height: 36px; }
+  .iab-gap--sm  { height: 30px; }
+  .iab-gap--lg  { height: 42px; }
+  .iab-page .iab-steps { margin-top: 40px; gap: 26px; }
+  .iab-bp-grid { margin-top: 36px; }
+  .iab-bento__card { padding: 26px 24px; }
+  .iab-bp-sun { width: 180px; right: -50px; }
+  .iab-bp-flower { width: 220px; left: -80px; }
+  .iab-shift { margin-top: 36px; }
+}
+
+/* ---- reveal choreography, retimed (v2 page only) --------------------------
+   The shared session.css choreography waits 0.45–0.6s before the label/title
+   even start a 0.9s fade — a fast-scrolling phone user lands on an empty
+   section. Halve the whole dance: same order, same feel, half the wait. */
+@media (prefers-reduced-motion: no-preference) {
+  .has-js .iab-page .rm-reveal .sx-ch-head::before {
+    transition-duration: 0.55s;
+    transition-delay: 0s;
+  }
+  .has-js .iab-page .rm-reveal .sx-ch-label,
+  .has-js .iab-page .rm-reveal .sx-ch-title {
+    transform: translateY(12px);
+    transition-duration: 0.55s;
+  }
+  .has-js .iab-page .rm-reveal .sx-ch-label { transition-delay: 0.12s; }
+  .has-js .iab-page .rm-reveal .sx-ch-title { transition-delay: 0.2s; }
 }
 
 /* ---- gentle catch-all scroll-in: every remaining content block eases up
@@ -1130,8 +1237,8 @@ body.iab-page {
   .has-js .rm-reveal .iab-reassure__divider,
   .has-js .rm-reveal .iab-bp-grid {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.95s var(--ease) 0.12s, transform 0.95s var(--ease) 0.12s;
+    transform: translateY(18px);
+    transition: opacity 0.6s var(--ease) 0.05s, transform 0.6s var(--ease) 0.05s;
   }
   .has-js .rm-reveal.is-in .sx-prose:not(.sx-stagger),
   .has-js .rm-reveal.is-in .sx-quote,
