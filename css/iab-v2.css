@@ -87,7 +87,7 @@ body.iab-page {
     linear-gradient(180deg, rgba(239, 231, 248, 0.7) 0%, rgba(244, 238, 250, 0.55) 100%);
 }
 .iab-page .sx-price-card {
-  box-shadow: 0 24px 70px rgba(41, 0, 51, 0.16), 0 0 0 1px rgba(198, 162, 75, 0.0);
+  box-shadow: 0 24px 70px rgba(41, 0, 51, 0.16);
 }
 
 /* --- the Fog: deepen + let inner light glow (kept dark, on-brand) ------- */
@@ -135,7 +135,7 @@ body.iab-page {
 
 /* The Offer on dark: white card pops, lists turn light */
 .iab-night--offer .sx-price-card {
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(198, 162, 75, 0.28);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
 }
 /* condense the two-column block so it doesn't spread edge to edge */
 .iab-night--offer .sx-twocol { max-width: 880px; gap: 56px; }
@@ -860,86 +860,10 @@ body.iab-page {
 .iab-bento__card--e .iab-bento__icon { margin-bottom: 0; }
 .iab-bento__card--e .iab-bento__title { margin-bottom: 4px; }
 
-/* ---- golden border beam (à la Magic UI) for white tiles ----------------- */
-@property --iab-beam { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+/* ---- static 1px golden outline for white tiles ---------------------------
+   role card and shift "to" column already carry their own gold border */
 .iab-shine-tile,
-.iab-page .sx-price-card,
-.iab-page .iab-role--card,
-.iab-page .iab-night .iab-shift__col--to { position: relative; }
-.iab-shine-tile::after,
-.iab-page .sx-price-card::after,
-.iab-page .iab-role--card::after,
-.iab-page .iab-night .iab-shift__col--to::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  /* faint gold rim everywhere + a long, bright beam that travels the
-     perimeter — slow and prominent (desktop only; static rim on touch) */
-  background: conic-gradient(from var(--iab-beam),
-    rgba(198, 162, 75, 0.34) 0deg,
-    rgba(198, 162, 75, 0.34) 276deg,
-    rgba(236, 210, 138, 1) 316deg,
-    #fffbe8 338deg,
-    rgba(236, 210, 138, 1) 356deg,
-    rgba(198, 162, 75, 0.34) 360deg);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  pointer-events: none;
-  z-index: 3;
-  animation: iab-beam 10s linear infinite;
-  /* the beam only runs while the card is on screen (JS toggles .beam-live);
-     paused off-screen it still paints the faint gold rim */
-  animation-play-state: paused;
-}
-.has-js .beam-live::after { animation-play-state: running; }
-@keyframes iab-beam { to { --iab-beam: 360deg; } }
-/* touch devices: skip the travelling glint entirely — a clean static gold
-   rim reads just as premium and costs nothing while scrolling */
-@media (pointer: coarse), (max-width: 720px) {
-  .iab-shine-tile::after,
-  .iab-page .sx-price-card::after,
-  .iab-page .iab-role--card::after,
-  .iab-page .iab-night .iab-shift__col--to::after {
-    animation: none;
-    background: rgba(198, 162, 75, 0.42);
-  }
-}
-/* the gold-framed quote card: the same travelling shine riding its existing
-   painted frame — pure glint, no extra rim. Desktop only. */
-.iab-page .sx-framed { position: relative; }
-.iab-page .sx-framed::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 3.5px;
-  background: conic-gradient(from var(--iab-beam),
-    rgba(255, 248, 220, 0) 0deg,
-    rgba(255, 248, 220, 0) 300deg,
-    rgba(255, 250, 226, 0.95) 330deg,
-    #fffdf2 344deg,
-    rgba(255, 250, 226, 0.95) 358deg,
-    rgba(255, 248, 220, 0) 360deg);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  pointer-events: none;
-  z-index: 3;
-  animation: iab-beam 10s linear infinite;
-  animation-play-state: paused;
-}
-@media (prefers-reduced-motion: reduce), (pointer: coarse), (max-width: 720px) {
-  .iab-page .sx-framed::after { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .iab-shine-tile::after,
-  .iab-page .sx-price-card::after,
-  .iab-page .iab-role--card::after,
-  .iab-page .iab-night .iab-shift__col--to::after { animation: none; }
-}
+.iab-page .sx-price-card { border: 1px solid rgba(198, 162, 75, 0.5); }
 @media (prefers-reduced-motion: no-preference) {
   .has-js .rm-reveal .iab-bento__card {
     opacity: 0; transform: translateY(18px);
