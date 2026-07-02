@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/design-system/colors_and_type.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/session.css">
-  <link rel="stylesheet" href="/css/iab-v2.css?v=30">
+  <link rel="stylesheet" href="/css/iab-v2.css?v=31">
 </head>
 <body class="iab-page">
 
@@ -552,7 +552,7 @@
   /* golden border-beam — run the travelling glint only on tiles that are
      actually on screen; off-screen tiles keep the static rim for free */
   (function () {
-    var tiles = document.querySelectorAll('.iab-shine-tile, .sx-price-card, .iab-role--card, .iab-shift__col--to');
+    var tiles = document.querySelectorAll('.iab-shine-tile, .sx-price-card, .iab-role--card, .iab-shift__col--to, .sx-framed');
     if (!tiles.length) return;
     if (!('IntersectionObserver' in window)) {
       tiles.forEach(function (t) { t.classList.add('beam-live'); });

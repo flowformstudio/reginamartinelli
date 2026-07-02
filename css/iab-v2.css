@@ -354,14 +354,31 @@ body.iab-page {
   pointer-events: none;
 }
 
-/* hero load: tighten the choreography so elements appear quickly and in
-   top-to-bottom order (no long gap where the title lags behind the eyebrow) */
+/* hero text arrival: a soft-focus bloom — each element rises out of a
+   gentle blur in top-to-bottom order, the italic line following its
+   opening words by a beat */
+@keyframes iab-hero-in {
+  from { opacity: 0; transform: translateY(16px); filter: blur(9px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
 @media (prefers-reduced-motion: no-preference) {
-  .iab-page .sx-hero__eyebrow { animation-duration: 0.7s; animation-delay: 0.04s; }
-  .iab-page .sx-hero__title   { animation-duration: 0.7s; animation-delay: 0.12s; }
-  .iab-page .sx-hero__intro   { animation-duration: 0.7s; animation-delay: 0.22s; }
-  .iab-page .sx-hero__cta     { animation-duration: 0.7s; animation-delay: 0.32s; }
-  .iab-page .sx-hero__cue     { animation-delay: 0.5s; }
+  .has-js .iab-page .sx-hero__eyebrow,
+  .has-js .iab-page .sx-hero__title,
+  .has-js .iab-page .sx-hero__intro,
+  .has-js .iab-page .sx-hero__cta {
+    animation-name: iab-hero-in;
+    animation-duration: 1.05s;
+  }
+  .has-js .iab-page .sx-hero__eyebrow { animation-delay: 0.05s; }
+  .has-js .iab-page .sx-hero__title   { animation-delay: 0.16s; }
+  .has-js .iab-page .sx-hero__intro   { animation-delay: 0.36s; }
+  .has-js .iab-page .sx-hero__cta     { animation-delay: 0.52s; }
+  .has-js .iab-page .sx-hero__title em {
+    display: inline-block;
+    opacity: 0;
+    animation: iab-hero-in 1.05s var(--ease) 0.34s forwards;
+  }
+  .iab-page .sx-hero__cue { animation-delay: 0.85s; }
 }
 
 /* keep every hero foreground element above the orbit canvas */
@@ -589,7 +606,8 @@ body.iab-page {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--rm-accent);
+  /* bronze-gold, not the accent violet — the violet reads as a link */
+  color: #8F6F2F;
 }
 /* third stat sub is a sentence, not a label */
 .iab-strip__v--plain {
@@ -856,21 +874,22 @@ body.iab-page {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1.6px;
-  /* faint gold rim everywhere + a bright beam that travels the perimeter */
+  padding: 2px;
+  /* faint gold rim everywhere + a long, bright beam that travels the
+     perimeter — slow and prominent (desktop only; static rim on touch) */
   background: conic-gradient(from var(--iab-beam),
-    rgba(198, 162, 75, 0.30) 0deg,
-    rgba(198, 162, 75, 0.30) 296deg,
-    rgba(233, 208, 140, 0.95) 330deg,
-    #fff5d8 344deg,
-    rgba(233, 208, 140, 0.95) 358deg,
-    rgba(198, 162, 75, 0.30) 360deg);
+    rgba(198, 162, 75, 0.34) 0deg,
+    rgba(198, 162, 75, 0.34) 276deg,
+    rgba(236, 210, 138, 1) 316deg,
+    #fffbe8 338deg,
+    rgba(236, 210, 138, 1) 356deg,
+    rgba(198, 162, 75, 0.34) 360deg);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   pointer-events: none;
   z-index: 3;
-  animation: iab-beam 6s linear infinite;
+  animation: iab-beam 10s linear infinite;
   /* the beam only runs while the card is on screen (JS toggles .beam-live);
      paused off-screen it still paints the faint gold rim */
   animation-play-state: paused;
@@ -887,6 +906,33 @@ body.iab-page {
     animation: none;
     background: rgba(198, 162, 75, 0.42);
   }
+}
+/* the gold-framed quote card: the same travelling shine riding its existing
+   painted frame — pure glint, no extra rim. Desktop only. */
+.iab-page .sx-framed { position: relative; }
+.iab-page .sx-framed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3.5px;
+  background: conic-gradient(from var(--iab-beam),
+    rgba(255, 248, 220, 0) 0deg,
+    rgba(255, 248, 220, 0) 300deg,
+    rgba(255, 250, 226, 0.95) 330deg,
+    #fffdf2 344deg,
+    rgba(255, 250, 226, 0.95) 358deg,
+    rgba(255, 248, 220, 0) 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+  animation: iab-beam 10s linear infinite;
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce), (pointer: coarse), (max-width: 720px) {
+  .iab-page .sx-framed::after { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .iab-shine-tile::after,
