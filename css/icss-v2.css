@@ -127,8 +127,9 @@ body.icss-page {
   position: absolute;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.3;
-  width: clamp(130px, 26vw, 240px);
+  opacity: 0.28;
+  /* generous: these live behind the photos, never under copy */
+  width: clamp(200px, 34vw, 380px);
 }
 .ic-zig__row,
 .ic-clarity-body,
