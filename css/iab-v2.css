@@ -1242,3 +1242,16 @@ body.iab-page {
   box-shadow: 0 24px 60px rgba(100, 40, 117, 0.14);
 }
 .iab-faq-portrait img { border-radius: 0; box-shadow: none; scale: 1.15; }
+
+/* sacred-geometry accents behind photos — same treatment as the ICSS page */
+.iab-photo-deco {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  width: clamp(200px, 34vw, 380px);
+}
+.iab-bp-grid,
+.iab-faq-grid { position: relative; }
+.iab-bp-image,
+.iab-faq-portrait { position: relative; z-index: 1; }
