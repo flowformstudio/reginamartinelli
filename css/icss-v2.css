@@ -567,6 +567,29 @@ body.icss-page {
 /* story ornaments at half strength — full strength distracts from the copy */
 .icss-page .sx-storywrap .sx-story__orn--phases { opacity: 0.48; }
 .icss-page .sx-storywrap .sx-story__orn--sun { opacity: 0.5; }
+/* story text: one narrow centered column under the wide banner, everything
+   centered — long leads and short bodies now share the same measure */
+.icss-page .sx-storywrap .sx-story {
+  max-width: 760px;
+  text-align: center;
+}
+.icss-page .sx-storywrap .sx-story .sx-ssmall {
+  max-width: 54ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.icss-page .sx-storywrap .sx-slead { text-wrap: balance; }
+/* drop cap fights centered text — neutralize it here */
+.icss-page .sx-storywrap .sx-dropcap-first::first-letter {
+  float: none;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-weight: inherit;
+}
+
 /* each lead hugs its own paragraph (proximity), stays clear of the block above */
 .icss-page .sx-storywrap .sx-slead { margin: 2.1em 0 0.35em; }
 /* the ad moment: gilded, one size up from the other leads */
