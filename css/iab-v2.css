@@ -1226,3 +1226,19 @@ body.iab-page {
     transform: none;
   }
 }
+
+/* ==========================================================================
+   Image parallax crawl — the frame stays put and clips; the oversized image
+   drifts gently inside on scroll (same treatment as the ICSS v2 page).
+   ========================================================================== */
+.iab-bp-image {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.iab-bp-image img { border-radius: 0; scale: 1.15; }
+.iab-faq-portrait {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(100, 40, 117, 0.14);
+}
+.iab-faq-portrait img { border-radius: 0; box-shadow: none; scale: 1.15; }
