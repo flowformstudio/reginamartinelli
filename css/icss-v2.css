@@ -142,10 +142,15 @@ body.icss-page {
 .ic-story-photo { z-index: 1; }
 #my-story .rm-container { position: relative; }
 
-/* the Final: golden dawn over water (user image), cream fade on top */
+/* the Final: golden dawn over water (user image). The fade starts from the
+   body gradient's tone at this scroll depth (#F9EFEA) and runs deep, so the
+   section melts into the FAQ above with no visible seam. */
 .icss-page .sx-final {
   background:
-    linear-gradient(to bottom, #FBF3EC 0%, rgba(251, 243, 236, 0) 32%),
+    linear-gradient(to bottom,
+      #F9EFEA 0%,
+      rgba(249, 239, 234, 0.85) 22%,
+      rgba(249, 239, 234, 0) 55%),
     #F8EFE7 url("../design-system/assets/icss-final-dawn.jpg") center 62% / cover no-repeat;
 }
 .icss-page .sx-final__mandala { display: none; }
