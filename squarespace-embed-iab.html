@@ -10,7 +10,7 @@
      Generated from inner-alignment-blueprint.html — rebuild with tools/build-squarespace-embeds.py, do not
      hand-edit the <style> block.
      ═══════════════════════════════════════════════════════════════ -->
-<div id="rm-iab">
+<div id="rm-iab" class="iab-page">
 <main>
 
   <!-- ════════ HERO — value proposition + primary CTA ════════ -->
@@ -382,7 +382,7 @@
         <p>Understanding yourself is the highest form of self-respect. You are entirely worthy of that clarity.</p>
       </div>
       <div class="iab-cta" style="margin-top:38px;">
-        <a class="rm-btn rm-btn--primary rm-btn--xl" href="#">Get Your Inner Alignment Blueprint &mdash; $147</a>
+        <a class="rm-btn rm-btn--primary rm-btn--xl" href="#">Get Your Inner Alignment Blueprint</a>
         <span class="iab-cta__note">Private 1:1 with Regina &middot; <strong>$147</strong></span>
       </div>
     </div>
@@ -2178,7 +2178,7 @@ html.has-js #rm-iab .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ea
 #rm-iab .sx-sparklist { gap: 16px; }
 #rm-iab .sx-sparklist li { font-size: clamp(1.2rem, 2vw, 1.6rem); padding-left: 42px; }
 /* ---- css/iab-v2.css ---- */
-#rm-iab { overflow-x: clip;
+#rm-iab.iab-page { overflow-x: clip;
   background:
     linear-gradient(180deg,
       #FCFBFE 0%,
@@ -2191,38 +2191,38 @@ html.has-js #rm-iab .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ea
   inset: 0;
   z-index: 0;
   pointer-events: none; }
-#rm-iab > header, #rm-iab > main, #rm-iab > footer { position: relative; z-index: 2; }
-#rm-iab > header { z-index: 50; }
-#rm-iab > .iab-sticky { position: fixed; }
-#rm-iab .sx-chapter { background: transparent; }
-#rm-iab .sx-chapter { padding-top: calc(var(--section-py) * 1.5);
+#rm-iab.iab-page > header, #rm-iab.iab-page > main, #rm-iab.iab-page > footer { position: relative; z-index: 2; }
+#rm-iab.iab-page > header { z-index: 50; }
+#rm-iab.iab-page > .iab-sticky { position: fixed; }
+#rm-iab.iab-page .sx-chapter { background: transparent; }
+#rm-iab.iab-page .sx-chapter { padding-top: calc(var(--section-py) * 1.5);
   padding-bottom: calc(var(--section-py) * 1.5); }
-#rm-iab .sx-ch-head { margin-bottom: 64px; }
-#rm-iab .sx-ch-label { font-size: 0.8rem; letter-spacing: 0.3em; }
-#rm-iab .wash-lav { background: linear-gradient(180deg,
+#rm-iab.iab-page .sx-ch-head { margin-bottom: 64px; }
+#rm-iab.iab-page .sx-ch-label { font-size: 0.8rem; letter-spacing: 0.3em; }
+#rm-iab.iab-page .wash-lav { background: linear-gradient(180deg,
     rgba(201, 183, 239, 0.00) 0%,
     rgba(201, 183, 239, 0.20) 40%,
     rgba(168, 109, 223, 0.12) 100%); }
-#rm-iab .wash-soft { background: linear-gradient(180deg,
+#rm-iab.iab-page .wash-soft { background: linear-gradient(180deg,
     rgba(201, 183, 239, 0.16) 0%,
     rgba(168, 109, 223, 0.10) 55%,
     rgba(245, 166, 228, 0.08) 100%); }
-#rm-iab .sx-paper { background: linear-gradient(180deg,
+#rm-iab.iab-page .sx-paper { background: linear-gradient(180deg,
     rgba(250, 246, 252, 0.66),
     rgba(247, 242, 251, 0.42)); }
-#rm-iab .sx-offer-zone { background:
+#rm-iab.iab-page .sx-offer-zone { background:
     radial-gradient(ellipse 80% 60% at 50% 26%, rgba(168, 109, 223, 0.22), transparent 70%),
     radial-gradient(ellipse 60% 40% at 50% 90%, rgba(198, 162, 75, 0.14), transparent 72%),
     linear-gradient(180deg, rgba(239, 231, 248, 0.7) 0%, rgba(244, 238, 250, 0.55) 100%); }
-#rm-iab .sx-price-card { box-shadow: 0 24px 70px rgba(41, 0, 51, 0.16); }
-#rm-iab .sx-fog { background:
+#rm-iab.iab-page .sx-price-card { box-shadow: 0 24px 70px rgba(41, 0, 51, 0.16); }
+#rm-iab.iab-page .sx-fog { background:
     radial-gradient(ellipse 70% 55% at 50% 30%, rgba(168, 109, 223, 0.28), transparent 70%),
     linear-gradient(180deg, #47105F 0%, #5E1F7D 55%, #47105F 100%); }
-#rm-iab .iab-night { background:
+#rm-iab.iab-page .iab-night { background:
     radial-gradient(ellipse 75% 55% at 50% 26%, rgba(168, 109, 223, 0.28), transparent 70%),
     linear-gradient(180deg, #47105F 0%, #5E1F7D 52%, #47105F 100%); }
-#rm-iab .sx-chapter { position: relative; z-index: auto; overflow: visible; }
-#rm-iab .iab-night--offer { background:
+#rm-iab.iab-page .sx-chapter { position: relative; z-index: auto; overflow: visible; }
+#rm-iab.iab-page .iab-night--offer { background:
     radial-gradient(ellipse 60% 42% at 50% 28%, rgba(198, 162, 75, 0.20), transparent 70%),
     radial-gradient(ellipse 85% 60% at 50% 22%, rgba(168, 109, 223, 0.32), transparent 72%),
     linear-gradient(180deg, #47105F 0%, #5E1F7D 55%, #47105F 100%); }
@@ -2253,7 +2253,7 @@ html.has-js #rm-iab .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ea
 #rm-iab .iab-night--offer .sx-price-card .iab-cta__note { color: var(--rm-primary); }
 #rm-iab .iab-night--offer .sx-price-card .iab-cta__note strong { color: var(--rm-dark-accent); }
 #rm-iab .iab-beat-white { color: #fff; }
-#rm-iab .iab-blueprint { overflow: visible; }
+#rm-iab.iab-page .iab-blueprint { overflow: visible; }
 #rm-iab .iab-bp-grid { display: grid;
   grid-template-columns: 0.85fr 1fr;
   gap: 48px;
@@ -2299,7 +2299,7 @@ html.has-js #rm-iab .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ea
 #rm-iab .iab-bp-grid { grid-template-columns: 1fr; max-width: 440px; gap: 22px; }
 #rm-iab .iab-bp-image img { max-height: 440px; }
 }
-#rm-iab .sx-final { background:
+#rm-iab.iab-page .sx-final { background:
     linear-gradient(to bottom, #F8F1EC 0%, rgba(248, 241, 236, 0) 13%),
     #F4EAF3 url("https://flowformstudio.github.io/regina-assets/images/final-clouds.jpg") center bottom / cover no-repeat;
   margin-top: -1px; }
@@ -2333,15 +2333,15 @@ html.has-js #rm-iab .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ea
 @media (prefers-reduced-motion: no-preference) {
 #rm-iab .iab-geo--spin { animation: iab-rotate 240s linear infinite, iab-geo-glow 16s ease-in-out infinite alternate; }
 }
-#rm-iab .sx-chapter > .rm-container, #rm-iab .sx-chapter > .sx-ch-head { position: relative; z-index: 2; }
-#rm-iab .iab-px, #rm-iab .iab-aura, #rm-iab .iab-geo, #rm-iab .iab-orn, #rm-iab .iab-burst, #rm-iab .iab-fog-sun, #rm-iab .iab-fog-flower, #rm-iab .iab-bp-sun, #rm-iab .iab-bp-flower, #rm-iab .sx-burst { z-index: 1; }
-#rm-iab .iab-px { pointer-events: none;
+#rm-iab.iab-page .sx-chapter > .rm-container, #rm-iab.iab-page .sx-chapter > .sx-ch-head { position: relative; z-index: 2; }
+#rm-iab.iab-page .iab-px, #rm-iab.iab-page .iab-aura, #rm-iab.iab-page .iab-geo, #rm-iab.iab-page .iab-orn, #rm-iab.iab-page .iab-burst, #rm-iab.iab-page .iab-fog-sun, #rm-iab.iab-page .iab-fog-flower, #rm-iab.iab-page .iab-bp-sun, #rm-iab.iab-page .iab-bp-flower, #rm-iab.iab-page .sx-burst { z-index: 1; }
+#rm-iab.iab-page .iab-px { pointer-events: none;
   will-change: translate; }
-#rm-iab .iab-geo.iab-px { opacity: 0.26;
+#rm-iab.iab-page .iab-geo.iab-px { opacity: 0.26;
   animation: iab-rotate 200s linear infinite; }
-#rm-iab .iab-orn.iab-px { opacity: 0.9; }
-#rm-iab .iab-burst.iab-px { opacity: 0.95; }
-#rm-iab .sx-hero[data-align]::before { content: "";
+#rm-iab.iab-page .iab-orn.iab-px { opacity: 0.9; }
+#rm-iab.iab-page .iab-burst.iab-px { opacity: 0.95; }
+#rm-iab.iab-page .sx-hero[data-align]::before { content: "";
   position: absolute;
   left: 50%; top: 46%;
   width: min(96vw, 1080px);
@@ -2356,13 +2356,13 @@ html.has-js #rm-iab .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ea
   z-index: 1;
   pointer-events: none; }
 @media (max-width: 640px) {
-#rm-iab .sx-hero[data-align]::before { width: 140vw;
+#rm-iab.iab-page .sx-hero[data-align]::before { width: 140vw;
     height: min(92vh, 760px);
     top: 48%;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px); }
 }
-#rm-iab .sx-hero[data-align]::after { content: "";
+#rm-iab.iab-page .sx-hero[data-align]::after { content: "";
   position: absolute;
   inset: 0;
   
@@ -2379,22 +2379,22 @@ html.has-js #rm-iab .sx-hero__cta { opacity: 0; animation: sx-rise 1.1s var(--ea
   to   { opacity: 1; transform: none; filter: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
-html.has-js #rm-iab .sx-hero__eyebrow, html.has-js #rm-iab .sx-hero__title, html.has-js #rm-iab .sx-hero__intro, html.has-js #rm-iab .sx-hero__cta { animation-name: iab-hero-in;
+html.has-js #rm-iab.iab-page .sx-hero__eyebrow, html.has-js #rm-iab.iab-page .sx-hero__title, html.has-js #rm-iab.iab-page .sx-hero__intro, html.has-js #rm-iab.iab-page .sx-hero__cta { animation-name: iab-hero-in;
     animation-duration: 1.05s; }
-html.has-js #rm-iab .sx-hero__eyebrow { animation-delay: 0.05s; }
-html.has-js #rm-iab .sx-hero__title { animation-delay: 0.16s; }
-html.has-js #rm-iab .sx-hero__intro { animation-delay: 0.36s; }
-html.has-js #rm-iab .sx-hero__cta { animation-delay: 0.52s; }
-html.has-js #rm-iab .sx-hero__title em { display: inline-block;
+html.has-js #rm-iab.iab-page .sx-hero__eyebrow { animation-delay: 0.05s; }
+html.has-js #rm-iab.iab-page .sx-hero__title { animation-delay: 0.16s; }
+html.has-js #rm-iab.iab-page .sx-hero__intro { animation-delay: 0.36s; }
+html.has-js #rm-iab.iab-page .sx-hero__cta { animation-delay: 0.52s; }
+html.has-js #rm-iab.iab-page .sx-hero__title em { display: inline-block;
     opacity: 0;
     animation: iab-hero-in 1.05s var(--ease) 0.34s forwards; }
-#rm-iab .sx-hero__cue { animation-delay: 0.85s; }
+#rm-iab.iab-page .sx-hero__cue { animation-delay: 0.85s; }
 }
-#rm-iab .sx-hero__eyebrow, #rm-iab .sx-hero__title, #rm-iab .sx-hero__tag, #rm-iab .sx-hero__intro, #rm-iab .sx-hero__cta, #rm-iab .sx-hero__meta, #rm-iab .sx-hero__cue { position: relative; z-index: 2; }
-#rm-iab .sx-hero__meta { color: rgba(255, 255, 255, 0.95); margin-top: 30px; }
-#rm-iab .sx-hero__meta span + span::before { color: var(--rm-gold-soft); }
-#rm-iab .sx-hero__cue { color: var(--rm-gold-soft); }
-#rm-iab .sx-hero__tag { font-family: var(--font-serif);
+#rm-iab.iab-page .sx-hero__eyebrow, #rm-iab.iab-page .sx-hero__title, #rm-iab.iab-page .sx-hero__tag, #rm-iab.iab-page .sx-hero__intro, #rm-iab.iab-page .sx-hero__cta, #rm-iab.iab-page .sx-hero__meta, #rm-iab.iab-page .sx-hero__cue { position: relative; z-index: 2; }
+#rm-iab.iab-page .sx-hero__meta { color: rgba(255, 255, 255, 0.95); margin-top: 30px; }
+#rm-iab.iab-page .sx-hero__meta span + span::before { color: var(--rm-gold-soft); }
+#rm-iab.iab-page .sx-hero__cue { color: var(--rm-gold-soft); }
+#rm-iab.iab-page .sx-hero__tag { font-family: var(--font-serif);
   font-style: italic;
   font-weight: 500;
   font-size: clamp(1.7rem, 3vw, 2.5rem);
@@ -2402,23 +2402,23 @@ html.has-js #rm-iab .sx-hero__title em { display: inline-block;
   letter-spacing: 0.005em;
   color: var(--rm-primary);
   margin-top: 20px; }
-#rm-iab .rm-btn--primary { box-shadow: 0 10px 30px rgba(100, 40, 117, 0.22);
+#rm-iab.iab-page .rm-btn--primary { box-shadow: 0 10px 30px rgba(100, 40, 117, 0.22);
   transition: box-shadow 0.55s var(--ease), transform 0.3s var(--ease), background 0.4s var(--ease); }
-#rm-iab .rm-btn--primary:hover { transform: translateY(-2px);
+#rm-iab.iab-page .rm-btn--primary:hover { transform: translateY(-2px);
   box-shadow: 0 16px 42px rgba(100, 40, 117, 0.32), 0 0 28px rgba(229, 204, 133, 0.5); }
-#rm-iab .iab-strip { background: #FBF6EF;
+#rm-iab.iab-page .iab-strip { background: #FBF6EF;
   border-top: none;
   border-bottom: none;
   position: relative;
   z-index: 2; }
-#rm-iab .iab-card { background: rgba(255, 255, 255, 0.72);
+#rm-iab.iab-page .iab-card { background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   box-shadow: 0 18px 44px rgba(100, 40, 117, 0.10); }
 #rm-iab .sx-fog .sx-ch-title { color: #fff; }
 #rm-iab .sx-fog .sx-ch-label { color: var(--rm-light-accent); }
 #rm-iab .sx-fog .sx-ch-head::before { background: linear-gradient(180deg, transparent, var(--rm-gold)); }
-#rm-iab .sx-fog { overflow: visible; }
+#rm-iab.iab-page .sx-fog { overflow: visible; }
 #rm-iab .iab-fog-sun { position: absolute;
   top: 6px; left: 50%;
   transform: translateX(-50%);
@@ -2462,22 +2462,22 @@ html.has-js #rm-iab .sx-hero__title em { display: inline-block;
   align-items: center;
   justify-content: center;
   gap: 16px; }
-#rm-iab .sx-hero__title { max-width: none; }
-#rm-iab .sx-hero__title em { white-space: nowrap; }
+#rm-iab.iab-page .sx-hero__title { max-width: none; }
+#rm-iab.iab-page .sx-hero__title em { white-space: nowrap; }
 @media (max-width: 640px) {
-#rm-iab .sx-hero__title { font-size: clamp(2.4rem, 10.5vw, 3.6rem); }
-#rm-iab .sx-hero__title em { white-space: normal; }
+#rm-iab.iab-page .sx-hero__title { font-size: clamp(2.4rem, 10.5vw, 3.6rem); }
+#rm-iab.iab-page .sx-hero__title em { white-space: normal; }
 }
-#rm-iab .sx-hero__cta .rm-btn { display: inline-flex;
+#rm-iab.iab-page .sx-hero__cta .rm-btn { display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 60px;
   line-height: 1;
   box-sizing: border-box; }
-#rm-iab .sx-hero__cta .rm-btn--secondary { border-color: rgba(100, 40, 117, 0.5);
+#rm-iab.iab-page .sx-hero__cta .rm-btn--secondary { border-color: rgba(100, 40, 117, 0.5);
   color: var(--rm-primary);
   box-shadow: none; }
-#rm-iab .sx-hero__cta .rm-btn--secondary:hover { background: rgba(100, 40, 117, 0.08);
+#rm-iab.iab-page .sx-hero__cta .rm-btn--secondary:hover { background: rgba(100, 40, 117, 0.08);
   border-color: var(--rm-primary);
   color: var(--rm-dark-accent);
   transform: translateY(-2px); }
@@ -2541,7 +2541,7 @@ html.has-js #rm-iab .sx-hero__meta { animation-delay: 1.15s; }
   text-transform: none;
   font-weight: 500;
   font-size: 1.02rem; }
-#rm-iab .iab-reframe { position: relative;
+#rm-iab.iab-page .iab-reframe { position: relative;
   overflow: visible;
   background:
     radial-gradient(ellipse 90% 70% at 60% 80%, rgba(250, 224, 211, 0.55), transparent 70%),
@@ -2595,7 +2595,7 @@ html.has-js #rm-iab .sx-hero__meta { animation-delay: 1.15s; }
   color: var(--rm-primary);
   margin: 0;
   text-wrap: balance; }
-#rm-iab .iab-reassure { position: relative;
+#rm-iab.iab-page .iab-reassure { position: relative;
   background: transparent; }
 #rm-iab .iab-reassure__divider { display: block;
   width: clamp(280px, 42vw, 420px);
@@ -2623,7 +2623,7 @@ html.has-js #rm-iab .sx-hero__meta { animation-delay: 1.15s; }
   color: var(--rm-primary);
   max-width: 56ch;
   margin: 0 auto; }
-#rm-iab .iab-cream { background: #FBF6EF;
+#rm-iab.iab-page .iab-cream { background: #FBF6EF;
   position: relative; }
 #rm-iab .iab-burst { position: absolute;
   z-index: 0;
@@ -2715,7 +2715,7 @@ html.has-js #rm-iab .rm-reveal.is-in .iab-step { opacity: 1; transform: none; }
   gap: 26px; }
 #rm-iab .iab-bento__card--e .iab-bento__icon { margin-bottom: 0; }
 #rm-iab .iab-bento__card--e .iab-bento__title { margin-bottom: 4px; }
-#rm-iab .iab-shine-tile, #rm-iab .sx-price-card { border: 1px solid rgba(198, 162, 75, 0.5); }
+#rm-iab .iab-shine-tile, #rm-iab.iab-page .sx-price-card { border: 1px solid rgba(198, 162, 75, 0.5); }
 @media (prefers-reduced-motion: no-preference) {
 html.has-js #rm-iab .rm-reveal .iab-bento__card { opacity: 0; transform: translateY(18px);
     transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
@@ -2931,14 +2931,14 @@ html.has-js #rm-iab .rm-reveal.is-in .iab-card { opacity: 1; transform: none; }
 #rm-iab .iab-strip__v { font-size: 0.72rem; letter-spacing: 0.14em; }
 }
 @media (max-width: 640px) {
-#rm-iab .sx-chapter { padding-top: calc(var(--section-py) * 0.95);
+#rm-iab.iab-page .sx-chapter { padding-top: calc(var(--section-py) * 0.95);
     padding-bottom: calc(var(--section-py) * 0.95); }
-#rm-iab .sx-ch-head { margin-bottom: 40px; }
-#rm-iab .sx-ch-head::before { height: 38px; margin-bottom: 16px; }
+#rm-iab.iab-page .sx-ch-head { margin-bottom: 40px; }
+#rm-iab.iab-page .sx-ch-head::before { height: 38px; margin-bottom: 16px; }
 #rm-iab .iab-gap { height: 36px; }
 #rm-iab .iab-gap--sm { height: 30px; }
 #rm-iab .iab-gap--lg { height: 42px; }
-#rm-iab .iab-steps { margin-top: 40px; gap: 26px; }
+#rm-iab.iab-page .iab-steps { margin-top: 40px; gap: 26px; }
 #rm-iab .iab-bp-grid { margin-top: 36px; }
 #rm-iab .iab-bento__card { padding: 26px 24px; }
 #rm-iab .iab-bp-sun { width: 180px; right: -50px; }
@@ -2946,12 +2946,12 @@ html.has-js #rm-iab .rm-reveal.is-in .iab-card { opacity: 1; transform: none; }
 #rm-iab .iab-shift { margin-top: 36px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-html.has-js #rm-iab .rm-reveal .sx-ch-head::before { transition-duration: 0.55s;
+html.has-js #rm-iab.iab-page .rm-reveal .sx-ch-head::before { transition-duration: 0.55s;
     transition-delay: 0s; }
-html.has-js #rm-iab .rm-reveal .sx-ch-label, html.has-js #rm-iab .rm-reveal .sx-ch-title { transform: translateY(12px);
+html.has-js #rm-iab.iab-page .rm-reveal .sx-ch-label, html.has-js #rm-iab.iab-page .rm-reveal .sx-ch-title { transform: translateY(12px);
     transition-duration: 0.55s; }
-html.has-js #rm-iab .rm-reveal .sx-ch-label { transition-delay: 0.12s; }
-html.has-js #rm-iab .rm-reveal .sx-ch-title { transition-delay: 0.2s; }
+html.has-js #rm-iab.iab-page .rm-reveal .sx-ch-label { transition-delay: 0.12s; }
+html.has-js #rm-iab.iab-page .rm-reveal .sx-ch-title { transition-delay: 0.2s; }
 }
 @media (prefers-reduced-motion: no-preference) {
 html.has-js #rm-iab .rm-reveal .sx-prose:not(.sx-stagger), html.has-js #rm-iab .rm-reveal .sx-quote, html.has-js #rm-iab .rm-reveal .iab-reframe-intro, html.has-js #rm-iab .rm-reveal .iab-role, html.has-js #rm-iab .rm-reveal .sx-price-card, html.has-js #rm-iab .rm-reveal .sx-twocol, html.has-js #rm-iab .rm-reveal .sx-shift, html.has-js #rm-iab .rm-reveal .iab-faq-grid, html.has-js #rm-iab .rm-reveal .iab-cta, html.has-js #rm-iab .rm-reveal .iab-reassure__lead, html.has-js #rm-iab .rm-reveal .iab-reassure__divider, html.has-js #rm-iab .rm-reveal .iab-bp-grid { opacity: 0;

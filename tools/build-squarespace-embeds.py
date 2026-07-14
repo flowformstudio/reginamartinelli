@@ -50,8 +50,14 @@ def tx_selector(sel, scope, pagecls):
     s = sel.strip()
     if not s:
         return None
-    # replace page-class tokens with the scope id
-    s = s.replace("body" + pagecls, scope).replace(pagecls, scope)
+    # replace page-class tokens with scope-id + page-class (the wrapper div
+    # carries both). Keeping the class preserves each rule's specificity
+    # relative to generic rules, which only gain the id prefix — replacing
+    # the class with the bare id flattened `.icss-page .x` (0,2,0) below a
+    # prefixed `.a > .b` (1,2,0), letting session.css beat the v2 overrides
+    # (hero title dropped under the glow veil).
+    s = s.replace("body" + pagecls, pagecls)
+    s = s.replace(pagecls, scope + pagecls)
     # drop rules targeting html itself (scroll/color-scheme/overflow live
     # on the page; we re-add the useful ones as deliberate globals)
     if re.match(r"^html(?![.\w-])", s) or s.startswith("html:has"):
@@ -180,7 +186,7 @@ def build(page):
         % (page["title"], BASE, page["src"]))
 
     out = (header +
-           '<div id="%s">\n' % page["wrap_id"] +
+           '<div id="%s" class="%s">\n' % (page["wrap_id"], page["pagecls"].lstrip(".")) +
            content + "\n</div>\n\n" +
            "<style>\n" +
            "\n".join(dict.fromkeys(imports)) + "\n" +
