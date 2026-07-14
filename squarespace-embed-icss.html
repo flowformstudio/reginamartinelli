@@ -2732,7 +2732,12 @@ html.has-js #rm-icss .rm-reveal.is-in .ic-mirror li { opacity: 1; transform: non
   max-width: 720px;
   margin: 64px auto 0; }
 #rm-icss .ic-case__beat { margin-top: 40px; }
-#rm-icss .ic-case__beat .sx-splash { width: 104%; margin: 0 -2% 0; }
+#rm-icss .ic-case__beat .sx-splash { display: inline;
+  width: auto;
+  margin: 0;
+  padding: 0.14em 0.45em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone; }
 #rm-icss .ic-case__kicker { display: block;
   font-family: var(--font-sans);
   font-size: 0.76rem;
